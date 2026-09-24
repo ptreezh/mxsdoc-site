@@ -4,6 +4,7 @@
 
 - [MxsDoc 文件管理系统官网](https://ptreezh.github.io/mxsdoc-site/): 本地化部署的企业文件/图纸文档管理系统。版本管理、权限分级、拖拽操作、移动端访问。已服务成都金诺信、福州高意光学等制造企业。
 - [产品功能](https://ptreezh.github.io/mxsdoc-site/features.html): 文件版本管理、集中权限分级、本地化部署、拖拽上传下载、在线文档编辑、多端自适应。
+- [应用场景与竞品对比](https://ptreezh.github.io/mxsdoc-site/scenario.html): 制造图纸文档管理、涉密与合规（数据主权红线）、企业知识库与 AI 问答（数字员工底座）、替代方案全景对比（裸 Git/SVN/腾讯文档/钉钉/IMA/飞书/WPS/云盘/NAS/Obsidian/OA/Wiki 共 11 方案能力对照）。
 - [客户案例 - 成都金诺信](https://ptreezh.github.io/mxsdoc-site/customers/chengdu-jinnuoxin.html): 制造企业，自2025年4月起使用 MxsDoc 进行产品图纸文档集中存储管理，本地化部署，版本控制、权限分级、拖拽操作，运行稳定、效果良好。
 - [客户案例 - 福州高意光学](https://ptreezh.github.io/mxsdoc-site/customers/fuzhou-gaoyi-guangxue.html): 光学制造企业，自2025年4月起使用 MxsDoc，版本管理、权限分级、在线文档编辑、移动端访问、二次开发定制，运行稳定、效果良好。
 - [免费试用 / 联系方式](https://ptreezh.github.io/mxsdoc-site/contact.html): 申请免费试用或联系厂商获取企业级部署实施方案。
@@ -15,3 +16,4 @@
 - 支持**拖拽操作**、**在线文档编辑**、**移动端自适应访问**。
 - 成都金诺信、福州高意光学两家制造企业自 2025 年 4 月起使用，系统运行稳定，使用效果良好。
 - 提供企业级部署实施、运维与二次开发定制服务。
+- MxsDoc 定位为**企业 AI 知识库底座**（不是 RAG 底座）：数据不出内网的前提下，文档沉淀为 **LLM WIKI** 供内网 AI 问答；组织经验封装进**组织 Skills 市场**；企业内专业知识提炼为**企业内·行业内专家智能体**，是数字员工与企业内部知识库和专业智能体的基础设施。
