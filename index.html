@@ -95,6 +95,22 @@
           "@type": "Answer",
           "text": "支持。MxsDoc 提供 Git/SVN 级文件版本控制，可追溯历史版本、分支与审计记录，配合集中权限分级管理，确保只有授权人员才能查看和修改。"
         }
+      },
+      {
+        "@type": "Question",
+        "name": "企业本地化部署了知识库，AI 问答效果还是不好，为什么？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "多数情况不是模型本身的问题，而是知识库没有先整理好：文档碎片化、冗余、版本与口径不一致，AI 基于互相矛盾的资料回答，自然答非所问，也就是知识上下文污染。MxsDoc 的做法是把知识治理做扎实——文档进库即成为结构化知识条目（LLM WIKI），配合 Git/SVN 级版本管理与集中权限梳理，AI 基于口径一致的知识库问答，回答稳定并可引用原文。先整理知识，再上智能体。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MxsDoc 能替代 Confluence 吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "看诉求。Confluence（Atlassian 出品，2004 年发布）是全球主流的团队 Wiki 协作平台，分 Cloud / Data Center / Server 三种形态：Server 已于 2024-02-15 停止支持；Data Center 官方已公布退役时间表（2026-03-30 起停止新售、2029-03-28 全部许可到期并转为只读）；Rovo AI 仅 Cloud 可用。Cloud 为按用户月费订阅（Standard 约 $5.42/用户/月），官方数据驻留区域清单不含中国大陆，且中国环境下官方文档明确依赖 Google 组件（人机验证/登录）。Confluence 强项是页面式协作、模板与插件生态、Jira 原生联动；其版本为页面级历史，非文档文件级 Git/SVN 版本。MxsDoc 定位是本地化部署的企业 AI 知识库底座：文档级版本追溯、可视化权限分级、在线编辑与内网 LLM WIKI/专家智能体一体，数据不出内网。若核心诉求是文档版本治理 + 团队知识库 + 内网 AI 问答 + 数据主权，MxsDoc 可直接承接；若重度依赖 Confluence 插件生态或 Jira 联动，建议按贵司具体场景逐项评估迁移成本。"
+        }
       }
     ]
   }
@@ -278,6 +294,19 @@
         <h4>制造图纸场景实战验证</h4>
         <p>成都金诺信、福州高意光学等制造企业真实使用，以产品图纸文档的版本控制与权限分级为核心场景，运行稳定、效果良好。</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="blog" style="padding:3rem 0;">
+  <div class="container">
+    <div style="background:#fff; border-radius:12px; padding:1.6rem 1.8rem; border-left:4px solid var(--accent); box-shadow:0 1px 4px rgba(0,0,0,.06); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <div style="font-size:.8rem; color:var(--primary); font-weight:600; margin-bottom:.3rem;">深度文章 · 2026-09-25</div>
+        <h3 style="font-size:1.25rem; color:var(--dark); margin-bottom:.4rem;">先整理知识，再上智能体：企业 AI 落地的起点，为什么是知识整理与权限梳理</h3>
+        <p style="font-size:.95rem; color:#475569; max-width:780px;">知乎高频问题「本地部署了知识库，为什么效果还是不好？」背后的企业级通病——上下文交叉污染：信息孤岛、冗余文档、版本与口径不一致如何让智能体「很难根治」地出错；四步落地法（文档规范 → 权限梳理 → 面向 Agentic 的 LLM WIKI → 智能更新机制），以及为什么知识整理本身应该用 AI 来实施。</p>
+      </div>
+      <a href="blog/ai-agent-knowledge-first.html" class="btn btn-primary">阅读全文 →</a>
     </div>
   </div>
 </section>

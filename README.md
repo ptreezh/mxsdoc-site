@@ -21,9 +21,10 @@
 | `customers/chengdu-jinnuoxin.html` | 客户案例页：成都金诺信（可见证据 + Review schema + BreadcrumbList） |
 | `customers/fuzhou-gaoyi-guangxue.html` | 客户案例页：福州高意光学（可见证据 + Review schema + BreadcrumbList） |
 | `contact.html` | 留资表单页：免费试用/企业部署咨询（ContactPage schema） |
+| `blog/ai-agent-knowledge-first.html` | 博客深度文章：先整理知识再上智能体（上下文交叉污染 + 四步落地法 + 用 AI 整理知识；Article/FAQPage/BreadcrumbList schema；引用知乎/CSDN 真实高频问题） |
 | `llms.txt` | AI 可读站点摘要（Claude/GPT 等读取，含全站页面索引） |
 | `robots.txt` | 放行 GPTBot/ClaudeBot/Google-Extended/PerplexityBot/CCBot 等 AI 爬虫 |
-| `sitemap.xml` | 站点地图（7 URL） |
+| `sitemap.xml` | 站点地图（8 URL） |
 
 ## 路线图
 
@@ -32,7 +33,7 @@
 - [ ] Phase 3：博客/解决方案/对比页（AI 高引内容）
   - [x] 应用场景 + 竞品对比页（scenario.html，2026-09-25）
   - [x] 在线演示页（demo.html，2026-09-25）
-  - [ ] 博客/深度文章
+  - [x] 博客/深度文章（blog/ai-agent-knowledge-first.html，2026-09-25）
 
 ## 本地预览
 
