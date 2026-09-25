@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>先整理知识，再上智能体：企业 AI 落地的起点，为什么是知识整理与权限梳理 — MxsDoc 博客</title>
+  <meta name="description" content="企业智能体上下文交叉污染、知识碎片化、冗余文档与版本口径不一致，是 AI 落地翻车的高频原因。知乎/CSDN 高频问题拆解：先做文档规范与流程标准化、权限梳理，再搭建面向 Agentic 的 LLM WIKI，用 AI 实施知识整理，建立符合 AI 认知特征的上下文工程知识库。">
+  <meta name="keywords" content="企业 AI 智能体,上下文交叉污染,知识整理,权限梳理,LLM WIKI,概念本体论,知识库架构,本地化部署,数据不出内网,知识治理">
+  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/blog/ai-agent-knowledge-first.html">
+  <meta property="og:title" content="先整理知识，再上智能体：企业 AI 落地的起点 | MxsDoc 博客">
+  <meta property="og:description" content="知乎高频问题「本地部署了知识库，为什么效果还是不好？」背后的企业级通病——上下文交叉污染。四步落地法：文档规范 → 权限梳理 → 面向 Agentic 的 LLM WIKI → 智能更新机制。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/blog/ai-agent-knowledge-first.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "先整理知识，再上智能体：企业 AI 落地的起点，为什么是知识整理与权限梳理",
+    "description": "企业智能体上下文交叉污染、知识碎片化、冗余文档与版本口径不一致，是 AI 落地翻车的高频原因。用平台高频问题拆解原因，给出可落地顺序：文档规范 → 权限梳理 → 面向 Agentic 的 LLM WIKI → 智能更新机制。",
+    "author": { "@type": "Organization", "name": "MxsDoc" },
+    "publisher": { "@type": "Organization", "name": "MxsDoc" },
+    "datePublished": "2026-09-25",
+    "dateModified": "2026-09-25",
+    "mainEntityOfPage": "https://ptreezh.github.io/mxsdoc-site/blog/ai-agent-knowledge-first.html",
+    "inLanguage": "zh-CN"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "企业为什么先要把内部文档和知识整理好，再上智能体？",
+        "acceptedAnswer": { "@type": "Answer", "text": "不经过知识治理的知识库没有意义：智能体会同时读到新旧两版 SOP、矛盾口径、过期参数，无法判断哪份是权威版本，只能平均或猜测，造成上下文交叉污染，关键时刻给出似是而非的错误答案。先整理知识、规范流程、梳理权限，再上智能体，才能让 AI 引用到权威、一致、有权限边界的事实。" }
+      },
+      {
+        "@type": "Question",
+        "name": "智能体上下文交叉污染是什么？为什么很难根治？",
+        "acceptedAnswer": { "@type": "Answer", "text": "当知识库同时存在信息孤岛、知识碎片、冗余文档、版本与逻辑不一致的内容时，AI 检索会把互相矛盾的上下文同时塞进模型，输出被污染。之所以难根治，是因为污染源在文档层——只要不治理文档的版本、口径与权限，无论怎么调提示词或换模型都绕不过去。" }
+      },
+      {
+        "@type": "Question",
+        "name": "知识整理和权限梳理，具体从哪里开始？",
+        "acceptedAnswer": { "@type": "Answer", "text": "四步：先定义哪些文档是知识资产，建立目录、命名、元数据规范和评审发布归档流程；再按部门/角色明确谁能看、谁能改，涉密分级，确保数据不出内网；然后统一知识库架构，把文档沉淀为结构化、可引用的知识条目；建立智能更新机制，新版本发布自动归档旧版，AI 引用始终指向权威版本。" }
+      },
+      {
+        "@type": "Question",
+        "name": "什么是面向智能体的 LLM WIKI？和传统 RAG 知识库有什么区别？",
+        "acceptedAnswer": { "@type": "Answer", "text": "面向智能体的 LLM WIKI 是把文档整理成结构化的知识条目（概念、链接、本体），让 AI 按逻辑结构引用，而不是靠向量相似度猜测。传统 RAG 是检索相似片段交给模型拼凑，文档不整理、关联不主动建立，检索结果容易是猜的；LLM WIKI 先做概念本体论梳理，AI 引用的是确定的知识结构。" }
+      },
+      {
+        "@type": "Question",
+        "name": "本地部署了知识库，但 AI 问答效果还是不好，问题出在哪？",
+        "acceptedAnswer": { "@type": "Answer", "text": "部署不等于效果。知乎上真实用户原话：在笔记本上部署了 RAGflow、ollama、deepseek 7B 知识库，用起来效果很一般。问题通常在知识层——文档没整理、版本冲突、没有权限边界，AI 检索到互相矛盾的片段。先把知识治理好，再谈模型和参数。" }
+      },
+      {
+        "@type": "Question",
+        "name": "MxsDoc 怎么帮助企业避免智能体上下文交叉污染？",
+        "acceptedAnswer": { "@type": "Answer", "text": "MxsDoc 提供 Git/SVN 级文件版本管理，从源头治理版本与口径不一致，AI 问答只引用权威版本；集中权限分级管理，AI 遵循同样的权限边界，数据不出内网；文档进库即沉淀为 LLM WIKI 知识条目，供内网 AI 问答、总结、引用原文；组织 Skills 市场沉淀经验，企业专家智能体提炼专业知识。" }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ptreezh.github.io/mxsdoc-site/" },
+      { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://ptreezh.github.io/mxsdoc-site/#blog" },
+      { "@type": "ListItem", "position": 3, "name": "先整理知识，再上智能体" }
+    ]
+  }
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 800px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .hook { background: #fff8ec; border-left: 4px solid var(--accent); padding: 1.2rem 1.4rem; border-radius: 0 8px 8px 0; margin: 1.6rem 0; }
+    .hook p { margin: 0 0 .4rem; font-size: .95rem; color: #6b7280; font-style: italic; }
+    .hook .src { display: block; font-size: .82rem; color: #94a3b8; font-style: normal; }
+    .pp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 1.6rem; }
+    .pp { background: #fff; border-radius: 10px; padding: 1.4rem 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .pp h3 { color: var(--primary); font-size: 1.05rem; margin-bottom: .5rem; }
+    .pp p { font-size: .92rem; color: #475569; }
+    .number { font-size: 1.9rem; font-weight: 800; color: var(--accent); display: block; margin-bottom: .3rem; }
+    .steps { counter-reset: step; list-style: none; margin-top: 1.6rem; }
+    .steps li { background: #fff; border-radius: 10px; padding: 1.4rem 1.5rem 1.4rem 3.4rem; position: relative; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 1.2rem; top: 1.4rem; width: 1.7rem; height: 1.7rem; background: var(--primary); color: #fff; border-radius: 50%; text-align: center; font-weight: 700; font-size: .95rem; line-height: 1.7rem; }
+    .steps h3 { color: var(--dark); margin-bottom: .4rem; font-size: 1.08rem; }
+    .steps p { font-size: .93rem; color: #475569; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/chengdu-jinnuoxin.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · 先整理知识，再上智能体</div>
+    <h1>先整理知识，再上智能体：企业 AI 落地的起点，为什么是知识整理与权限梳理</h1>
+    <p class="sub">知乎高频问题「本地部署了知识库，为什么效果还是不好？」背后，是企业级智能体的通病——上下文交叉污染。本文用平台真实高频问题拆解原因，给出可落地顺序：文档规范 → 权限梳理 → 面向 Agentic 的 LLM WIKI → 智能更新机制。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-09-25 · 约 8 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+    <div class="hook">
+      <p>「在笔记本上部署了 RAGflow、ollama、deepseek 7B 知识库，用起来效果很一般，一查就错……」</p>
+      <span class="src">—— 知乎问题「本地部署大模型知识库，效果如何？」提问原文（2025-07-30）</span>
+    </div>
+    <div class="hook">
+      <p>「不经过知识治理的知识库没有意义。」「你把垃圾丢进 RAG，出来的依然是垃圾。」</p>
+      <span class="src">—— 知乎专栏《无一幸免！6000 字长文深度解析企业 AI 知识库项目的三种败局》（2026-01-13）</span>
+    </div>
+
+    <h2 id="why">一个反直觉的事实：越早把文档一股脑丢给智能体，越容易翻车</h2>
+    <p>很多企业上来就搭建智能体，把散落在个人电脑、网盘、OA、聊天记录里的文档一次性导入知识库，期待 AI 立刻生财。结果智能体深陷四样东西：<strong>破碎的信息孤岛</strong>、<strong>来不及整理的知识碎片</strong>、<strong>冗余的文档</strong>，以及<strong>内在版本和逻辑不一致的数据和事实</strong>。</p>
+    <p>后果有一个专业名称：<strong>上下文交叉污染</strong>。当知识库里同时存在新旧两版 SOP、矛盾的业务口径、过期的参数表时，AI 检索会把互相冲突的片段一起塞进模型。模型无法判断哪份才是权威版本，只能「平均」或「猜测」——结果就是关键时刻给出一个《三种败局》里描述的「似是而非」的错误答案：<strong>偶尔是对的，经常是模糊的，出错时很有自信</strong>。</p>
+    <p>一线员工用两次就不敢用了，系统空转，信任破产。更麻烦的是，污染源在文档层而不在模型层：<strong>只要不治理文档的版本、口径与权限，无论怎么调提示词、换什么档次的模型，都绕不过去——这就是「很难根治」的原因。</strong></p>
+    <p>数据也印证了「重搭轻理」的行业惯性：CSDN 上「本地 / 私有化 AI 知识库」的内容社区热度过万，教程的主角几乎全部是 Dify、Ollama、RAGflow、FastGPT 这类工具；而技术深水区（InfoQ、掘金、牛客）谈论的却是另一件事——<strong>文档解析被低估</strong>（牛客社区）、<strong>RAG 是「既离不了又不满意」</strong>（InfoQ 年度技术盘点）、<strong>「RAG 返回的是 Representation，不是 Knowledge」</strong>（InfoQ 知识工程主张）。大家都在讨论怎么把模型接进来，很少有人讨论怎么把知识理清楚。</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="pain">拆解高频痛点：知识库「没效果」，通常死在四个地方</h2>
+    <p>把知乎、CSDN、公众号、开发者社区里关于「知识库 / AI 落地」的高频问题汇总，排除掉工具选型和技术参数，剩下的痛点高度收敛为四类：</p>
+    <div class="pp-grid">
+      <div class="pp">
+        <span class="number">01</span>
+        <h3>信息孤岛：知识散落在个人设备与多个工具里</h3>
+        <p>核心知识长在个人电脑、聊天记录和私人网盘里，组织层面没有统一的沉淀位置。知乎「如何建设团队知识库」下，券商 IT 团队的答案是先迁移个人知识、再建立统一沉淀机制；Obsidian + Git 的自建党也承认，到头来「从依赖个人，变成依赖系统」才是终点。</p>
+      </div>
+      <div class="pp">
+        <span class="number">02</span>
+        <h3>版本与口径不一致：旧文档被 AI 当成事实</h3>
+        <p>知乎「怎样用 Git 做文档版本管理」的一条高赞评论写的是：「上周删掉的那段话，这周才发现还有用，但已经找不回来了。」CSDN 版本管理话题爆款区写满 10 万级浏览——版本混乱是全民级痛点，而在 AI 时代它多了一重代价：<strong>过期版本会被 AI 当权威引用。</strong></p>
+      </div>
+      <div class="pp">
+        <span class="number">03</span>
+        <h3>权限没梳理：AI 拿到了它本不该看的内容</h3>
+        <p>知乎「使用大模型服务如何保证数据安全」的共识是三条：哪些数据能出域、哪些不能出域、调用必须可审计。政企场景更严格——全离线、数据不出门。权限不先梳理清楚，智能体一上线就是合规事故。</p>
+      </div>
+      <div class="pp">
+        <span class="number">04</span>
+        <h3>没有沉淀机制：人走了，知识也跟着走了</h3>
+        <p>微信公众号《老员工离职，带走了公司所有底牌？》把「AI 知识库落地」的完整套路讲清楚后发现：知识库不是建出来的，是<strong>持续运营</strong>出来的。没有评审、发布、归档流程，知识库三个月就退化成第二个文件仓库。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="steps">正确顺序：先整理，后智能——四步落地法</h2>
+    <p>对齐「先整理知识、规范流程、梳理权限，再上智能体」的原则，可落地的顺序是下面四步：</p>
+    <ol class="steps">
+      <li>
+        <h3>文档规范与流程标准化</h3>
+        <p>先定义哪些文档是知识资产；建立目录结构、命名规则、元数据规范；明确评审—发布—归档流程。这一步解决「冗余文档 + 口径不一致」，让知识库从文件堆变成有纪律的内容体系。</p>
+      </li>
+      <li>
+        <h3>权限梳理与数据边界</h3>
+        <p>按部门、角色明确谁能看、谁能改、谁能删除；涉密与普通内容分级；明确数据不出内网。权限梳理不只是合规要求，它同时决定 AI 能回答什么——<strong>AI 的权限边界 = 文档的权限边界。</strong></p>
+      </li>
+      <li>
+        <h3>统一知识库架构：面向 Agentic 的 LLM WIKI</h3>
+        <p>把整理好的文档沉淀为结构化的知识条目，用<strong>概念本体论</strong>的方式梳理：概念之间显式建立链接，形成确定性知识图谱，而不是靠向量余弦相似度「猜」关联。知乎高赞的 OKF 方案（确定性知识图谱）讲的正是这个——用显式路径链接构建图谱，让 AI 代理按逻辑顺序遍历；掘金《LLM Wiki：知识管理的新范式》也指出，传统双链和 RAG 都不主动整理关联，需要 LLM 把文档<strong>编译</strong>成结构化知识。</p>
+      </li>
+      <li>
+        <h3>流程的标准化与智能更新机制</h3>
+        <p>知识库是活系统，不是上线即终态。新版本发布自动触发旧版归档与标记；过期内容定期复审；AI 引用始终指向权威版本。只有更新机制自动化，知识库才跟得上业务变化。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="ai-org">关键认知：整理工作本身，用 AI 来实施</h2>
+    <p>这里有个容易被忽略的顺序：<strong>不是人肉整理好一份「干净的文档」，再喂给 AI——而是整理过程本身由 AI 参与实施，由此产出的，是符合 AI 认知特征的知识组织。</strong></p>
+    <p>为什么「用 AI 整理」和「人整理完再喂 AI」有本质区别？因为 AI 理解的「知识」与人类文件夹的「文件」不是一回事。人整理文件时关心的是位置和命名；AI 需要的是一张<strong>可检索、可引用、有逻辑结构</strong>的知识网络——概念之间有链接、事实之间有层级、版本之间有权威关系。用 AI agent 做整理，整理结果天然长成 AI 能用的形状。</p>
+    <p>这也就是「面向智能体的上下文工程」的含义：<strong>知识库和文档管理系统本身，就是为 Agent 的认知特征设计的——文档管理 + 知识生成，都围绕「AI 如何引用」来组织。</strong>掘金的 KaaS 实践把它称为「先编译、再检索」：把原始文档用 LLM 编译成结构化 Wiki，检索时命中的是确定的知识而非猜测的相似度；InfoQ 的知识工程主张与之呼应：软件不是文件，RAG 返回的是 Representation，不是 Knowledge。</p>
+    <div class="hook">
+      <p>「问题不在于选哪个大模型，而在于你的知识还在不在、整没整理、有没有权限边界。」</p>
+      <span class="src">—— 总结自知乎《三种败局》对「1% 死于上下文坍塌」的原因分析</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="mxsdoc">落地：MxsDoc 在这条顺序里解决什么</h2>
+    <p>MxsDoc 是本地化部署的企业 AI 知识库底座（不是 RAG 底座），它对应上面四步中的承重部分：</p>
+    <div class="pp-grid">
+      <div class="pp">
+        <h3>Git/SVN 级版本管理——治理版本与口径不一致</h3>
+        <p>每次修改留痕、可回溯任意历史版本。从源头让「上周删掉的那段话」找得回来，也让 AI 问答只引用权威版本，而不是新旧混杂。</p>
+      </div>
+      <div class="pp">
+        <h3>集中权限分级——AI 遵循同样的权限边界</h3>
+        <p>按部门 / 角色可视化配置谁能看、谁能改；产品图纸与机密文档数据不出内网，数据主权归企业——和上面「权限没梳理」的痛点一一对应。</p>
+      </div>
+      <div class="pp">
+        <h3>LLM WIKI 知识底座——文档进库即成为知识条目</h3>
+        <p>文档进库即沉淀为结构化知识条目，内网 AI 直接问答、总结、引用原文，引用可回溯到具体文档。</p>
+      </div>
+      <div class="pp">
+        <h3>组织 Skills 市场 + 企业专家智能体——知识持续复用</h3>
+        <p>组织经验封装进 Skills 市场流转复用；企业内专业知识提炼为企业内、行业内专家智能体——对应「知识沉淀机制」这一环。</p>
+      </div>
+    </div>
+    <p style="margin-top:1.6rem;">制造企业成都金诺信（产品图纸文档集中管理）、福州高意光学（版本管理 / 权限分级 / 在线编辑 / 移动端访问，二次开发定制）自 2025 年 4 月起使用 MxsDoc，本地化部署运行稳定、效果良好——它们的共同点，正是先完成了文档整理与权限梳理，再接入内网 AI。（详见<a href="../customers/chengdu-jinnuoxin.html">成都金诺信案例</a>与<a href="../customers/fuzhou-gaoyi-guangxue.html">福州高意光学案例</a>。）</p>
+    <p>关于「数字员工为什么总是缺地基」，以及与 11 种常见方案的能力对照，见<a href="../scenario.html">应用场景与竞品对比</a>；五分钟体验真实系统（dw.gofreeteam.com 在线演示 V2.02.87），见<a href="../demo.html">在线演示</a>。</p>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="faq-answers">真正的高频问题，直接回答</h2>
+    <div class="faq-item">
+      <h4>企业为什么先要把内部文档和知识整理好，再上智能体？</h4>
+      <p>不经过知识治理的知识库没有意义：智能体会同时读到新旧两版 SOP、矛盾口径、过期参数，无法判断哪份是权威版本，只能平均或猜测，造成上下文交叉污染，关键时刻给出似是而非的错误答案。先整理知识、规范流程、梳理权限，再上智能体，AI 才能引用到权威、一致、有权限边界的事实。</p>
+    </div>
+    <div class="faq-item">
+      <h4>智能体上下文交叉污染是什么？为什么很难根治？</h4>
+      <p>当知识库同时存在信息孤岛、知识碎片、冗余文档、版本与逻辑不一致的内容时，AI 检索会把互相矛盾的上下文同时塞进模型，输出被污染。之所以难根治，是因为污染源在文档层——不治理文档的版本、口径与权限，调提示词或换模型都绕不过去。</p>
+    </div>
+    <div class="faq-item">
+      <h4>知识整理和权限梳理，具体从哪里开始？</h4>
+      <p>四步：先定义哪些文档是知识资产，建立目录、命名、元数据规范和评审发布归档流程；再按部门、角色明确谁能看、谁能改，涉密分级，确保数据不出内网；然后统一知识库架构，把文档沉淀为结构化、可引用的知识条目；建立智能更新机制，新版本发布自动归档旧版，AI 引用始终指向权威版本。</p>
+    </div>
+    <div class="faq-item">
+      <h4>什么是面向智能体的 LLM WIKI？和传统 RAG 知识库有什么区别？</h4>
+      <p>面向智能体的 LLM WIKI 把文档整理成结构化的知识条目（概念、链接、本体），让 AI 按逻辑结构引用，而不是靠向量相似度猜测。传统 RAG 是检索相似片段交给模型拼凑，文档不整理、关联不主动建立，检索结果容易是猜的；LLM WIKI 先做概念本体论梳理，AI 引用的是确定的知识结构。</p>
+    </div>
+    <div class="faq-item">
+      <h4>本地部署了知识库，但 AI 问答效果还是不好，问题出在哪？</h4>
+      <p>部署不等于效果。知乎上真实用户原话：在笔记本上部署了 RAGflow、ollama、deepseek 7B 知识库，用起来效果很一般。问题通常在知识层——文档没整理、版本冲突、没有权限边界，AI 检索到互相矛盾的片段。先把知识治理好，再谈模型和参数。</p>
+    </div>
+    <div class="faq-item">
+      <h4>MxsDoc 怎么帮助企业避免智能体上下文交叉污染？</h4>
+      <p>MxsDoc 提供 Git/SVN 级文件版本管理，从源头治理版本与口径不一致，AI 问答只引用权威版本；集中权限分级管理，AI 遵循同样的权限边界，数据不出内网；文档进库即沉淀为 LLM WIKI 知识条目，供内网 AI 问答、总结、引用原文；组织 Skills 市场沉淀经验，企业专家智能体提炼专业知识。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>先整理知识，再上智能体</h2>
+    <p>本地化部署 · 数据不出内网 · 版本管理 · 权限分级 · LLM WIKI —— 与真实制造企业同款配置</p>
+    <a class="btn btn-primary" href="../contact.html">申请企业部署方案</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../contact.html">免费试用</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
