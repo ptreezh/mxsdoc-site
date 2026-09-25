@@ -15,7 +15,7 @@
 |------|------|
 | `index.html` | 首页：价值主张（企业 AI 知识库底座）+ 客户证明 + 可引用 CLAIMS 句 + SoftwareApplication/FAQPage schema |
 | `features.html` | 产品功能页：知识库底座核心能力详情（版本/权限/LLM WIKI/Skills/专家智能体）+ FAQ + SoftwareApplication/FAQPage schema |
-| `scenario.html` | 应用场景页：三场景故事（制造图纸/知识库AI问答/涉密合规，标注"典型化设定（非真实客户）"）+ 11 方案能力对照矩阵 + IMA/Obsidian/飞书深度对比 + FAQ schema |
+| `scenario.html` | 应用场景页：三场景故事（制造图纸/知识库AI问答/涉密合规）+ 11 方案能力对照矩阵 + IMA/Obsidian/飞书深度对比 + FAQ schema |
 | `demo.html` | 在线演示页：live iframe（dw.gofreeteam.com 公开演示系统 V2.02.87）+ 5 张真实界面截图 + 五分钟体验流程 + SoftwareApplication/BreadcrumbList schema |
 | `assets/demo/*.jpg` | 演示页真实界面截图（登录页/系统首页/组织权限矩阵/仓库列表/DocSys AI 问答） |
 | `customers/chengdu-jinnuoxin.html` | 客户案例页：成都金诺信（可见证据 + Review schema + BreadcrumbList） |
