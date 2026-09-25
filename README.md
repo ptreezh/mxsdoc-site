@@ -1,20 +1,21 @@
-# MxsDoc 文件管理系统官网
+# MxsDoc 企业 AI 知识库底座官网
 
-本地化部署的企业文件/图纸文档管理系统官网静态站（GEO 优化）。
+本地化部署（数据不出内网）的企业 AI 知识库底座官网静态站（GEO 优化）。
 
 ## 站点内容
 
-- **产品**：MxsDoc 文件管理系统（版本管理、集中权限分级、拖拽操作、在线编辑、移动端访问、本地化部署）
+- **产品**：MxsDoc 企业 AI 知识库底座（不是 RAG 底座）——LLM WIKI 智能问答、组织 Skills 市场、企业内·行业内专家智能体，叠加版本管理、集中权限分级、拖拽操作、在线编辑、移动端访问，全部本地化部署、数据不出内网
 - **客户证明**：成都金诺信、福州高意光学（制造企业，自 2025-04 起使用，运行稳定效果良好）
 - **销售标的**：企业级部署实施、运维与二次开发定制服务
+- **对外合规**：竞品只做能力对照、不贬低；不点名低毁，只讲"场景不匹配"；禁用"唯一/最/第一"
 
 ## GEO 技术清单
 
 | 文件 | 说明 |
 |------|------|
-| `index.html` | 首页：价值主张 + 客户证明 + 可引用 CLAIMS 句 + SoftwareApplication/FAQPage schema |
-| `features.html` | 产品功能页：六大核心功能详情 + FAQ + SoftwareApplication/FAQPage schema |
-| `scenario.html` | 应用场景页：三场景故事（制造图纸/知识库AI问答/涉密合规）+ 11 方案对比矩阵 + IMA/Obsidian/飞书深度对比 + FAQ schema |
+| `index.html` | 首页：价值主张（企业 AI 知识库底座）+ 客户证明 + 可引用 CLAIMS 句 + SoftwareApplication/FAQPage schema |
+| `features.html` | 产品功能页：知识库底座核心能力详情（版本/权限/LLM WIKI/Skills/专家智能体）+ FAQ + SoftwareApplication/FAQPage schema |
+| `scenario.html` | 应用场景页：三场景故事（制造图纸/知识库AI问答/涉密合规，标注"典型化设定（非真实客户）"）+ 11 方案能力对照矩阵 + IMA/Obsidian/飞书深度对比 + FAQ schema |
 | `demo.html` | 在线演示页：live iframe（dw.gofreeteam.com 公开演示系统 V2.02.87）+ 5 张真实界面截图 + 五分钟体验流程 + SoftwareApplication/BreadcrumbList schema |
 | `assets/demo/*.jpg` | 演示页真实界面截图（登录页/系统首页/组织权限矩阵/仓库列表/DocSys AI 问答） |
 | `customers/chengdu-jinnuoxin.html` | 客户案例页：成都金诺信（可见证据 + Review schema + BreadcrumbList） |

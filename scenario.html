@@ -41,7 +41,7 @@
       {
         "@type": "Question",
         "name": "MxsDoc 与腾讯 IMA 有什么区别？",
-        "acceptedAnswer": { "@type": "Answer", "text": "腾讯 IMA 是腾讯云上的个人 AI 知识库工作台（免费 50G 云空间，数据存于腾讯云，个人库为主、无组织级权限治理、无 Git 级版本、无本地化部署选项）。MxsDoc 是本地化部署的企业 AI 知识库底座：数据不出内网，提供组织级可视化权限、Git/SVN 级版本审计、在线协同编辑，以及 LLM WIKI / 组织 Skills 市场 / 企业专家智能体。对涉密、国企等数据红线场景，MxsDoc 是唯一符合主权要求的方案。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "腾讯 IMA 是腾讯云上的个人 AI 知识库工作台（免费 50G 云空间，数据存于腾讯云，个人库为主、无组织级权限治理、无 Git 级版本、无本地化部署选项）。MxsDoc 是本地化部署的企业 AI 知识库底座：数据不出内网，提供组织级可视化权限、Git/SVN 级版本审计、在线协同编辑，以及 LLM WIKI / 组织 Skills 市场 / 企业专家智能体。对涉密、国企等数据红线场景，是否允许文档与 AI 出网是硬性前提，本地化部署是符合主权要求的关键路径。" }
       },
       {
         "@type": "Question",
@@ -261,7 +261,7 @@
           <li>图纸、规范、项目文档按密级管理，任何文档不得离开内网</li>
           <li>上级要求"AI 赋能科研生产"，但 AI 平台都是云上的</li>
           <li>几千份技术规范沉睡在共享文件夹，新工程师反复问老问题</li>
-          <li>保密办评审标准：数据不出网 = 唯一通行证</li>
+          <li>保密办评审标准：数据不出网 = 硬性通行证</li>
         </ul>
         <div class="verdict"><strong>要的是：</strong>本地化部署是必选项，不是加分项——文档和 AI 都要落在内网，密级可控。</div>
       </div>
@@ -286,7 +286,7 @@
 <!-- 区块 D：替代方案全景对比（11 方案矩阵 + IMA/Obsidian/飞书深度对比） -->
 <section style="background:#fff;">
   <div class="container">
-    <h2>场景四 · 替代方案全景对比<small>云盘、裸 Git、NAS、OA、Wiki、IMA、Obsidian、飞书……11 个替代方案，为什么 MxsDoc 是唯一全列覆盖（对应画像 P6）</small></h2>
+    <h2>场景四 · 替代方案全景对比<small>云盘、裸 Git、NAS、OA、Wiki、IMA、Obsidian、飞书……11 个替代方案能力对照（对应画像 P6）</small></h2>
     <div class="matrix-wrap">
       <table class="matrix">
         <thead>
@@ -367,7 +367,7 @@
       </table>
     </div>
     <div class="readout">
-      <strong>矩阵读法（决策者视角）：</strong>云盘/SaaS 输在"数据不可控 + 权限弱"；裸 Git/SVN 输在"员工门槛 + 无协同 + 权限不直观"；NAS 输在"无版本 + 无协同"；OA/Wiki 输在"重/贵/编辑弱"；腾讯 IMA 输在"个人向 + 云端数据出网 + 无组织治理"；Obsidian 输在"官方无企业协作治理（无细粒度权限/无实时协同/20 人上限）"；飞书输在"数据在字节云端 + 私有化重而贵 + 版本非 Git 级"。<strong>11 个替代方案中，没有任何单点方案能同时覆盖全部能力列——MxsDoc 是全列覆盖的唯一方案。</strong>
+      <strong>矩阵读法（决策者视角）：</strong>云盘/SaaS 输在"数据不可控 + 权限弱"；裸 Git/SVN 输在"员工门槛 + 无协同 + 权限不直观"；NAS 输在"无版本 + 无协同"；OA/Wiki 输在"重/贵/编辑弱"；腾讯 IMA 输在"个人向 + 云端数据出网 + 无组织治理"；Obsidian 输在"官方无企业协作治理（无细粒度权限/无实时协同/20 人上限）"；飞书输在"数据在字节云端 + 私有化重而贵 + 版本非 Git 级"。<strong>11 个替代方案中，尚无单点方案能同时覆盖全部能力列——MxsDoc 以其组合能力进行对照，具体选型请按贵司数据主权要求与场景逐项评估。</strong>
     </div>
 
     <h2 style="margin-top:3.4rem;">三款"网红"工具 vs MxsDoc：差异不在功能多少，在数据主权<small>IMA / Obsidian / 飞书 都与 MxsDoc 定位正交——它们都不是"内网文档治理 + 知识底座 + 专业智能体基础设施"</small></h2>
