@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MxsDoc Appliance 一体机 | 本地化部署企业 AI 知识底座 | 海光+昇腾 双大模型 | 10 万起</title>
+  <meta name="description" content="MxsDoc Appliance 是市场上唯一提供"完整 AI 知识底座 + 双大模型（DeepSeek 16B + Lux-9B 决策）"的一体机厂商。10 万起开箱即用，4 天交付，严格内网隔离，数据零出境，已服务成都金诺信、福州高意光学等制造企业。">
+  <meta name="keywords" content="MxsDoc 一体机, 企业 AI 知识底座, 本地化部署, DeepSeek 一体机, 信创一体机, 海光 昇腾 NPU, 内网 AI 服务器, 文档管理 AI, 知识库一体机, 大模型私有化, 信创 AI 服务器, 制造业 AI, 等保三级">
+  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/appliance.html">
+  <meta property="og:title" content="MxsDoc Appliance - 完整 AI 知识底座 + 双大模型 一体机">
+  <meta property="og:description" content="10 万起开箱即用 · 双大模型（DeepSeek + Lux-9B）· 严格禁外网 · 已服务 2 大制造企业">
+  <meta property="og:image" content="https://ptreezh.github.io/mxsdoc-site/assets/appliance-og.png">
+  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/appliance.html">
+  <meta property="og:type" content="website">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MxsDoc Appliance 一体机",
+    "description": "本地化部署的企业 AI 知识底座，预装 DeepSeek 16B + Lux-9B 双大模型",
+    "brand": { "@type": "Brand", "name": "MxsDoc" },
+    "offers": [
+      { "@type": "Offer", "name": "基础版", "price": "100000", "priceCurrency": "CNY" },
+      { "@type": "Offer", "name": "标准版", "price": "200000", "priceCurrency": "CNY" },
+      { "@type": "Offer", "name": "旗舰版", "price": "450000", "priceCurrency": "CNY" }
+    ],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "12" }
+  }
+  </script>
+
+  <style>
+    /* ===== Design System (from MxsDoc-Design-System-v1.0.md) ===== */
+    :root {
+      --primary: #1A5FB4;
+      --dark: #12253F;
+      --accent: #E8B13A;
+      --success: #22C55E;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --bg: #FFFFFF;
+      --bg-card: #FAFAFA;
+      --text: #1F2937;
+      --text-sub: #64748B;
+      --border: #E2E8F0;
+      --shadow: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Source Han Sans CN", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.85; }
+    h1, h2, h3 { color: var(--dark); font-weight: 700; line-height: 1.3; }
+    h1 { font-size: 56px; margin-bottom: 16px; }
+    h2 { font-size: 42px; margin-bottom: 40px; text-align: center; }
+    h3 { font-size: 22px; margin-bottom: 12px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 80px 0; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 18px 40px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 18px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,177,58,0.4); }
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--primary);
+      padding: 18px 40px;
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    /* ===== Header ===== */
+    header {
+      background: var(--dark);
+      color: #fff;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: 700; color: var(--accent); }
+    .logo a { color: var(--accent); }
+    nav { display: flex; gap: 32px; }
+    nav a { color: #cbd5e1; font-size: 15px; }
+    nav a:hover { color: var(--accent); }
+    /* ===== Hero ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+    .hero h1 { color: #fff; font-size: 56px; }
+    .hero .subtitle { font-size: 22px; opacity: 0.9; margin-bottom: 32px; }
+    .badges { display: flex; gap: 16px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap; }
+    .badge {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--accent);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .trust { margin-top: 32px; opacity: 0.8; font-size: 14px; }
+    /* ===== Pain Points ===== */
+    .pain { background: var(--bg); }
+    .grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    .pain-card {
+      background: var(--bg-card);
+      padding: 32px;
+      border-radius: 12px;
+      border-left: 4px solid var(--danger);
+    }
+    .pain-card h3 { color: var(--dark); margin-bottom: 12px; }
+    /* ===== Solution ===== */
+    .solution { background: var(--bg-card); }
+    .three-layers { display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 800px; margin: 0 auto; }
+    .layer {
+      background: #fff;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    .layer.highlight { border: 2px solid var(--accent); }
+    .layer h3 { color: var(--primary); margin-bottom: 8px; }
+    .layer p { color: var(--text-sub); font-size: 16px; }
+    .key-message { text-align: center; margin-top: 32px; font-size: 20px; color: var(--primary); font-weight: 600; }
+    /* ===== Dual Model ===== */
+    .dual { background: var(--bg); }
+    .arch-diagram { display: grid; grid-template-columns: 1fr 200px 1fr; gap: 24px; max-width: 1000px; margin: 0 auto; align-items: center; }
+    .model-card {
+      padding: 32px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .model-card.deepseek { background: var(--primary); color: #fff; }
+    .model-card.router { background: var(--dark); color: #fff; }
+    .model-card.lux { background: var(--accent); color: var(--dark); }
+    .model-card .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 800px; margin: 40px auto 0; text-align: center; }
+    .scenario { padding: 16px; }
+    .scenario .icon { font-size: 40px; }
+    .citation { text-align: center; margin-top: 32px; color: var(--text-sub); font-size: 14px; font-style: italic; }
+    /* ===== Cases & Pricing ===== */
+    .cases { background: var(--bg-card); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    .case-card {
+      background: #fff;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--primary);
+    }
+    .case-card.alt { border-left-color: var(--accent); }
+    .case-card h3 { color: var(--dark); margin-bottom: 4px; }
+    .case-card .industry { color: var(--text-sub); font-size: 14px; margin-bottom: 16px; }
+    .case-card .result { color: var(--success); font-weight: 600; margin-top: 8px; }
+    .pricing { background: #fff; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    .price-card {
+      background: var(--bg-card);
+      padding: 32px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .price-card.highlight { border: 3px solid var(--accent); transform: scale(1.02); }
+    .price-card h3 { color: var(--primary); margin-bottom: 16px; }
+    .price-card .price { font-size: 48px; color: var(--accent); font-weight: 700; margin: 16px 0; }
+    .price-card .renewal { color: var(--text-sub); font-size: 14px; margin-bottom: 24px; }
+    .price-card .btn-secondary { display: block; text-align: center; }
+    /* ===== CTA Final ===== */
+    .cta-final {
+      background: linear-gradient(180deg, var(--bg) 0%, #FEF3C7 100%);
+      text-align: center;
+    }
+    .cta-final h2 { margin-bottom: 16px; }
+    .cta-final .subtitle { font-size: 18px; color: var(--text-sub); margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .guarantee { color: var(--success); font-weight: 600; }
+    /* ===== Footer ===== */
+    footer { background: var(--dark); color: #94a3b8; padding: 32px 0; text-align: center; font-size: 14px; }
+    footer a { color: var(--accent); }
+    /* ===== Floating CTA ===== */
+    .floating-cta {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 16px 24px;
+      border-radius: 50px;
+      box-shadow: 0 4px 16px rgba(232,177,58,0.4);
+      font-weight: 700;
+      z-index: 99;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 28px; }
+      .hero { padding: 60px 0; }
+      .grid-2x2, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .arch-diagram { grid-template-columns: 1fr; }
+      .scenarios { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .floating-cta { padding: 12px 18px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo"><a href="/">MxsDoc</a></div>
+      <nav>
+        <a href="/#features">能力</a>
+        <a href="/scenario.html">场景对比</a>
+        <a href="/customers/chengdu-jinnuoxin.html">客户案例</a>
+        <a href="/#blog">博客</a>
+        <a href="/contact.html">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Section 1: Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>本地化部署的企业 AI 知识底座 · 开箱即用</h1>
+      <p class="subtitle">预装 DeepSeek 16B + Lux-9B 双大模型 | 严格内网隔离 | 4 天交付</p>
+      <div class="badges">
+        <span class="badge">✓ 完整知识底座</span>
+        <span class="badge">✓ 双大模型</span>
+        <span class="badge">✓ 禁外网</span>
+        <span class="badge">✓ 4 天交付</span>
+      </div>
+      <div class="cta-group">
+        <a href="https://dw.gofreeteam.com" class="btn-primary" target="_blank">预约真机演示 →</a>
+        <a href="#pricing" class="btn-secondary">查看价格</a>
+      </div>
+      <p class="trust">已服务：成都金诺信（精密制造）/ 福州高意光学（光学制造）/ 等制造企业</p>
+    </div>
+  </section>
+
+  <!-- Section 2: Pain Points -->
+  <section class="pain">
+    <div class="container">
+      <h2>企业 AI 落地的 4 大痛点</h2>
+      <div class="grid-2x2">
+        <div class="pain-card">
+          <h3>❌ 数据出境风险</h3>
+          <p>公有云 API 把公司图纸/合同传到第三方服务器，78% 企业因此放弃 AI。</p>
+        </div>
+        <div class="pain-card">
+          <h3>❌ 知识库碎片化</h3>
+          <p>文档分散在 5 个网盘 + 3 套 ERP + 邮件附件，AI 答非所问。</p>
+        </div>
+        <div class="pain-card">
+          <h3>❌ 决策靠人</h3>
+          <p>AI 只能聊天，不能替代审批/路由/合规判断等高频决策。</p>
+        </div>
+        <div class="pain-card">
+          <h3>❌ 上线 6 个月+</h3>
+          <p>自建 AI 集群选型 → 部署 → 调优 → 运维，半年还没跑起来。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Solution -->
+  <section class="solution">
+    <div class="container">
+      <h2>MxsDoc Appliance = 一台预装好所有软件的 4U 服务器</h2>
+      <div class="three-layers">
+        <div class="layer">
+          <h3>硬件层</h3>
+          <p>4U 标准机架 · Intel/海光 CPU · NVIDIA/昇腾 NPU · 384GB 内存 · 12TB 存储</p>
+        </div>
+        <div class="layer highlight">
+          <h3>软件层（MxsDoc 自研）</h3>
+          <p>LLM WIKI 知识底座 + 组织 Skills 市场 + 企业专家智能体 · 5+ 项软著</p>
+        </div>
+        <div class="layer">
+          <h3>AI 层（双大模型）</h3>
+          <p>DeepSeek-V2-Lite-Chat（16B 通用）+ Lux-9B（开源决策 #1，84.17% 准确率）</p>
+        </div>
+      </div>
+      <p class="key-message">唯一提供"完整 AI 知识底座 + 双大模型 + 决策能力"的一体机厂商</p>
+    </div>
+  </section>
+
+  <!-- Section 4: Dual Model Architecture -->
+  <section class="dual">
+    <div class="container">
+      <h2>双模型协作：一个聊天，一个判断</h2>
+      <div class="arch-diagram">
+        <div class="model-card deepseek">
+          <h3>DeepSeek 16B</h3>
+          <p>通用对话 / 内容总结 / 知识检索</p>
+          <span class="tag">通用</span>
+        </div>
+        <div class="model-card router">
+          <h3>MxsDoc Model Gateway</h3>
+          <p>自研路由层 · 智能分流</p>
+        </div>
+        <div class="model-card lux">
+          <h3>Lux-9B</h3>
+          <p>Choice / Score / Noul 决策输出</p>
+          <span class="tag">决策</span>
+        </div>
+      </div>
+      <div class="scenarios">
+        <div class="scenario">
+          <div class="icon">📄</div>
+          <p>文档问答</p>
+        </div>
+        <div class="scenario">
+          <div class="icon">🎯</div>
+          <p>工单路由</p>
+        </div>
+        <div class="scenario">
+          <div class="icon">🛡️</div>
+          <p>风险拦截</p>
+        </div>
+      </div>
+      <p class="citation">Lux-9B 是开源 Overall 排名 #2，准确率 84.17%，兼容 TypeSafe System One 协议</p>
+    </div>
+  </section>
+
+  <!-- Section 5: Cases + Pricing + CTA -->
+  <section class="cases">
+    <div class="container">
+      <h2>已服务客户</h2>
+      <div class="grid-2">
+        <div class="case-card">
+          <h3>成都金诺信</h3>
+          <p class="industry">精密零部件制造，200+ 人</p>
+          <p>痛点：图纸分散在 5 个网盘 / 3 套 ERP / 邮件附件</p>
+          <p>落地：图纸 5 万+ → Git 版本控制；部门级权限</p>
+          <p class="result">✓ 版本事故 0 起 / 权限配置可视化运行</p>
+        </div>
+        <div class="case-card alt">
+          <h3>福州高意光学</h3>
+          <p class="industry">光学元件制造，含军工配套</p>
+          <p>痛点：工艺文档分散、版本管理弱</p>
+          <p>落地：工艺文档集中管理 + Git 版本控制 + 移动端</p>
+          <p class="result">✓ 工艺文档版本可追溯 / 权限分级</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2>三 SKU · 10 万起</h2>
+      <div class="grid-3">
+        <div class="price-card">
+          <h3>基础版</h3>
+          <div class="price">10 万</div>
+          <p>含 1 年远程服务</p>
+          <p class="renewal">续费 1.5 万/年</p>
+          <a href="https://dw.gofreeteam.com" class="btn-secondary" target="_blank">京东下单</a>
+        </div>
+        <div class="price-card highlight">
+          <h3>标准版 ⭐ 推荐</h3>
+          <div class="price">20 万</div>
+          <p>含 1 年现场服务</p>
+          <p class="renewal">续费 5 万/年</p>
+          <a href="https://dw.gofreeteam.com" class="btn-secondary" target="_blank">京东企业购</a>
+        </div>
+        <div class="price-card">
+          <h3>旗舰版</h3>
+          <div class="price">45 万</div>
+          <p>含 1 年现场+信创认证</p>
+          <p class="renewal">续费 5 万/年</p>
+          <a href="mailto:zhangshuren@agent.qq.com?subject=旗舰版咨询" class="btn-secondary">联系销售</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="container">
+      <h2>立即体验 MxsDoc Appliance</h2>
+      <p class="subtitle">真机演示环境公开访问 · 30 天试用期内不满意全额退款</p>
+      <div class="cta-buttons">
+        <a href="https://dw.gofreeteam.com" class="btn-primary" target="_blank">预约真机演示</a>
+        <a href="mailto:zhangshuren@agent.qq.com?subject=30天试用申请" class="btn-secondary">申请 30 天试用</a>
+        <a href="mailto:zhangshuren@agent.qq.com?subject=MxsDoc咨询" class="btn-secondary">联系商务</a>
+      </div>
+      <p class="guarantee">✓ 30 天试用 · ✓ 4 天交付 · ✓ 含 1 年服务</p>
+    </div>
+  </section>
+
+  <!-- Floating CTA -->
+  <a href="mailto:zhangshuren@agent.qq.com?subject=MxsDoc Appliance咨询" class="floating-cta">💬 在线咨询</a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 MxsDoc · 本地化部署 · 企业 AI 知识底座</p>
+      <p style="margin-top: 8px;">
+        <a href="/">官网</a> · 
+        <a href="/appliance.html">产品页</a> · 
+        <a href="/blog/ai-agent-knowledge-first.html">博客</a> · 
+        <a href="/contact.html">联系</a> · 
+        <a href="https://dw.gofreeteam.com" target="_blank">演示</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Smooth scroll for anchor links -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>
