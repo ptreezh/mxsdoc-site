@@ -98,7 +98,21 @@
     nav { display: flex; gap: 32px; }
     nav a { color: #cbd5e1; font-size: 15px; }
     nav a:hover { color: var(--accent); }
-    /* ===== Hero ===== */
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .gallery .container > div:nth-child(2) { grid-template-columns: repeat(3, 1fr) !important; }
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 28px; }
+      .hero { padding: 60px 0; }
+      .grid-2x2, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .arch-diagram { grid-template-columns: 1fr; }
+      .scenarios { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .floating-cta { padding: 12px 18px; font-size: 14px; }
+      .gallery .container > div:nth-child(2) { grid-template-columns: repeat(2, 1fr) !important; }
+    }
     .hero {
       background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
       color: #fff;
@@ -221,17 +235,6 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
-    /* ===== Responsive ===== */
-    @media (max-width: 768px) {
-      h1 { font-size: 32px; }
-      h2 { font-size: 28px; }
-      .hero { padding: 60px 0; }
-      .grid-2x2, .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .arch-diagram { grid-template-columns: 1fr; }
-      .scenarios { grid-template-columns: 1fr; }
-      nav { display: none; }
-      .floating-cta { padding: 12px 18px; font-size: 14px; }
-    }
   </style>
 </head>
 <body>
@@ -266,6 +269,36 @@
         <a href="#pricing" class="btn-secondary">查看价格</a>
       </div>
       <p class="trust">已服务：成都金诺信（精密制造）/ 福州高意光学（光学制造）/ 等制造企业</p>
+    </div>
+  </section>
+
+  <!-- Section 1.5: Product Image Gallery (5 main images for JD/TB) -->
+  <section class="gallery" style="padding: 60px 0; background: var(--bg);">
+    <div class="container">
+      <h2 style="font-size: 36px; text-align: center; margin-bottom: 12px;">产品图集</h2>
+      <p style="text-align: center; color: var(--text-sub); margin-bottom: 32px;">5 张核心主图 · 京东淘宝可上传</p>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
+        <figure style="margin: 0;">
+          <img src="https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-800/main-1-overview.png" alt="MxsDoc Appliance 整机产品图" width="800" height="800" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow);">
+          <figcaption style="text-align: center; font-size: 13px; color: var(--text-sub); margin-top: 8px;">主图 1 · 整机</figcaption>
+        </figure>
+        <figure style="margin: 0;">
+          <img src="https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-800/main-2-dual-model.png" alt="双模型协作架构 DeepSeek 16B + Lux-9B" width="800" height="800" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow);">
+          <figcaption style="text-align: center; font-size: 13px; color: var(--text-sub); margin-top: 8px;">主图 2 · 双模型</figcaption>
+        </figure>
+        <figure style="margin: 0;">
+          <img src="https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-800/main-3-zero-exfiltration.png" alt="严格禁外网 三层防御 数据零出境" width="800" height="800" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow);">
+          <figcaption style="text-align: center; font-size: 13px; color: var(--text-sub); margin-top: 8px;">主图 3 · 禁外网</figcaption>
+        </figure>
+        <figure style="margin: 0;">
+          <img src="https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-800/main-4-decision-capability.png" alt="Lux-9B 决策能力 Choice Score Noul" width="800" height="800" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow);">
+          <figcaption style="text-align: center; font-size: 13px; color: var(--text-sub); margin-top: 8px;">主图 4 · 决策</figcaption>
+        </figure>
+        <figure style="margin: 0;">
+          <img src="https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-800/main-5-customer-cases.png" alt="已服务客户 成都金诺信 福州高意光学 真实案例" width="800" height="800" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow);">
+          <figcaption style="text-align: center; font-size: 13px; color: var(--text-sub); margin-top: 8px;">主图 5 · 客户</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
