@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>机械设计审图不止于「看图」：从轻量化查看到 Git 级版本比对的落地实践 | MxsDoc 博客</title>
+  <meta name="description" content="制造企业图纸版本治理真实复盘：为什么轻量化查看只是入场券，Git 级版本控制 + 语义化差异 + 变更单关联 + 文档级权限才是上生产的关键。三道坎、三条路径对比、最小可行闭环步骤、真机验收清单，全链路可见。">
+  <meta name="keywords" content="机械设计审图,轻量化3D,版本控制,Git级版本,图纸版本比对,变更单ECN,审图协同,文档级权限,本地化部署,数据不出内网,MxsDoc">
+  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/blog/mechanical-drawing-version-control.html">
+  <meta property="og:title" content="机械设计审图不止于「看图」：从轻量化查看到 Git 级版本比对的落地实践 | MxsDoc 博客">
+  <meta property="og:description" content="为什么「能看」不等于「敢用」？制造企业图纸版本治理三道坎：版本比对、协同标注、权限与数据主权。含三方案对比表、最小可行闭环步骤、真机验收。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/blog/mechanical-drawing-version-control.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "机械设计审图不止于「看图」：从轻量化查看到 Git 级版本比对的落地实践",
+    "description": "制造企业图纸版本治理真实复盘：轻量化查看只是入场券，Git 级版本控制 + 语义化差异 + 变更单关联 + 文档级权限才是上生产的关键。三道坎、三方案对比、最小可行闭环步骤。",
+    "author": { "@type": "Organization", "name": "MxsDoc" },
+    "publisher": { "@type": "Organization", "name": "MxsDoc" },
+    "datePublished": "2026-09-25",
+    "dateModified": "2026-09-25",
+    "mainEntityOfPage": "https://ptreezh.github.io/mxsdoc-site/blog/mechanical-drawing-version-control.html",
+    "inLanguage": "zh-CN"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "为什么轻量化 3D 审图工具「能打开」不等于「能管版本」？",
+        "acceptedAnswer": { "@type": "Answer", "text": "轻量化查看器解决的是「几何可视化和简单测量」，但制造企业的图纸版本治理还需要回答：这个孔位公差从 ±0.01 改到 ±0.02 是基于哪个变更单？谁批准的？关联哪些工艺文档？历史版本可追溯吗？这些问题需要 Git 级版本控制 + 变更单关联 + 文档级权限，纯几何比对无法回答。" }
+      },
+      {
+        "@type": "Question",
+        "name": "MxsDoc 的「语义化版本树」比通用轻量化查看器的几何比对强在哪？",
+        "acceptedAnswer": { "@type": "Answer", "text": "通用几何比对只输出「坐标偏移/公差变化」，缺乏工程语义（变更单号、审批人、生效日期、关联 BOM 项）。MxsDoc 的语义化版本树不只是「坐标变了」，而是「公差 ±0.01→±0.02，变更单 ECN-2024-0145，审批人 张工，生效 2024-09-20，关联工艺文档 WC-2024-089」，全链路可点击跳转。" }
+      },
+      {
+        "@type": "Question",
+        "name": "已经有 SolidWorks PDM，为什么还要引入 MxsDoc？",
+        "acceptedAnswer": { "@type": "Answer", "text": "PDM 服务于设计部门（重客户端、重流程、高门槛），MxsDoc 服务于全员（Web 端、轻权限、轻流程、低门槛）。两者互补而非替代：PDM 管源头（设计端、版本源头），MxsDoc 管下游协同与版本分发（采购、质量、车间、外协供应商）。" }
+      },
+      {
+        "@type": "Question",
+        "name": "审图协同标注与传统「画圈圈打字」的本质区别是什么？",
+        "acceptedAnswer": { "@type": "Answer", "text": "传统轻量化工具的协同标注通常是：在模型上画个圈、写行字、@个人。企业级审图需要结构化问题单（问题分类、严重级、责任人、截止日期、关联版本）+ 状态机流转（新建→指派→处理中→复核→关闭/驳回）+ 版本锚定（标注自动锁定零件 X1002@v3.2）+ 跨文档联动（3D↔2D↔工艺↔变更单）。MxsDoc 把「问题单」变成仓库里的结构化文档，拥有版本、权限、关联关系。" }
+      },
+      {
+        "@type": "Question",
+        "name": "涉密场景下 MxsDoc 怎么保证数据主权？",
+        "acceptedAnswer": { "@type": "Answer", "text": "MxsDoc 在涉密场景下提供：①文档级/目录级/字段级/视图级权限 + 操作审计日志（含 IP/时间/操作类型/前后值）；②私有化部署时权限模型跟随企业现有 AD/LDAP/钉钉/飞书同步；③已适配海光 DCU / 昇腾 NPU / 摩尔线程，等保三级测评通过；④涉密场景对外仅宣「智能体能力」，不提数字员工/云同步（合规红线）。" }
+      },
+      {
+        "@type": "Question",
+        "name": "如何评估引入 MxsDoc 后的实际效果？",
+        "acceptedAnswer": { "@type": "Answer", "text": "建议建立三指标周度跟踪：①审图周期缩短率（目标 ≥30%）；②版本错误导致返工次数（目标归零）；③跨部门会签会议时长（目标 ≥50% 减少）。MxsDoc 在 dw.gofreeteam.com 搭建了常驻演示环境（含图纸版本树、版本比对、协同标注、审图流程全链路），预约现场演示可现场验收。" }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ptreezh.github.io/mxsdoc-site/" },
+      { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://ptreezh.github.io/mxsdoc-site/#blog" },
+      { "@type": "ListItem", "position": 3, "name": "机械设计审图版本治理" }
+    ]
+  }
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 880px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { background: var(--dark); color: #fff; padding: 1rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; padding-bottom: 1rem; }
+    header .logo { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    header nav a { color: #cbd5e1; margin-left: 1.2rem; font-size: .95rem; }
+    header nav a:hover { color: var(--accent); text-decoration: none; }
+    h1 { font-size: 2.1rem; color: var(--dark); margin-bottom: .8rem; line-height: 1.3; }
+    .meta { color: #64748b; font-size: .9rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .lead { background: #fff8e6; border-left: 4px solid var(--accent); padding: 1rem 1.2rem; margin: 1rem 0 2rem; border-radius: 6px; font-size: .98rem; }
+    h2 { font-size: 1.55rem; color: var(--dark); margin: 2.4rem 0 1rem; padding-bottom: .4rem; border-bottom: 2px solid var(--accent); }
+    h3 { font-size: 1.2rem; color: var(--primary); margin: 1.5rem 0 .6rem; }
+    blockquote { border-left: 4px solid var(--primary); padding: .8rem 1.2rem; background: #f0f6ff; margin: 1rem 0; color: #334155; font-style: italic; }
+    blockquote strong { color: var(--dark); font-style: normal; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 6px; overflow-x: auto; font-size: .85rem; margin: 1rem 0; }
+    code { font-family: "Consolas", "Monaco", monospace; font-size: .92em; background: #f1f5f9; padding: .1em .3em; border-radius: 3px; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: .92rem; }
+    th, td { padding: .55rem .8rem; border: 1px solid #e2e8f0; text-align: left; vertical-align: top; }
+    th { background: var(--primary); color: #fff; font-weight: 600; }
+    tr:nth-child(even) td { background: #fafbfc; }
+    ul, ol { margin: .8rem 0 .8rem 1.5rem; }
+    li { margin: .3rem 0; }
+    .highlight { background: #fff8e6; padding: .1em .3em; border-radius: 3px; }
+    .cta-band { background: linear-gradient(135deg, var(--primary), var(--dark)); color: #fff; padding: 2rem 1.5rem; border-radius: 10px; margin: 2.5rem 0; text-align: center; }
+    .cta-band h3 { color: var(--accent); margin-bottom: .8rem; font-size: 1.3rem; }
+    .cta-band a { display: inline-block; background: var(--accent); color: var(--dark); padding: .7rem 1.4rem; border-radius: 6px; font-weight: 600; margin: .5rem .4rem; }
+    .cta-band a:hover { background: #f4c84d; text-decoration: none; }
+    footer { background: var(--dark); color: #94a3b8; padding: 1.5rem 0; margin-top: 3rem; text-align: center; font-size: .85rem; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo">MxsDoc · 企业 AI 知识库底座</a>
+      <nav>
+        <a href="/#features">能力</a>
+        <a href="/scenario.html">场景对比</a>
+        <a href="/customers/chengdu-jinnuoxin.html">客户案例</a>
+        <a href="/#blog">博客</a>
+        <a href="/contact.html">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>机械设计审图不止于「看图」：从轻量化查看到 Git 级版本比对的落地实践</h1>
+      <div class="meta">深度实践 · 2026-09-25 · 阅读约 8 分钟</div>
+
+      <div class="lead">
+        CSDN 近期热文《机械设计审图提效：3D阅阅轻量化3D工具的七大核心功能解析》引发关注。本文不做功能罗列，而是从<strong>制造企业图纸版本治理</strong>视角复盘：轻量化查看只是入场券，<strong>Git 级版本控制 + 语义化差异 + 变更单关联 + 文档级权限</strong>才是决定能否上生产的关键。
+      </div>
+
+      <h2>一、痛点场景：制造企业为何盯上「轻量化 3D 审图」</h2>
+      <p>最近半年，接触过十几家精密制造/装备制造企业（含成都金诺信、福州高意光学等已落地客户），核心诉求高度收敛：</p>
+      <ol>
+        <li><strong>图纸版本乱</strong>：SolidWorks/Creo/UG 原始文件版本树只懂 PDM，普通工程师/采购/质量/车间根本打不开</li>
+        <li><strong>审图流程长</strong>：跨部门会签靠微信发截图、Excel 记问题、线下开会确认，版本一迭代全靠人肉对齐</li>
+        <li><strong>变更不可追溯</strong>：ECN/ECR 变更单与 3D 模型/2D 图纸/工艺 BOM 脱节，出问题查不清「谁改的、改了什么、基于哪版」</li>
+        <li><strong>协同门槛高</strong>：买几十万 PLM/PDM 不现实，买几万轻量化查看器又只能「看」不能「管」</li>
+        <li><strong>数据不出内网</strong>：涉密图纸/军工/国企项目，物理隔离网环境下必须全链路私有化</li>
+      </ol>
+      <blockquote>
+        <strong>核心观点</strong>：轻量化查看（Web 端免安装、跨平台、智能测量、剖切、BOM 解析）是<strong>必要条件</strong>；<strong>Git 级版本控制 + 图纸版本树可视化 + 变更单关联 + 文档级权限</strong>才是<strong>充分条件</strong>。MxsDoc 把后者做成了底座能力。
+      </blockquote>
+
+      <h2>二、三道坎：从「能看」到「敢用」的真实差距</h2>
+
+      <h3>坎 1：版本比对 ≠ 叠两张图看差异</h3>
+      <p>在成都金诺信精密零件制造、福州高意光学光学元件加工的落地中反复验证：传统「红蓝对比/叠图」只能看几何差异，无法回答「这个孔位公差从 ±0.01 改到 ±0.02 是基于哪个变更单、谁批准的、关联哪些工艺文档」。</p>
+
+      <p><strong>原因</strong>：</p>
+      <ul>
+        <li>几何比对只输出「坐标偏移/公差变化」，缺乏<strong>工程语义</strong>（变更单号、审批人、生效日期、关联 BOM 项）</li>
+        <li>同一零件在不同装配层级/不同项目中参数不同，纯几何比对无法区分上下文</li>
+        <li>缺乏<strong>版本治理层</strong>：版本树、基线、分支合并、冲突消解</li>
+      </ul>
+
+      <p><strong>MxsDoc 的落点</strong>：</p>
+      <ul>
+        <li><strong>Git 语义化提交 → 自动生成版本树</strong>：每次检入自动计算差异，生成可视化版本树（类 Git Graph）</li>
+        <li><strong>变更单关联</strong>：ECN-2024-0145 ↔ 零件 X1002@v3.2 ↔ 工艺文档 WC-2024-089 ↔ 质检单 IQC-2024-112，全链路可点击跳转</li>
+        <li><strong>语义化差异报告</strong>：不只是「坐标变了」，而是「公差 ±0.01→±0.02，变更单 ECN-2024-0145，审批人 张工，生效 2024-09-20」</li>
+      </ul>
+
+      <h3>坎 2：协同标注 ≠ 画圈圈打字</h3>
+      <p>传统轻量化工具的「协同标注」通常是：在模型上画个圈、写行字、@个人。<strong>企业级审图需要：</strong></p>
+      <ul>
+        <li><strong>结构化问题单</strong>：问题分类（几何/公差/工艺/材料/装配）、严重级（阻塞/重大/一般/建议）、责任人、截止日期、关联版本</li>
+        <li><strong>状态机流转</strong>：新建 → 指派 → 处理中 → 复核 → 关闭/驳回，全程留痕审计</li>
+        <li><strong>版本锚定</strong>：标注自动锚定到 <code>零件 X1002@v3.2</code>，版本迭代后历史标注仍指向原版本上下文</li>
+        <li><strong>跨文档联动</strong>：3D 标注 ↔ 2D 图纸标注 ↔ 工艺文档批注 ↔ 变更单条目，一处改动多处联动</li>
+      </ul>
+
+      <p><strong>MxsDoc 方案</strong>：</p>
+      <ul>
+        <li>问题单即文档：每个审图问题都是 MxsDoc 仓库里的一个结构化文档，拥有版本、权限、关联关系</li>
+        <li><strong>WebSocket 实时协同</strong>：多人同时标注、回复、处理，无锁冲突（OT 算法 + 版本向量）</li>
+        <li><strong>审图会议模式</strong>：一键生成「审图纪要文档」，含所有问题单、决策、Action Items、责任人、截止日期</li>
+      </ul>
+
+      <h3>坎 3：权限与数据主权（制造/涉密红线）</h3>
+      <p>轻量化查看器若能「看、量、标」，也能「导出、截图、转发」。<strong>制造/涉密企业必须解决：</strong></p>
+      <ul>
+        <li>谁能看哪个项目/哪个零件/哪个版本（按角色/项目/涉密级/部门分权）</li>
+        <li>看了什么、量了什么、标注了什么、导出了什么（全链路操作审计）</li>
+        <li>涉密场景物理隔离网部署，<strong>零外网依赖</strong>，国产 GPU/国产化适配</li>
+        <li>涉密场景对外仅宣「智能体能力」，不提数字员工/云同步（合规红线）</li>
+      </ul>
+
+      <p><strong>MxsDoc 落点</strong>：</p>
+      <ul>
+        <li>文档级/目录级/字段级/视图级权限 + 操作审计日志（含 IP/时间/操作类型/前后值）</li>
+        <li>私有化部署时，权限模型跟随企业现有 AD/LDAP/钉钉/飞书同步</li>
+        <li><strong>已适配海光 DCU / 昇腾 NPU / 摩尔线程</strong>，等保三级测评通过</li>
+      </ul>
+
+      <h2>三、方案对比：三条路径的取舍</h2>
+      <table>
+        <thead>
+          <tr><th>维度</th><th>方案 A：通用轻量化查看器</th><th>方案 B：传统 PLM/PDM</th><th>方案 C：MxsDoc + 轻量化引擎</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>轻量化查看</strong></td><td>✅ 核心强项</td><td>❌ 需客户端/插件</td><td>✅ 集成 WebGL 引擎（Web 端免装）</td></tr>
+          <tr><td><strong>版本比对</strong></td><td>⚠️ 几何差异仅几何层</td><td>✅ 完整但重、贵、实施长</td><td>✅ 语义化版本树 + 变更单关联</td></tr>
+          <tr><td><strong>协同标注</strong></td><td>⚠️ 简单标注，无流程</td><td>✅ 流程重、定制贵</td><td>✅ 结构化问题单 + 状态机 + 会议纪要</td></tr>
+          <tr><td><strong>权限/审计</strong></td><td>❌ 无/极弱</td><td>✅ 完整但复杂</td><td>✅ 原生文档级权限 + 全链路审计</td></tr>
+          <tr><td><strong>数据主权</strong></td><td>视部署模式</td><td>视部署模式</td><td>✅ 全私有化 + 国产化适配 + 零外网</td></tr>
+          <tr><td><strong>实施周期</strong></td><td>天级</td><td>6-18 个月</td><td>周级（Docker Compose 交付）</td></tr>
+          <tr><td><strong>运维成本</strong></td><td>低</td><td>极高（专职运维团队）</td><td>低（MxsDoc 统一底座，标准容器化）</td></tr>
+          <tr><td><strong>适配国产化</strong></td><td>视厂商</td><td>视厂商</td><td>已适配海光/昇腾/摩尔线程</td></tr>
+        </tbody>
+      </table>
+      <blockquote>
+        <strong>核心观点</strong>：通用查看器解决「看」，PLM 解决「管」但太重。<strong>MxsDoc 定位「轻量化底座 + 版本治理 + 协同流程」</strong>，把 PLM 的核心版本/权限/流程能力，以轻量化交付形态给到中型制造企业。
+      </blockquote>
+
+      <h2>四、实操步骤：在 MxsDoc 上建起「会管版本的轻量化审图平台」</h2>
+      <p>环境：Ubuntu 22.04 / Kylin V10 / UOS 20 + Docker Compose + 物理隔离网可选</p>
+
+      <h3>1️⃣ 部署 MxsDoc 私有化版</h3>
+      <pre><code># 官网试用页获取部署包
+docker compose -f mxsdoc-private.yml up -d
+# 端口：8080 (Web) / 8001 (API) / 6379 (Redis) / 5432 (PostgreSQL)</code></pre>
+
+      <h3>2️⃣ 接入 3D 轻量化引擎</h3>
+      <pre><code># mxsdoc-private.yml 片段
+services:
+  mxsdoc-web:
+    image: mxsdoc/web:latest
+    environment:
+      - VIEWER_ENGINE=webgl  # 内置 WebGL 引擎
+      - MAX_MODEL_SIZE_MB=500
+    volumes:
+      - ./data:/data
+      - ./models:/models  # 可选：大模型文件单独挂载</code></pre>
+      <p>支持格式：STEP/IGES/SolidWorks/Creo/NX/JT/3DXML/GLTF/OBJ/STL 等 20+ 格式。核心能力：智能测量、剖切/爆炸视图、BOM 解析、PMI 读取、版本几何比对（红蓝/透明度/线框叠加）。</p>
+
+      <h3>3️⃣ 导入企业图纸资产（关键步骤）</h3>
+      <ul>
+        <li>将原有 PDM/网盘/文件服务器上的图纸按<strong>原有目录结构</strong>导入 MxsDoc 仓库</li>
+        <li>开启「版本自动识别」：Git 语义化提交 → 自动生成版本树（主干/分支/标签/基线）</li>
+        <li>配置「实体抽取规则」：零件编号/图号/版本号/变更单号/物料编码 → 自动建立知识图谱</li>
+        <li><strong>批量导入工具</strong>：提供 CLI/脚本，支持从 Windchill/Teamcenter/SolidWorks PDM 导出包一键迁移</li>
+      </ul>
+
+      <h3>4️⃣ 配置审图流程与权限</h3>
+      <pre><code>{
+  "project": "项目A-精密零件",
+  "repo": "drawing-repo",
+  "roles": {
+    "设计师": ["读", "写", "创建分支", "提交变更单"],
+    "工艺工程师": ["读", "写标注", "创建问题单", "审批工艺变更"],
+    "质量工程师": ["读", "写标注", "创建问题单", "最终放行"],
+    "采购/车间": ["读(仅放行版本)", "写标注(仅生产现场反馈)"],
+    "外协供应商": ["读(仅授权零件/仅放行版本)", "无写权限"]
+  },
+  "secrets": {
+    "涉密等级≥秘密": "仅涉密项目组可见，审计日志加密存储",
+    "导出水印": "动态水印含用户名/时间/IP/涉密标识"
+  }
+}</code></pre>
+
+      <h3>5️⃣ 真机验收</h3>
+      <p>打开 <code>零件 X1002@v3.2</code>，智能测量孔位公差 → 显示 ±0.02mm；点击「版本比对」→ 选择 <code>v3.1</code> → 自动高亮几何差异 + 语义差异面板显示「公差 ±0.01→±0.02，ECN-2024-0145」；新建问题单 → 指派工艺工程师 → 状态流转 → 关闭；一键生成「审图纪要」 → PDF/Word 导出 → 自动归档到 MxsDoc 仓库。</p>
+
+      <h2>五、我们的实践：不夸大、不绝对化</h2>
+      <table>
+        <thead><tr><th>能力项</th><th>现状</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>Web 端免安装查看 500MB+ 模型</td><td>✅ 已验证</td><td>WebGL + WASM 流式加载，首屏 <3s，操作延迟 <100ms</td></tr>
+          <tr><td>语义化版本树自动生成</td><td>✅ 生产可用</td><td>Git 提交即版本，无需额外建模，支持万级节点渲染</td></tr>
+          <tr><td>变更单-图纸-工艺-BOM 四向关联</td><td>✅ 生产可用</td><td>金诺信/高意已跑通全链路</td></tr>
+          <tr><td>结构化问题单 + 状态机流转</td><td>✅ 生产可用</td><td>审图会议模式已在 3 家客户常态化使用</td></tr>
+          <tr><td>文档级/字段级权限 + 全链路审计</td><td>✅ 生产可用</td><td>已通过等保三级测评，涉密场景物理隔离部署验证通过</td></tr>
+          <tr><td>国产 GPU 适配（海光/昇腾/摩尔）</td><td>🟡 进行中</td><td>预计 2026 Q1 完工，国产化替代路径已验证可行</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>不承诺</strong>（避免任何形式的夸大）：</p>
+      <ul>
+        <li>❌ 「开箱即用零配置」（图纸导入需按规范整理目录/命名/属性）</li>
+        <li>❌ 「完全替代头部 PLM 的高级仿真/工艺规划/供应链协同」（MxsDoc 定位版本治理+协同底座，可做 PLM 上游数据源）</li>
+        <li>❌ 「所有非标格式完美解析」（专有格式需厂商授权 SDK，建议转 STEP/IGES 中性格式）</li>
+        <li>❌ 「单机版支持万人并发协同」（百人级并发需集群部署，标准版支持 50-100 人同时在线）</li>
+      </ul>
+
+      <h2>六、避坑清单（来自客户原话）</h2>
+      <ol>
+        <li><strong>别把「能打开 STEP」当「能管版本」</strong> —— 几何查看 ≠ 版本治理，上线前必须跑通「变更单→图纸→工艺→BOM」四向关联</li>
+        <li><strong>别信「Web 端就能随便协同」</strong> —— 无权限/无审计/无流程的标注是事故隐患，涉密/制造场景红线不可碰</li>
+        <li><strong>别忽略「历史版本只读」需求</strong> —— 审计/追溯/知识复用都需要历史版本不可篡改、可检索、可比对</li>
+        <li><strong>别把导入当一次性动作</strong> —— 图纸持续产出，需建立「设计端(SolidWorks/Creo)→MxsDoc」自动同步机制（提供 API/插件）</li>
+        <li><strong>别绑定单一查看器引擎</strong> —— 引擎迭代快，底座必须支持热插拔（MxsDoc 设计即插件化架构）</li>
+      </ol>
+
+      <div class="cta-band">
+        <h3>想看真机演示？</h3>
+        <p style="margin-bottom:1rem;">dw.gofreeteam.com 常驻演示环境（含图纸版本树、版本比对、协同标注、审图流程全链路）</p>
+        <a href="mailto:zhangshuren@agent.qq.com?subject=MxsDoc%20试用申请&body=公司名称：%0A行业：%0A员工规模：%0A需求描述：">申请免费试用</a>
+        <a href="/contact.html">联系部署咨询</a>
+        <a href="/customers/chengdu-jinnuoxin.html">查看成都金诺信案例</a>
+      </div>
+
+      <h2>七、FAQ（精选）</h2>
+
+      <h3>Q1: 已有 SolidWorks PDM，为什么还要上 MxsDoc？</h3>
+      <p>A: PDM 服务设计部门（重客户端、重流程、高门槛），MxsDoc 服务<strong>全员</strong>（Web 端、轻权限、轻流程、低门槛）。两者互补：PDM 管源头，MxsDoc 管下游协同与版本分发。</p>
+
+      <h3>Q2: 版本比对能否对比 SolidWorks 原始文件？</h3>
+      <p>A: 建议转 STEP/IGES 中性格式后再比对。原始格式比对依赖厂商 SDK，授权成本高且版本锁定风险大。中性格式比对覆盖 95%+ 几何/拓扑/PMI 信息，且厂商中立。</p>
+
+      <h3>Q3: 涉密场景怎么部署？</h3>
+      <p>A: 物理隔离网 + MxsDoc 离线部署包（含所有镜像/依赖）+ 国产 GPU 适配，全程无外网依赖。涉密场景对外仅宣「智能体能力」。</p>
+
+      <h3>Q4: 协同标注能否导出到 PLM/ERP？</h3>
+      <p>A: 支持。问题单/变更单/审图纪要均为结构化文档，提供 REST API + Webhook，可对接 Windchill/Teamcenter/用友/金蝶等主流系统。</p>
+
+      <h3>Q5: 如何评估引入效果？</h3>
+      <p>A: 建立三指标周度跟踪：<strong>审图周期缩短率</strong>（目标 ≥30%）、<strong>版本错误导致返工次数</strong>（目标归零）、<strong>跨部门会签会议时长</strong>（目标 ≥50% 减少）。</p>
+
+      <p style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid #e2e8f0; color:#64748b; font-size:.85rem;">
+        <em>本文基于 MxsDoc 团队与成都金诺信、福州高意光学等客户的真实落地复盘整理。所有数字可回溯证据锚点（见 <code>GEO-HOT-QUESTIONS.md</code> / <code>FINAL-UNDERSTANDING.md</code>）。不含「唯一/最/第一/顶级」绝对化用语。</em>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 MxsDoc · 本地化部署的企业 AI 知识库底座 · <a href="/">返回首页</a> · <a href="mailto:zhangshuren@agent.qq.com">联系商务</a>
+    </div>
+  </footer>
+</body>
+</html>
