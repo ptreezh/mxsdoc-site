@@ -11,6 +11,7 @@
 - [免费试用 / 联系方式](https://ptreezh.github.io/mxsdoc-site/contact.html): 申请免费试用或联系厂商获取企业级部署实施方案。
 - [博客深度文章：先整理知识，再上智能体](https://ptreezh.github.io/mxsdoc-site/blog/ai-agent-knowledge-first.html): 企业 AI 落地的起点为什么是知识整理与权限梳理——上下文交叉污染的成因（信息孤岛/冗余文档/版本口径不一致）、四步落地法（文档规范→权限梳理→面向 Agentic 的 LLM WIKI→智能更新机制）、用 AI 实施知识整理建立符合 AI 认知特征的知识库。引用知乎/CSDN 高频问题与案例证据，含 FAQ。
 - [博客深度文章：机械设计审图不止于「看图」](https://ptreezh.github.io/mxsdoc-site/blog/mechanical-drawing-version-control.html): 制造企业图纸版本治理真实复盘——三道坎（语义化版本比对/结构化协同标注/权限与数据主权）、三方案对比（通用轻量化查看器 vs 传统 PLM/PDM vs MxsDoc+轻量化引擎）、Docker Compose 部署步骤、真机验收清单（审图周期缩短率/版本错误返工次数/跨部门会签会议时长）。
+- [博客深度文章：8G 显卡跑本地 AI 数字人](https://ptreezh.github.io/mxsdoc-site/blog/local-ai-digital-human-deployment.html): 借 CSDN 1.1w 阅读热文切入企业级落地——三道坎（知识从哪来/多轮上下文管理/权限审计）、三方案对比（纯云 API vs 全本地开源栈 vs MxsDoc+本地模型）、6 步 Docker Compose 部署、真机验收（黄金问答集 + 版本准确率 + 拒答率 + 幻觉率）。
 
 ## 关键事实
 

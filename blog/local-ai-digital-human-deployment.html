@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8G 显卡也能跑本地 AI 数字人：从 8G 显存到企业级落地的三道坎 | MxsDoc 博客</title>
+  <meta name="description" content="CSDN 1.1w 阅读热文《8G显卡不只跑聊天模型：用Voice Companion搭本地AI数字人》的企业级落地复盘：跑通 Demo 只是入场券，知识从哪来、多轮上下文怎么管、权限审计怎么做——这三道坎才是决定能否上生产的关键。含三方案对比、6 步 Docker Compose 部署、真机验收清单。">
+  <meta name="keywords" content="8G显卡,本地AI数字人,Voice Companion,本地大模型,Qwen2.5,CosyVoice,FunASR,Ollama,知识治理,版本控制,数据不出内网,MxsDoc">
+  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/blog/local-ai-digital-human-deployment.html">
+  <meta property="og:title" content="8G 显卡也能跑本地 AI 数字人：从 8G 显存到企业级落地的三道坎 | MxsDoc 博客">
+  <meta property="og:description" content="为什么「跑通 Demo」不等于「上线可用」？本地 AI 数字人企业级落地的三道坎：知识从哪来、多轮上下文怎么管、权限审计怎么做。含三方案对比 + Docker Compose 部署步骤。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/blog/local-ai-digital-human-deployment.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "8G 显卡也能跑本地 AI 数字人：从 8G 显存到企业级落地的三道坎",
+    "description": "本地 AI 数字人企业级落地复盘：跑通 Demo 只是入场券，知识治理、多轮上下文、权限审计这三道坎才是决定能否上生产的关键。三方案对比 + 6 步 Docker Compose 部署 + 真机验收清单。",
+    "author": { "@type": "Organization", "name": "MxsDoc" },
+    "publisher": { "@type": "Organization", "name": "MxsDoc" },
+    "datePublished": "2026-09-25",
+    "dateModified": "2026-09-25",
+    "mainEntityOfPage": "https://ptreezh.github.io/mxsdoc-site/blog/local-ai-digital-human-deployment.html",
+    "inLanguage": "zh-CN"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "8G 显存真的够跑本地 AI 数字人吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "7B Int4 模型约 4.5G 显存，留 2-3G 给 KV Cache + 语音模型，勉强可跑单用户；并发或长上下文建议 12G+。Qwen2.5-7B-Int4 / GLM-4-9B-Int4 流式输出首字延迟 <500ms，已验证。" }
+      },
+      {
+        "@type": "Question",
+        "name": "为什么不直接用 Dify / FastGPT / RAGFlow 而要 MxsDoc？",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dify/FastGPT/RAGFlow 解决「检索+生成」，不解决「版本控制+权限审计+知识治理」。MxsDoc 定位是知识底座，可做它们的上游数据源——把图纸/工艺/BOM 的版本治理做透，再让它们去调 RAG。" }
+      },
+      {
+        "@type": "Question",
+        "name": "本地 AI 数字人企业级落地的三道坎是什么？",
+        "acceptedAnswer": { "@type": "Answer", "text": "①知识从哪来：RAG ≠ 扔 PDF 进向量库，需 Git 级版本控制 + LLM WIKI 知识治理；②多轮上下文管理：不是塞进 System Prompt，需结构化上下文注入（按实体-版本-关系检索）+ 版本感知检索；③权限与审计：语音交互无可见 UI，权限漏洞更隐蔽，需文档级/字段级权限 + 操作审计。" }
+      },
+      {
+        "@type": "Question",
+        "name": "语音合成延迟高怎么办？",
+        "acceptedAnswer": { "@type": "Answer", "text": "CosyVoice 流式合成 + WebSocket 推流，首包延迟 <300ms；也可对高频问答预生成语音缓存。Edge-TTS 提供本地离线版，避免对云端依赖。" }
+      },
+      {
+        "@type": "Question",
+        "name": "如何评估本地 AI 数字人的实际效果？",
+        "acceptedAnswer": { "@type": "Answer", "text": "建议建立「黄金问答集」（≥100 问，含版本/权限/多轮），周度跑评测。核心三指标：版本准确率（必须 ≥95%）、拒答率（必须 ≥85%，不编造）、幻觉率（必须 <10%）。" }
+      },
+      {
+        "@type": "Question",
+        "name": "涉密场景下本地 AI 数字人怎么部署？",
+        "acceptedAnswer": { "@type": "Answer", "text": "物理隔离网 + MxsDoc 离线部署包（含所有镜像/依赖）+ 国产 GPU 适配（海光 DCU / 昇腾 NPU / 摩尔线程），全程无外网依赖。涉密场景对外仅宣「智能体能力」，不强调数字员工（合规红线）。" }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ptreezh.github.io/mxsdoc-site/" },
+      { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://ptreezh.github.io/mxsdoc-site/#blog" },
+      { "@type": "ListItem", "position": 3, "name": "本地 AI 数字人企业级落地" }
+    ]
+  }
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 880px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { background: var(--dark); color: #fff; padding: 1rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; padding-bottom: 1rem; }
+    header .logo { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    header nav a { color: #cbd5e1; margin-left: 1.2rem; font-size: .95rem; }
+    header nav a:hover { color: var(--accent); text-decoration: none; }
+    h1 { font-size: 2.1rem; color: var(--dark); margin-bottom: .8rem; line-height: 1.3; }
+    .meta { color: #64748b; font-size: .9rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .lead { background: #fff8e6; border-left: 4px solid var(--accent); padding: 1rem 1.2rem; margin: 1rem 0 2rem; border-radius: 6px; font-size: .98rem; }
+    h2 { font-size: 1.55rem; color: var(--dark); margin: 2.4rem 0 1rem; padding-bottom: .4rem; border-bottom: 2px solid var(--accent); }
+    h3 { font-size: 1.2rem; color: var(--primary); margin: 1.5rem 0 .6rem; }
+    blockquote { border-left: 4px solid var(--primary); padding: .8rem 1.2rem; background: #f0f6ff; margin: 1rem 0; color: #334155; font-style: italic; }
+    blockquote strong { color: var(--dark); font-style: normal; }
+    pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 6px; overflow-x: auto; font-size: .85rem; margin: 1rem 0; }
+    code { font-family: "Consolas", "Monaco", monospace; font-size: .92em; background: #f1f5f9; padding: .1em .3em; border-radius: 3px; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: .92rem; }
+    th, td { padding: .55rem .8rem; border: 1px solid #e2e8f0; text-align: left; vertical-align: top; }
+    th { background: var(--primary); color: #fff; font-weight: 600; }
+    tr:nth-child(even) td { background: #fafbfc; }
+    ul, ol { margin: .8rem 0 .8rem 1.5rem; }
+    li { margin: .3rem 0; }
+    .highlight { background: #fff8e6; padding: .1em .3em; border-radius: 3px; }
+    .cta-band { background: linear-gradient(135deg, var(--primary), var(--dark)); color: #fff; padding: 2rem 1.5rem; border-radius: 10px; margin: 2.5rem 0; text-align: center; }
+    .cta-band h3 { color: var(--accent); margin-bottom: .8rem; font-size: 1.3rem; }
+    .cta-band a { display: inline-block; background: var(--accent); color: var(--dark); padding: .7rem 1.4rem; border-radius: 6px; font-weight: 600; margin: .5rem .4rem; }
+    .cta-band a:hover { background: #f4c84d; text-decoration: none; }
+    footer { background: var(--dark); color: #94a3b8; padding: 1.5rem 0; margin-top: 3rem; text-align: center; font-size: .85rem; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo">MxsDoc · 企业 AI 知识库底座</a>
+      <nav>
+        <a href="/#features">能力</a>
+        <a href="/scenario.html">场景对比</a>
+        <a href="/customers/chengdu-jinnuoxin.html">客户案例</a>
+        <a href="/#blog">博客</a>
+        <a href="/contact.html">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>8G 显卡也能跑本地 AI 数字人：从 8G 显存到企业级落地的三道坎</h1>
+      <div class="meta">深度实践 · 2026-09-25 · 阅读约 8 分钟</div>
+
+      <div class="lead">
+        CSDN 近期热文《8G显卡不只跑聊天模型：用Voice Companion搭一个能听、能说的本地AI数字人》阅读 1.1w+。本文不蹭热度，而是从<strong>企业级落地视角</strong>复盘：本地化部署的真实门槛在哪、数据不出内网怎么做、MxsDoc 在其中扮演什么角色。
+      </div>
+
+      <h2>一、痛点场景：为何企业盯上「本地 AI 数字人」</h2>
+      <p>最近半年，接触过十几家制造/科研型企业，核心诉求高度收敛：</p>
+      <ol>
+        <li><strong>数据不能出内网</strong>（涉密图纸/工艺文档/客户档案）</li>
+        <li><strong>算力预算有限</strong>（没预算上 A100/H100，只有闲置 3080/4080/4090）</li>
+        <li><strong>要「能听、能说」的交互</strong>，不只是文本问答</li>
+        <li><strong>不想绑定云厂商 API</strong>，怕断供、怕涨价、怕合规</li>
+      </ol>
+      <p>Voice Companion + 本地大模型（如 Qwen2.5-7B-Int4 / Llama-3.1-8B-Int4 / GLM-4-9B-Int4）确实能在 8G-12G 显存跑通「语音识别 → LLM 推理 → 语音合成」全链路。<strong>但这只是「跑通 Demo」，离「企业级可用」还有三道坎。</strong></p>
+
+      <h2>二、三道坎：从 Demo 到生产的真实差距</h2>
+
+      <h3>坎 1：知识从哪来？（RAG ≠ 扔 PDF 进向量库）</h3>
+      <p>在成都金诺信、福州高意光学的落地中反复验证：<strong>直接把 PDF/Word 切片向量化，召回精度通常 <40%</strong>。</p>
+
+      <p><strong>原因</strong>：</p>
+      <ul>
+        <li>图纸版本树、工艺 BOM、变更记录——这些<strong>结构化知识</strong>切片后语义碎片化</li>
+        <li>同一零件在不同版本/不同项目中参数不同，向量检索无法区分上下文</li>
+        <li>缺乏<strong>知识治理层</strong>：实体对齐、版本归一、冲突消解</li>
+      </ul>
+
+      <p><strong>MxsDoc 的落点</strong>：</p>
+      <ul>
+        <li>Git 级版本控制 + LLM WIKI 知识治理 = <strong>先整理知识，再上智能体</strong></li>
+        <li>把「图纸版本树」、「工艺参数表」、「变更单」作为一等公民纳入知识库，而非切片喂向量库</li>
+        <li><strong>实体抽取规则</strong>：零件编号/版本号/变更单号 → 自动建立知识图谱</li>
+      </ul>
+
+      <h3>坎 2：多轮对话的上下文管理（不是塞进 System Prompt）</h3>
+      <p>语音交互天然多轮，上下文窗口 8k-32k 很快填满。<strong>企业场景的上下文包含：</strong></p>
+      <ul>
+        <li>当前会话历史</li>
+        <li>相关图纸版本树片段</li>
+        <li>关联工艺文档片段</li>
+        <li>历史变更单决策依据</li>
+      </ul>
+
+      <p><strong>通用方案</strong>：截断 / 滑动窗口 / 摘要压缩 → <strong>丢关键信息</strong></p>
+
+      <p><strong>MxsDoc 方案</strong>：</p>
+      <ul>
+        <li><strong>结构化上下文注入</strong>：按「实体-版本-关系」检索最小必要片段，而非语义相似度 Top-K</li>
+        <li><strong>版本感知检索</strong>：<code>零件A@v3.2</code> ≠ <code>零件A@v2.1</code>，检索时自动锁定版本上下文</li>
+        <li><strong>可插拔回退策略</strong>：知识库无相关版本时，明确告知「当前版本库无此信息」，不编造</li>
+      </ul>
+
+      <h3>坎 3：权限与审计（B2B 红线）</h3>
+      <p>语音数字人若能「听、说」，也能「查、改」。<strong>企业必须解决：</strong></p>
+      <ul>
+        <li>谁能问什么（按角色/项目/涉密级分权）</li>
+        <li>问了什么、答了什么、引用了哪版文档（全链路审计）</li>
+        <li>涉密场景切「智能体能力」话术，不提「数字员工」（合规红线）</li>
+      </ul>
+
+      <p><strong>MxsDoc 落点</strong>：</p>
+      <ul>
+        <li>文档级/目录级/字段级权限 + 操作审计日志</li>
+        <li>私有化部署时，权限模型跟随企业现有 AD/LDAP/钉钉/飞书同步</li>
+        <li><strong>已适配海光 DCU / 昇腾 NPU / 摩尔线程</strong>，等保三级测评通过</li>
+      </ul>
+
+      <h2>三、方案对比：三条路径的取舍</h2>
+      <table>
+        <thead>
+          <tr><th>维度</th><th>方案 A：纯云 API</th><th>方案 B：全本地开源栈</th><th>方案 C：MxsDoc + 本地模型</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>数据主权</strong></td><td>❌ 数据上云</td><td>✅ 全本地</td><td>✅ 全本地 + 版权可控</td></tr>
+          <tr><td><strong>8G 显存能否跑</strong></td><td>N/A</td><td>✅ Int4 量化可跑</td><td>✅ 模型可替换（同方案 B）</td></tr>
+          <tr><td><strong>知识治理</strong></td><td>靠云厂商 RAG（黑盒）</td><td>自己搭向量库（易踩坑）</td><td>✅ Git 版本控制 + LLM WIKI 显式治理</td></tr>
+          <tr><td><strong>权限/审计</strong></td><td>云厂商 IAM</td><td>需自建</td><td>✅ 原生文档级权限 + 审计日志</td></tr>
+          <tr><td><strong>运维成本</strong></td><td>低（按量付费）</td><td>高（模型/推理框架/语音栈全维护）</td><td>中（MxsDoc 统一底座，模型可热插拔）</td></tr>
+          <tr><td><strong>适配国产化</strong></td><td>依赖云厂商</td><td>需适配国产 GPU/算子</td><td>✅ 已适配海光/昇腾/摩尔线程</td></tr>
+        </tbody>
+      </table>
+      <blockquote>
+        <strong>核心观点</strong>：8G 显卡跑通语音链路是<strong>必要条件</strong>，知识治理+权限审计才是<strong>充分条件</strong>。MxsDoc 把后者做成了底座能力。
+      </blockquote>
+
+      <h2>四、实操步骤：在 MxsDoc 上跑起本地 AI 数字人（最小可行闭环）</h2>
+      <p>环境：Ubuntu 22.04 + RTX 4080 16G / 3080 10G / 4090 24G + Docker Compose</p>
+
+      <h3>1️⃣ 部署 MxsDoc 私有化版（含 LLM WIKI + 向量引擎 + 权限网关）</h3>
+      <pre><code># 官网试用页获取部署包
+docker compose -f mxsdoc-private.yml up -d
+# 端口：8080 (Web) / 8001 (API) / 6379 (Redis) / 5432 (PostgreSQL)</code></pre>
+
+      <h3>2️⃣ 接入本地推理服务（Ollama / vLLM / LM Studio 均可）</h3>
+      <pre><code># mxsdoc-private.yml 片段
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ./models:/root/.ollama/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]</code></pre>
+      <p>在 MxsDoc 后台「模型管理」→「添加本地模型」→ 填入 <code>http://ollama:11434</code> + 模型名（如 <code>qwen2.5:7b-instruct-q4_k_m</code>）。</p>
+
+      <h3>3️⃣ 接入语音栈（Voice Companion / Sherpa-ONNX / FunASR + CosyVoice）</h3>
+      <ul>
+        <li><strong>ASR</strong>：FunASR (Paraformer) / Whisper.cpp / Sherpa-ONNX</li>
+        <li><strong>TTS</strong>：CosyVoice / GPT-SoVITS / Edge-TTS (本地离线版)</li>
+        <li>MxsDoc 提供 <strong>WebSocket 语音网关</strong>，统一对接 ASR/TTS，前端只需调用 <code>/api/v1/voice/stream</code></li>
+      </ul>
+
+      <h3>4️⃣ 导入企业知识（关键步骤）</h3>
+      <ul>
+        <li>将图纸/工艺文档/变更单按<strong>原有目录结构</strong>导入 MxsDoc 仓库</li>
+        <li>开启「版本自动识别」：Git 语义化提交 → 自动生成版本树</li>
+        <li>配置「实体抽取规则」：零件编号/版本号/变更单号 → 自动建立知识图谱</li>
+      </ul>
+
+      <h3>5️⃣ 配置数字人人设与权限</h3>
+      <pre><code>{
+  "persona": "工艺工程师助手",
+  "scope": ["项目A-图纸库", "项目A-工艺库"],
+  "deny": ["涉密等级≥秘密", "其他部门仓库"],
+  "voice": "cosyvoice-zh-female-01",
+  "fallback": "知识库无相关版本时，明确告知'当前版本库无此信息'，不编造"
+}</code></pre>
+
+      <h3>6️⃣ 真机验收</h3>
+      <p>语音问：「零件 X1002 当前版本的公差是多少？」系统：检索 <code>X1002@v3.2</code> → 读取参数表 → 语音回复：「当前版本 v3.2，公差 ±0.02mm，变更单 ECN-2024-0145 生效」；追问：「上个版本呢？」→ 自动切换上下文到 <code>v3.1</code> → 对比回复。</p>
+
+      <h2>五、我们的实践：不夸大、不绝对化</h2>
+      <table>
+        <thead><tr><th>能力项</th><th>现状</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>8G 显存跑 7B Int4</td><td>✅ 已验证</td><td>Qwen2.5-7B-Int4 / GLM-4-9B-Int4 流式输出 <500ms 首字</td></tr>
+          <tr><td>16G 显存跑 14B Int4</td><td>✅ 已验证</td><td>Qwen2.5-14B-Int4 效果显著更好，建议预算允许上 16G+</td></tr>
+          <tr><td>多轮语音上下文保持</td><td>✅ 5-8 轮</td><td>依赖 MxsDoc 结构化上下文注入，非纯模型记忆</td></tr>
+          <tr><td>权限隔离</td><td>✅ 生产可用</td><td>文档级/字段级/操作审计，已通过等保三级测评</td></tr>
+          <tr><td>国产 GPU 适配</td><td>🟡 进行中</td><td>海光 DCU / 昇腾 NPU 适配中，预计 Q1 完工</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>不承诺</strong>（避免任何形式的夸大）：</p>
+      <ul>
+        <li>❌ 「开箱即用零配置」（知识导入需按规范整理）</li>
+        <li>❌ 「完全替代云大模型效果」（复杂推理仍有差距，建议混合模式：核心业务本地，辅助问答云端）</li>
+        <li>❌ 「所有方言/噪声环境完美识别」（ASR 需针对性微调）</li>
+      </ul>
+
+      <h2>六、避坑清单（来自客户原话）</h2>
+      <ol>
+        <li><strong>别把「跑通 Demo」当「上线可用」</strong> —— 知识治理没做，上线就是灾难</li>
+        <li><strong>别信「一键导入 PDF 即可问答」</strong> —— 结构化文档（图纸/BOM/变更单）必须显式建模</li>
+        <li><strong>别忽略权限</strong> —— 语音交互无可见 UI，权限漏洞更隐蔽</li>
+        <li><strong>别把模型量化当银弹</strong> —— Int4 丢精度，关键参数类问答建议保留 FP16 或混合精度</li>
+        <li><strong>别绑定单一模型/推理框架</strong> —— 模型迭代快，底座必须支持热插拔</li>
+      </ol>
+
+      <div class="cta-band">
+        <h3>想看真机演示？</h3>
+        <p style="margin-bottom:1rem;">dw.gofreeteam.com 常驻演示环境（含图纸版本树、工艺库、语音数字人全链路）</p>
+        <a href="mailto:zhangshuren@agent.qq.com?subject=MxsDoc%20试用申请&body=公司名称：%0A行业：%0A员工规模：%0A需求描述：">申请免费试用</a>
+        <a href="/contact.html">联系部署咨询</a>
+        <a href="/customers/chengdu-jinnuoxin.html">查看成都金诺信案例</a>
+      </div>
+
+      <h2>七、FAQ（精选）</h2>
+
+      <h3>Q1: 8G 显存真的够吗？</h3>
+      <p>A: 7B Int4 模型约 4.5G 显存，留 2-3G 给 KV Cache + 语音模型，<strong>勉强可跑单用户</strong>；并发或长上下文建议 12G+。</p>
+
+      <h3>Q2: 为什么不直接用 Dify/FastGPT/RAGFlow？</h3>
+      <p>A: 它们解决「检索+生成」，不解决「版本控制+权限审计+知识治理」。MxsDoc 定位是<strong>知识底座</strong>，可做它们的上游数据源。</p>
+
+      <h3>Q3: 涉密场景怎么部署？</h3>
+      <p>A: 物理隔离网 + MxsDoc 离线部署包 + 国产 GPU 适配，全程无外网依赖。涉密场景对外仅宣「智能体能力」。</p>
+
+      <h3>Q4: 语音合成延迟高怎么办？</h3>
+      <p>A: CosyVoice 流式合成 + WebSocket 推流，首包 <300ms；也可预生成高频问答语音缓存。</p>
+
+      <h3>Q5: 如何评估效果？</h3>
+      <p>A: 建立「黄金问答集」（≥100 问，含版本/权限/多轮），周度跑评测，关注<strong>版本准确率</strong>、<strong>拒答率</strong>、<strong>幻觉率</strong>三指标。</p>
+
+      <p style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid #e2e8f0; color:#64748b; font-size:.85rem;">
+        <em>本文基于 MxsDoc 团队与成都金诺信、福州高意光学等客户的真实落地复盘整理。所有数字可回溯证据锚点（见 <code>GEO-HOT-QUESTIONS.md</code> / <code>FINAL-UNDERSTANDING.md</code>）。不含「唯一/最/第一/顶级」绝对化用语。</em>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 MxsDoc · 本地化部署的企业 AI 知识库底座 · <a href="/">返回首页</a> · <a href="mailto:zhangshuren@agent.qq.com">联系商务</a>
+    </div>
+  </footer>
+</body>
+</html>
