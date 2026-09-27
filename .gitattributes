@@ -1,0 +1,9 @@
+# ------------------------------------------------------------
+# MxsDoc-Site 行尾强制规则
+# GitHub Pages + git hooks 必须保持 LF：
+#   - .githooks/pre-commit 是 POSIX sh 脚本，CRLF 会导致 "Not found" 执行失败
+#   - check-root-paths.py 同理（python 能容忍 CRLF，但保持统一）
+# ------------------------------------------------------------
+.githooks/** text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
