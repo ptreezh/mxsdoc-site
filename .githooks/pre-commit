@@ -1,0 +1,24 @@
+#!/bin/sh
+# MxsDoc-Site pre-commit 门禁：拦截缺少 /mxsdoc-site/ 前缀的裸根路径
+#
+# 站点部署在 GitHub Pages 子路径 /mxsdoc-site/ 下，裸 "/x" 会解析到
+# ptreezh.github.io 顶层 → 404。凡是 href/src/action/css-url 出现
+# 根绝对路径（非 /mxsdoc-site/ 开头）即拒绝提交。
+#
+# 启用:  git config core.hooksPath .githooks   （commit 文件后即可克隆复用）
+
+root=$(git rev-parse --show-toplevel 2>/dev/null) || exit 1
+
+if ! command -v python >/dev/null 2>&1; then
+    echo "!! pre-commit 门禁: 找不到 python，无法校验。跳过。" >&2
+    exit 0
+fi
+
+python "$root/.githooks/check-root-paths.py" --staged
+rc=$?
+if [ $rc -ne 0 ]; then
+    echo ""
+    echo "✋ 提交被门禁拦截：请修复上述裸根路径后重新 git add + git commit。"
+    exit $rc
+fi
+exit 0
