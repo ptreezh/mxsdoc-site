@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>客户案例与客户名录 — MxsDoc 企业 AI 知识库底座</title>
+  <meta name="description" content="MxsDoc 客户案例与名录：4 家深度案例（成都金诺信、福州高意光学、苏州工业园区蓝天燃气热电、北京达成生物科技）+ 28 家客户名录覆盖北京 / 上海 / 深圳 / 广州 / 成都 / 武汉 / 西安 / 南京 / 重庆 / 江阴 / 清远 / 新疆 / 绍兴 / 浙江等地区的科技 / 制造 / 金融 / 医疗 / 能源 / 环保企业。">
+  <meta name="keywords" content="MxsDoc 客户案例,MxsDoc 客户名录,本地化部署客户,文档管理案例,AI知识库案例">
+  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/customers/index.html">
+  <meta property="og:title" content="MxsDoc 客户案例与客户名录">
+  <meta property="og:description" content="4 个深度客户案例 + 28 家客户名录：覆盖制造、能源、生物科技、金融、医疗、环保、信息技术等多行业。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/customers/index.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ptreezh.github.io/mxsdoc-site/" },
+      { "@type": "ListItem", "position": 2, "name": "客户案例" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "url": "https://ptreezh.github.io/mxsdoc-site/customers/chengdu-jinnuoxin.html", "name": "成都金诺信高科技" },
+      { "@type": "ListItem", "position": 2, "url": "https://ptreezh.github.io/mxsdoc-site/customers/fuzhou-gaoyi-guangxue.html", "name": "福州高意光学" },
+      { "@type": "ListItem", "position": 3, "url": "https://ptreezh.github.io/mxsdoc-site/customers/suzhou-lantian-ranqi-redian.html", "name": "苏州工业园区蓝天燃气热电" },
+      { "@type": "ListItem", "position": 4, "url": "https://ptreezh.github.io/mxsdoc-site/customers/beijing-dacheng-shengwu.html", "name": "北京达成生物科技" }
+    ]
+  }
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { opacity: 0.85; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.6rem 0 3rem; }
+    .page-hero h1 { font-size: 2.2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 760px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.8rem; margin-bottom: .6rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    /* case cards */
+    .cases { background: var(--bg); }
+    .case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 2.2rem; }
+    .case-card { background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); border-left: 4px solid var(--primary); display: flex; flex-direction: column; }
+    .case-card.alt { border-left-color: var(--accent); }
+    .case-card .industry { color: var(--accent); font-size: 13px; font-weight: 600; margin-bottom: .5rem; }
+    .case-card h3 { color: var(--dark); font-size: 1.25rem; margin-bottom: .4rem; }
+    .case-card .meta { color: #64748b; font-size: 13px; margin-bottom: 1rem; }
+    .case-card .summary { color: #475569; font-size: .95rem; flex: 1; margin-bottom: 1rem; }
+    .case-card .proof-badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .proof-badge.verified { background: #dcfce7; color: #166534; }
+    .proof-badge.pending { background: #f1f5f9; color: #475569; }
+    .case-card .more { color: var(--primary); font-weight: 600; font-size: 14px; }
+    /* directory */
+    .directory { background: #fff; }
+    .dir-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 2rem; }
+    .dir-item { background: #f8fafc; padding: 14px 16px; border-radius: 8px; border: 1px solid #e2e8f0; transition: all .2s; }
+    .dir-item:hover { border-color: var(--primary); background: #eff6ff; }
+    .dir-item .name { color: var(--dark); font-weight: 600; font-size: 15px; }
+    .dir-item .region { color: #64748b; font-size: 12px; margin-top: 2px; }
+    .region-tag { display: inline-block; padding: 1px 6px; border-radius: 4px; background: #f1f5f9; color: #475569; font-size: 11px; margin-right: 4px; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 768px) { .page-hero h1 { font-size: 1.7rem; } .case-grid { grid-template-columns: 1fr; } .nav a { margin-left: 12px; font-size: .88rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> / 客户案例</div>
+    <h1>客户案例与客户名录</h1>
+    <p class="sub">4 个深度客户案例 · 28 家客户名录 · 覆盖制造 / 能源 / 生物科技 / 金融 / 医疗 / 环保 / 信息技术 等多行业</p>
+  </div>
+</section>
+
+<section class="cases">
+  <div class="container">
+    <h2>深度客户案例<small>含可见证据（盖章文件 / 行业场景说明）</small></h2>
+    <div class="case-grid">
+
+      <div class="case-card">
+        <div class="industry">精密制造 · 200+ 人</div>
+        <h3>成都金诺信高科技</h3>
+        <div class="meta">本地化部署 · 自 2025 年 4 月起使用</div>
+        <p class="summary">制造企业产品图纸文档集中存储管理：文件版本控制、集中权限管理、拖拽操作、电脑手机浏览器自适应访问，运行稳定、效果良好。</p>
+        <div style="margin-bottom: 1rem;"><span class="proof-badge verified">✓ 客户使用证明已公开</span></div>
+        <a href="chengdu-jinnuoxin.html" class="more">查看完整案例 →</a>
+      </div>
+
+      <div class="case-card alt">
+        <div class="industry">光学制造 · 含军工配套</div>
+        <h3>福州高意光学</h3>
+        <div class="meta">本地化部署 · 自 2025 年 4 月起使用</div>
+        <p class="summary">光学制造企业产品图纸文档集中存储管理：版本管理、权限分级、在线文档编辑、移动端访问、二次开发定制，运行稳定、效果良好。</p>
+        <div style="margin-bottom: 1rem;"><span class="proof-badge verified">✓ 客户使用证明已公开</span></div>
+        <a href="fuzhou-gaoyi-guangxue.html" class="more">查看完整案例 →</a>
+      </div>
+
+      <div class="case-card">
+        <div class="industry">工业园区燃气热电</div>
+        <h3>苏州工业园区蓝天燃气热电</h3>
+        <div class="meta">本地化部署</div>
+        <p class="summary">工程图纸 / 操作规程 / 合规文档集中存储管理：本地化部署、文件版本控制、集中权限分级、拖拽操作、跨部门协同。</p>
+        <div style="margin-bottom: 1rem;"><span class="proof-badge pending">⏳ 客户使用证明归档中</span></div>
+        <a href="suzhou-lantian-ranqi-redian.html" class="more">查看完整案例 →</a>
+      </div>
+
+      <div class="case-card alt">
+        <div class="industry">生物科技</div>
+        <h3>北京达成生物科技</h3>
+        <div class="meta">本地化部署</div>
+        <p class="summary">研发文档 / 质量体系 / 合规记录集中存储管理：本地化部署、文件版本控制、集中权限分级、跨部门协同、合规留痕。</p>
+        <div style="margin-bottom: 1rem;"><span class="proof-badge pending">⏳ 客户使用证明归档中</span></div>
+        <a href="beijing-dacheng-shengwu.html" class="more">查看完整案例 →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="directory">
+  <div class="container">
+    <h2>客户名录<small>按地域分布 · 已部署使用 / 试用评估 / 商务对接中</small></h2>
+    <div class="dir-grid">
+
+      <div class="dir-item"><div class="name">北京思普</div><div class="region"><span class="region-tag">北京</span>软件</div></div>
+      <div class="dir-item"><div class="name">北京汉正</div><div class="region"><span class="region-tag">北京</span>科技</div></div>
+      <div class="dir-item"><div class="name">北京中科证联</div><div class="region"><span class="region-tag">北京</span>信息技术</div></div>
+      <div class="dir-item"><div class="name">北京昌达</div><div class="region"><span class="region-tag">北京</span>供应链</div></div>
+      <div class="dir-item"><div class="name">亿海蓝</div><div class="region"><span class="region-tag">北京</span>数据技术</div></div>
+      <div class="dir-item"><div class="name">方正中期</div><div class="region"><span class="region-tag">北京</span>期货</div></div>
+
+      <div class="dir-item"><div class="name">上海蓝魂</div><div class="region"><span class="region-tag">上海</span>环保</div></div>
+      <div class="dir-item"><div class="name">上海米健</div><div class="region"><span class="region-tag">上海</span>信息技术</div></div>
+      <div class="dir-item"><div class="name">杰思敏</div><div class="region"><span class="region-tag">上海</span>信息科技</div></div>
+      <div class="dir-item"><div class="name">爱姆森</div><div class="region"><span class="region-tag">上海</span>生物医学</div></div>
+
+      <div class="dir-item"><div class="name">寰泰储能</div><div class="region"><span class="region-tag">全国</span>储能科技</div></div>
+
+      <div class="dir-item"><div class="name">南京中科</div><div class="region"><span class="region-tag">南京</span>微电子</div></div>
+
+      <div class="dir-item"><div class="name">塔吉瑞</div><div class="region"><span class="region-tag">深圳</span>生物医药</div></div>
+      <div class="dir-item"><div class="name">宏威腾飞</div><div class="region"><span class="region-tag">深圳</span>网络</div></div>
+      <div class="dir-item"><div class="name">行健自动</div><div class="region"><span class="region-tag">深圳</span>自动化</div></div>
+      <div class="dir-item"><div class="name">鲲云信息</div><div class="region"><span class="region-tag">深圳</span>信息科技</div></div>
+
+      <div class="dir-item"><div class="name">广州宽普</div><div class="region"><span class="region-tag">广州</span>科技</div></div>
+      <div class="dir-item"><div class="name">广州虹杨</div><div class="region"><span class="region-tag">广州</span>医疗</div></div>
+      <div class="dir-item"><div class="name">清远众源</div><div class="region"><span class="region-tag">清远</span>网络</div></div>
+
+      <div class="dir-item"><div class="name">江阴逐日</div><div class="region"><span class="region-tag">江阴</span>信息科技</div></div>
+
+      <div class="dir-item"><div class="name">成都鸥翼</div><div class="region"><span class="region-tag">成都</span>网络</div></div>
+      <div class="dir-item"><div class="name">成都顺泽</div><div class="region"><span class="region-tag">成都</span>智科技</div></div>
+
+      <div class="dir-item"><div class="name">重庆奥普</div><div class="region"><span class="region-tag">重庆</span>通信</div></div>
+
+      <div class="dir-item"><div class="name">武汉箭动</div><div class="region"><span class="region-tag">武汉</span>科技</div></div>
+
+      <div class="dir-item"><div class="name">西安恒基</div><div class="region"><span class="region-tag">西安</span>光电</div></div>
+
+      <div class="dir-item"><div class="name">新疆千汇</div><div class="region"><span class="region-tag">新疆</span>工程管理</div></div>
+
+      <div class="dir-item"><div class="name">星天海洋</div><div class="region"><span class="region-tag">浙江</span>海洋科学</div></div>
+      <div class="dir-item"><div class="name">梅奥心磁</div><div class="region"><span class="region-tag">绍兴</span>医疗</div></div>
+
+    </div>
+    <p style="margin-top: 1.8rem; color: #64748b; font-size: 13px;">名录收录说明：以上企业为 MxsDoc 团队已建立商务关系或正在技术对接中的单位，按"地域 + 核心字号"4-5 字缩写展示，详细名称可联系商务索取。深度客户案例见上方 4 个独立页面。</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>看看 MxsDoc 是否也适合您的企业</h2>
+    <p>本地化部署 · 版本管理 · 权限分级 · 30 天试用期内不满意全额退款</p>
+    <a class="btn btn-primary" href="../contact.html">申请免费试用</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../scenario.html">应用场景</a> · <a href="../contact.html">免费试用</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
