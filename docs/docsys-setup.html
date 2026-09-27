@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MxsDoc / DocSys 2.02.87 安装与使用教程</title>
+  <meta name="description" content="MxsDoc 企业 AI 知识库底座 2.02.87 Windows 安装步骤、超级管理员初始化、角色与权限配置、视频教程。">
+  <meta name="keywords" content="MxsDoc 安装,DocSys 教程,文档管理系统,超级管理员,用户角色权限">
+  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 24px; line-height: 1.7; color: #1f2937; background: #f7f9fc; }
+    h1 { color: #12253f; border-bottom: 3px solid #1a5fb4; padding-bottom: 12px; }
+    h2 { color: #12253f; margin-top: 2.4rem; border-left: 4px solid #e8b13a; padding-left: 12px; }
+    h3 { color: #1a5fb4; }
+    pre, code { background: #f1f5f9; border-radius: 4px; padding: 2px 6px; font-size: .92rem; }
+    pre { padding: 14px 18px; overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #e2e8f0; padding: 10px 12px; text-align: left; }
+    th { background: #12253f; color: #fff; }
+    .note { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 4px; margin: 1rem 0; }
+    .warn { background: #fee2e2; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 4px; margin: 1rem 0; }
+    a { color: #1a5fb4; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header { background: #12253f; color: #fff; padding: 1.2rem 0; margin-bottom: 2rem; }
+    header .container { max-width: 900px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #e8b13a; }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 1.5rem 0; margin-top: 3rem; text-align: center; font-size: .88rem; }
+  </style>
+</head>
+<body>
+<header>
+  <div class='container'>
+    <div class='logo'>MxsDoc<span style='color:#fff'>. </span>企业 AI 知识库底座</div>
+    <nav class='nav'>
+      <a href='../index.html'>首页</a>
+      <a href='../features.html'>功能</a>
+      <a href='../scenario.html'>场景</a>
+      <a href='../demo.html'>演示</a>
+      <a href='../contact.html'>联系</a>
+    </nav>
+  </div>
+</header>
+<main>
+<h1>MxsDoc / DocSys 2.02.87 安装与使用教程</h1>
+<p><em>由 Playwright + Chromium + sqlite3 + PowerShell 自动化生成（2026-09-27）</em></p><h1>MxsDoc / DocSys 2.02.87 安装与使用教程</h1>
+
+<div class="note">本文档由自动化流程生成（2026-09-27），基于 Playwright + DocSys 真实安装过程。</div>
+
+<hr>
+
+<h2>1. 软件下载</h2>
+
+<table><tr><td> 来源 | 地址 | 大小 | 说明 </td><td>---|---|---|---</td><td> 🇨🇳 国内（微云） | https://share.weiyun.com/LsePgCdL | — | 腾讯微云分享（需浏览器下载） </td></tr>
+<tr><td> 🌍 国外（GitHub Releases） | https://github.com/RainyGao-GitHub/DocSys/releases | 多种 | 选 <code>docsys-win-2.02.87.zip</code> (1058 MB) </td><td> GitHub 直接 | https://github.com/RainyGao-GitHub/DocSys/releases/download/DocSys_V2.02.87/DocSystem.war | 943 MB | 仅 WAR 包，需自行部署 Tomcat </td><td> GitHub 安装器 | https://github.com/RainyGao-GitHub/DocSys/releases/download/DocSys_V2.02.87/Mxsdoc_Setup_V2.02.87.exe | 1120 MB | Windows GUI 安装器 </td></tr></table>
+
+<strong>本次自动化使用</strong>：<code>docsys-win-2.02.87.zip</code>（便携版，自带 JRE + Tomcat + MySQL）
+
+<hr>
+
+<h2>2. 安装步骤</h2>
+
+<h3>2.1 解压</h3>
+
+``<code>powershell
+<h1>假设下载到 F:\gy\</h1>
+Expand-Archive -LiteralPath "F:\gy\docsys-win-2.02.87.zip" -DestinationPath "F:\gy\docsys-2.02.87"
+<h1>或使用 tar.exe</h1>
+tar -xf F:\gy\docsys-win-2.02.87.zip -C F:\gy\docsys-2.02.87
+</code>`<code>
+
+解压后结构：
+
+</code>`<code>
+F:\gy\docsys-2.02.87\
+└── docsys\
+    ├── start.bat           # 入口
+    ├── docsys_start.bat    # 实际启动脚本（设置 JRE + catalina）
+    ├── mysql_start.bat     # 启动 bundled MariaDB
+    ├── tomcat\
+    │   ├── bin\catalina.bat
+    │   ├── java\jre\       # 自带 Java 1.8.0_162
+    │   └── webapps\DocSystem\  # 主应用
+    └── mysql\              # bundled MariaDB
+</code>`<code>
+
+<h3>2.2 修复 jdbc.properties</h3>
+
+<strong>问题</strong>：默认 </code>jdbc.properties<code> 使用 </code>${catalina.home}<code> 占位符，Tomcat 启动时未展开导致 DB 连接失败。
+
+<strong>修复</strong>（必须）：
+
+文件：</code>F:\gy\docsys-2.02.87\docsys\tomcat\webapps\DocSystem\WEB-INF\classes\jdbc.properties<code>
+
+</code>`<code>properties
+db.type=sqlite
+db.driver=org.sqlite.JDBC
+db.url=jdbc:sqlite:F:/gy/docsys-2.02.87/docsys/tomcat/DocSystem.db   # 把 ${catalina.home} 替换为绝对路径
+db.username=
+db.password=
+</code>`<code>
+
+<h3>2.3 启动服务</h3>
+
+</code>`<code>powershell
+<h1>双击或命令行</h1>
+F:\gy\docsys-2.02.87\docsys\start.bat
+</code>`<code>
+
+等待 30-60 秒后访问：<strong>http://localhost:8100/DocSystem/web/</strong>
+
+<div class="note">⚠️ 端口：默认 <strong>8100</strong>（不是 8200），具体查看 </code>tomcat\conf\server.xml<code></div>
+
+<h3>2.4 验证启动</h3>
+
+</code>`<code>powershell
+Get-NetTCPConnection -LocalPort 8100 -State Listen
+<h1>应看到 :: : 8100 LISTEN</h1>
+
+Invoke-WebRequest -Uri "http://localhost:8100/DocSystem/web/" -UseBasicParsing
+<h1>应返回 HTTP 200</h1>
+</code>`<code>
+
+<hr>
+
+<h2>3. 超级管理员初始化</h2>
+
+<h3>3.1 数据库自动初始化</h3>
+
+DocSys 启动时会自动建表（SQLite 27 张表）。访问 </code>http://localhost:8100/DocSystem/web/<code>：
+- 如果 </code>getLoginUser<code> 返回 </code>needAddFirstAdmin<code> → 系统自动弹出"创建第一个管理员"面板
+- 如果返回 </code>系统管理员不存在!<code> → 面板已显示
+
+<h3>3.2 通过前端添加（首次）</h3>
+
+系统会自动调用 </code>showAddFirstAdminUserPanel()<code>，填写：
+
+<table><tr><td> 字段 | 值 </td><td>---|---</td><td> 账号 (userName) | </code>admin<code> </td></tr>
+<tr><td> 密码 (pwd) | </code>admin@12345<code>（前端会 base64 编码发送） </td><td> 邮箱 (email) | </code>admin@yourdomain.com<code> </td><td> 手机 (tel) | </code>13800138000<code> </td></tr></table>
+
+点击「添加」按钮 → 系统调用 </code>addFirstAdminUser<code> API 写入 user 表。
+
+<h3>3.3 通过 SQLite 手工初始化（备选）</h3>
+
+如果前端 addFirstAdmin 流程异常，可直接通过 SQLite 写入：
+
+</code>`<code>bash
+sqlite3 F:\gy\docsys-2.02.87\docsys\tomcat\DocSystem.db
+
+<h1>插入超管（前端 base64 编码密码后再发送，所以 DB 中存 base64）</h1>
+UPDATE user SET PWD='YWRtaW5AMTIzNDU=' WHERE NAME='admin';
+<h1>其他用户（密码=明文 base64）</h1>
+UPDATE user SET PWD='ZWRkaXRvckAxMjM=' WHERE NAME='editor01';
+</code>`<code>
+
+<div class="note">⚠️ DocSys 登录密码机制：前端 </code>pwd : base64_encode(明文密码)<code> 发送，服务器比对 DB 中存储的密码。<strong>当前实测手工 base64 仍报"密码错误"</strong>，可能涉及更复杂的哈希/盐，<strong>建议走 install.html 引导流程</strong>让系统自动创建管理员。</div>
+
+<hr>
+
+<h2>4. 角色与用户配置</h2>
+
+<h3>4.1 DocSys 角色体系</h3>
+
+<table><tr><td> ROLE_ID | NAME | 说明 </td><td>---|---|---</td><td> 1 | 超级管理员 | 全部权限 </td></tr>
+<tr><td> 2 | 高级用户 | 编辑+查看+分享 </td><td> 3 | 用户管理员 | 管理用户/部门 </td><td> 4 | 组管理员 | 管理文档组 </td></tr></table>
+<tr><td> 5 | 普通用户 | 查看+上传+分享 </td><td> 6 | 访客 | 仅查看 </td>
+
+用户 TYPE 字段：0=admin 1=normal 2=disabled
+
+<h3>4.2 本次自动化创建的角色与用户</h3>
+
+<td> 账号 | 密码 | TYPE | ROLE | 真实姓名 | 角色 </td><td>---|---|---|---|---|---</td></tr>
+<table><tr><td> </code>admin<code> | </code>admin@12345<code> | 0 | 1 | 超级管理员 | 超管 </td><td> </code>editor01<code> | </code>editor@123<code> | 1 | 2 | 王编辑 | 高级用户 </td><td> </code>manager01<code> | </code>manager@123<code> | 1 | 3 | 赵经理 | 用户管理员 </td></tr></table>
+<tr><td> </code>viewer01<code> | </code>viewer@123<code> | 1 | 5 | 李访客 | 普通用户 </td>
+
+<h3>4.3 通过管理后台调整权限</h3>
+
+登录后访问：<strong>仓库管理 → 权限设置</strong>
+
+可对每个仓库单独配置：
+- 用户权限：查看 / 编辑 / 删除 / 分享 / 版本管理 / 用户管理
+- 部门/组权限：同上
+- 是否允许下载、是否允许打印、是否需要审批等
+
+<hr>
+
+<h2>5. 使用视频教程</h2>
+
+<h3>5.1 录屏文件</h3>
+
+<td> 文件 | 大小 | 说明 </td><td>---|---|---</td><td> </code>F:\gy\docsys-tutorial-output\video\page@1c54652589c91237d7ab7871b26f7428.webm<code> | 4.8 MB | 第 1 轮 install.html 引导 </td></tr>
+<tr><td> </code>F:\gy\docsys-tutorial-output\video\page@539e24489f5ae016245f8d06599ca668.webm<code> | 2.4 MB | 第 2 轮 创建超管流程 </td><td> </code>F:\gy\docsys-tutorial-output\video\page@9c3c275508a7ad26b9ffcd0fcfb67f46.webm<code> | 2.8 MB | 第 3 轮 登录+多用户切换 </td>
+
+<div class="note">视频为 WebM 格式，可用 VLC / PotPlayer / Chrome 播放</div>
+
+<h3>5.2 关键截图</h3>
+
+<td> 截图 | 说明 </td><td>---|---</td></tr>
+<table><tr><td> </code>01-install-page.png<code> | 安装引导页 DB 配置 </td><td> </code>02-db-saved.png<code> | 数据库连接测试保存 </td><td> </code>04-after-init.png<code> | 系统初始化后状态 </td></tr></table>
+<td> </code>05-login-page.png<code> | 登录页 </td>
+<td> </code>06-after-login.png<code> | 登录后主页（多用户面板） </td>
+
+完整截图：</code>F:\gy\docsys-tutorial-output\*.png<code>（16 张）
+
+<hr>
+
+<h2>6. 常见问题排查</h2>
+
+<h3>6.1 端口被占用</h3>
+
+</code>`<code>powershell
+<h1>改 server.xml：<Connector port="8100" protocol="HTTP/1.1" /></h1>
+<h1>文件：F:\gy\docsys-2.02.87\docsys\tomcat\conf\server.xml</h1>
+</code>`<code>
+
+<h3>6.2 DB 连接失败</h3>
+
+- 检查 </code>jdbc.properties<code> 占位符是否替换（参见 2.2）
+- 检查 DB 文件目录是否存在且有写权限
+- 查看日志：</code>F:\gy\docsys-2.02.87\docsys\tomcat\logs\docsys.log<code>
+
+<h3>6.3 登录密码错误</h3>
+
+1. 优先使用 </code>install.html<code> 引导流程（http://localhost:8100/DocSystem/web/install.html）
+2. 检查前端 base64 编码：浏览器 F12 → Network → login.do → Form Data → pwd 字段
+3. 检查 DB 中 PWD 字段格式：与前端发送的 base64 是否完全一致
+
+<h3>6.4 Tomcat 启动慢</h3>
+
+首次启动需加载 27 张表 + 250+ jar，可能 30-90 秒。可查看 </code>logs/catalina.2026-09-27.log<code> 跟踪进度。
+
+<hr>
+
+<h2>7. 下一步</h2>
+
+1. <strong>配置 LDAP/SSO</strong>：单点登录企业账号
+2. <strong>配置 HTTPS</strong>：使用 Nginx 反向代理 + Let's Encrypt 证书
+3. <strong>备份策略</strong>：定期备份 </code>DocSystem.db<code> + </code>webapps\DocSystem\store\<code>（文档存储目录）
+4. <strong>二次开发</strong>：参考 </code>https://dw.gofreeteam.com<code> 演示系统 + GitHub 源码
+
+<hr>
+
+<strong>生成时间</strong>：2026-09-27 14:25 UTC+8
+<strong>生成工具</strong>：Playwright + Chromium + sqlite3 + PowerShell
+<strong>配套资源</strong>：
+- 视频：</code>F:\gy\docsys-tutorial-output\video\*.webm<code>
+- 截图：</code>F:\gy\docsys-tutorial-output\*.png<code>
+- 安装包：</code>F:\gy\docsys-win-2.02.87.zip<code> (1058 MB)
+- 解压目录：</code>F:\gy\docsys-2.02.87\`
+</main>
+<footer>
+  <p>© 2026 MxsDoc · 本地化部署 · 企业 AI 知识底座</p>
+  <p><a href='../index.html'>首页</a> · <a href='../features.html'>产品功能</a> · <a href='../contact.html'>联系</a></p>
+</footer>
+</body>
+</html>
