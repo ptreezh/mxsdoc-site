@@ -49,3 +49,5 @@
 # 任选：直接打开 index.html，或用 Python 起本地服务
 python -m http.server 8000
 ```
+## 开发门禁
+本仓库 git pre-commit hook 会拦截缺少 /mxsdoc-site/ 前缀的裸根路径。启用方式：git config core.hooksPath .githooks
