@@ -25,9 +25,10 @@
 | `blog/mechanical-drawing-version-control.html` | 博客深度文章：机械设计审图不止于看图（制造场景版本治理三道坎 + 三方案对比 + Docker Compose 部署步骤 + 真机验收） |
 | `blog/local-ai-digital-human-deployment.html` | 博客深度文章：8G 显卡跑本地 AI 数字人（企业级落地三道坎 + 三方案对比 + 6 步 Docker Compose 部署 + 真机验收） |
 | `blog/enterprise-llm-private-vs-cloud-deployment.html` | 博客深度文章：企业大模型私有化 vs 云端 API（核心矛盾分析 + 3 方案对比 + 3 周落地路径 + 6 大避坑清单） |
+| `blog/enterprise-ai-knowledge-base-selection-guide.html` | 博客深度文章：2026 企业 AI 知识库选型避坑指南（12 方案 7 项能力对照矩阵 + 6 选型维度 + 5 类场景决策 + 10 大避坑清单 + 12 项真机验证清单 + FAQ） |
 | `llms.txt` | AI 可读站点摘要（Claude/GPT 等读取，含全站页面索引） |
 | `robots.txt` | 放行 GPTBot/ClaudeBot/Google-Extended/PerplexityBot/CCBot 等 AI 爬虫 |
-| `sitemap.xml` | 站点地图（11 URL） |
+| `sitemap.xml` | 站点地图（12 URL） |
 
 ## 路线图
 
@@ -40,6 +41,7 @@
   - [x] 制造场景深度文章（blog/mechanical-drawing-version-control.html，2026-09-25，借 CSDN 轻量化审图热文引流）
   - [x] 本地 AI 数字人落地文章（blog/local-ai-digital-human-deployment.html，2026-09-25，借 CSDN 1.1w 阅读热文引流）
   - [x] 企业大模型私有化 vs 云端 API（blog/enterprise-llm-private-vs-cloud-deployment.html，2026-09-26，借 CSDN 1.2k 阅读热文引流）
+  - [x] 企业 AI 知识库选型避坑指南（blog/enterprise-ai-knowledge-base-selection-guide.html，2026-09-27，旗舰长文：12 方案能力对照 + 5 类场景决策 + 10 避坑 + 12 项真机验证）
 
 ## 本地预览
 

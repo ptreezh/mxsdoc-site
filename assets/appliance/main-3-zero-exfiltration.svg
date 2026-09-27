@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <rect width="800" height="800" fill="#12253F"/>
+
+  <!-- Top: Logo -->
+  <text x="40" y="60" font-family="PingFang SC, sans-serif" font-size="24" font-weight="700" fill="#E8B13A">MxsDoc</text>
+  <text x="760" y="60" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8" text-anchor="end">严格禁外网 · 数据零出境</text>
+
+  <!-- Title -->
+  <text x="400" y="140" font-family="PingFang SC, sans-serif" font-size="42" font-weight="700" fill="#FFFFFF" text-anchor="middle">三层防御 · 数据零出境</text>
+  <text x="400" y="180" font-family="PingFang SC, sans-serif" font-size="20" fill="#94A3B8" text-anchor="middle">物理 + 网络 + 软件 · 全链路封堵</text>
+
+  <!-- Layer 1: Physical (red) -->
+  <g transform="translate(80, 240)">
+    <rect x="0" y="0" width="640" height="120" rx="12" fill="#1F2937" stroke="#EF4444" stroke-width="3"/>
+    <text x="40" y="50" font-family="PingFang SC, sans-serif" font-size="48" fill="#EF4444">🔒</text>
+    <text x="120" y="35" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#EF4444">第 1 层 · 物理层</text>
+    <text x="120" y="65" font-family="PingFang SC, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">出厂禁无线模块 + USB BIOS 禁用</text>
+    <text x="120" y="95" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8">物理锁扣前面板 · 出厂禁外网卡</text>
+  </g>
+
+  <!-- Layer 2: Network (orange) -->
+  <g transform="translate(80, 380)">
+    <rect x="0" y="0" width="640" height="120" rx="12" fill="#1F2937" stroke="#F59E0B" stroke-width="3"/>
+    <text x="40" y="50" font-family="PingFang SC, sans-serif" font-size="48" fill="#F59E0B">🛡️</text>
+    <text x="120" y="35" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#F59E0B">第 2 层 · 网络层</text>
+    <text x="120" y="65" font-family="PingFang SC, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">防火墙全出站 DENY + 内网 DNS</text>
+    <text x="120" y="95" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8">无默认网关指向外网 · 物理锁扣</text>
+  </g>
+
+  <!-- Layer 3: Software (yellow) -->
+  <g transform="translate(80, 520)">
+    <rect x="0" y="0" width="640" height="120" rx="12" fill="#1F2937" stroke="#FCD34D" stroke-width="3"/>
+    <text x="40" y="50" font-family="PingFang SC, sans-serif" font-size="48" fill="#FCD34D">🔗</text>
+    <text x="120" y="35" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#FCD34D">第 3 层 · 软件层</text>
+    <text x="120" y="65" font-family="PingFang SC, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">Docker internal + 离线模型权重</text>
+    <text x="120" y="95" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8">内网软件源 · 软件层全信创</text>
+  </g>
+
+  <!-- Footer -->
+  <rect x="0" y="680" width="800" height="120" fill="#0F1A2D"/>
+  <text x="400" y="720" font-family="PingFang SC, sans-serif" font-size="22" font-weight="700" fill="#22C55E" text-anchor="middle">✓ 等保三级（默认）/ 分级保护（涉密可选）</text>
+  <text x="400" y="760" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8" text-anchor="middle">自 2025-04 起稳定运行 · 成都金诺信 / 福州高意光学</text>
+</svg>

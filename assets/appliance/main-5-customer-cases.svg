@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <rect width="800" height="800" fill="#FAFAFA"/>
+
+  <!-- Top: Logo -->
+  <rect x="0" y="0" width="800" height="60" fill="#12253F"/>
+  <text x="40" y="40" font-family="PingFang SC, sans-serif" font-size="22" font-weight="700" fill="#E8B13A">MxsDoc</text>
+  <text x="760" y="40" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8" text-anchor="end">已服务客户 · 真实场景</text>
+
+  <!-- Title -->
+  <text x="400" y="120" font-family="PingFang SC, sans-serif" font-size="36" font-weight="700" fill="#12253F" text-anchor="middle">6 大应用场景</text>
+  <text x="400" y="155" font-family="PingFang SC, sans-serif" font-size="16" fill="#64748B" text-anchor="middle">覆盖制造/涉密/AI 转型/金融/设计/跨境</text>
+
+  <!-- 3x2 grid -->
+  <!-- Row 1 -->
+  <!-- 精密制造 -->
+  <g transform="translate(60, 200)">
+    <rect x="0" y="0" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="20" y="40" font-family="PingFang SC, sans-serif" font-size="32">🏭</text>
+    <text x="20" y="75" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#1A5FB4">精密制造</text>
+    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">图纸版本治理</text>
+    <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">↑30% 审图效率</text>
+  </g>
+
+  <!-- 涉密国企 -->
+  <g transform="translate(290, 200)">
+    <rect x="0" y="0" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="20" y="40" font-family="PingFang SC, sans-serif" font-size="32">🔒</text>
+    <text x="20" y="75" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#1A5FB4">涉密国企</text>
+    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">物理隔离 + 等保</text>
+    <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">合规通过</text>
+  </g>
+
+  <!-- AI 转型 -->
+  <g transform="translate(520, 200)">
+    <rect x="0" y="0" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="20" y="40" font-family="PingFang SC, sans-serif" font-size="32">🤖</text>
+    <text x="20" y="75" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#1A5FB4">AI 转型</text>
+    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">数字员工底座</text>
+    <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">3 周上线</text>
+  </g>
+
+  <!-- Row 2 -->
+  <!-- 金融/政务 -->
+  <g transform="translate(60, 370)">
+    <rect x="0" y="0" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="20" y="40" font-family="PingFang SC, sans-serif" font-size="32">🏛️</text>
+    <text x="20" y="75" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#1A5FB4">金融/政务</text>
+    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">等保三级</text>
+    <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">信创合规</text>
+  </g>
+
+  <!-- 设计院 -->
+  <g transform="translate(290, 370)">
+    <rect x="0" y="0" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="20" y="40" font-family="PingFang SC, sans-serif" font-size="32">📐</text>
+    <text x="20" y="75" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#1A5FB4">设计院/研发</text>
+    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">工艺文档</text>
+    <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">知识资产化</text>
+  </g>
+
+  <!-- 跨境集团 -->
+  <g transform="translate(520, 370)">
+    <rect x="0" y="0" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="20" y="40" font-family="PingFang SC, sans-serif" font-size="32">🌐</text>
+    <text x="20" y="75" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#1A5FB4">跨境集团</text>
+    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">多地域部署</text>
+    <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">数据主权</text>
+  </g>
+
+  <!-- Customer Cases -->
+  <text x="400" y="580" font-family="PingFang SC, sans-serif" font-size="22" font-weight="700" fill="#12253F" text-anchor="middle">真实客户案例</text>
+
+  <!-- 成都金诺信 -->
+  <g transform="translate(60, 620)">
+    <rect x="0" y="0" width="320" height="140" rx="10" fill="#FFFFFF" stroke="#1A5FB4" stroke-width="3"/>
+    <circle cx="40" cy="40" r="22" fill="#1A5FB4"/>
+    <text x="40" y="46" font-family="PingFang SC, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">金</text>
+    <text x="80" y="35" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#12253F">成都金诺信</text>
+    <text x="80" y="55" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">精密零部件制造 · 200+ 人</text>
+    <text x="20" y="90" font-family="PingFang SC, sans-serif" font-size="14" fill="#64748B">痛点：图纸分散在 5 个网盘 + 3 套 ERP</text>
+    <text x="20" y="115" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">✓ 成果：版本事故 0 起 / 权限可视化</text>
+  </g>
+
+  <!-- 福州高意光学 -->
+  <g transform="translate(420, 620)">
+    <rect x="0" y="0" width="320" height="140" rx="10" fill="#FFFFFF" stroke="#E8B13A" stroke-width="3"/>
+    <circle cx="40" cy="40" r="22" fill="#E8B13A"/>
+    <text x="40" y="46" font-family="PingFang SC, sans-serif" font-size="20" font-weight="700" fill="#12253F" text-anchor="middle">高</text>
+    <text x="80" y="35" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#12253F">福州高意光学</text>
+    <text x="80" y="55" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">光学元件制造 · 含军工配套</text>
+    <text x="20" y="90" font-family="PingFang SC, sans-serif" font-size="14" fill="#64748B">痛点：工艺文档分散 + 版本管理弱</text>
+    <text x="20" y="115" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">✓ 成果：版本可追溯 / 权限分级</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="400" y="785" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">自 2025-04 起稳定运行 · dw.gofreeteam.com 实机演示</text>
+</svg>

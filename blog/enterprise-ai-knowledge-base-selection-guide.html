@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 企业 AI 知识库选型避坑指南：12 方案能力对照 + 5 类场景决策 — MxsDoc 博客</title>
+  <meta name="description" content="2026 企业 AI 知识库怎么选？本文给出避坑向选型指南：12 个主流方案 7 项能力对照（Git 级版本/可视化权限/在线协同编辑/本地化部署/知识库沉淀/私有 AI/短板）、6 个选型维度、5 类典型场景决策建议、10 大避坑清单与可直接照做的真机验证清单。成都金诺信、福州高意光学本地化部署实战案例。数据不出内网，知识库底座。">
+  <meta name="keywords" content="企业 AI 知识库,知识库选型,数据不出内网,本地化部署,知识库底座,私有化部署,选型避坑,LLM WIKI,文档版本管理">
+  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/blog/enterprise-ai-knowledge-base-selection-guide.html">
+  <meta property="og:title" content="2026 企业 AI 知识库选型避坑指南：12 方案能力对照 + 5 类场景决策 | MxsDoc 博客">
+  <meta property="og:description" content="12 个主流方案能力对照、6 个选型维度、5 类典型场景决策建议、10 大避坑清单与真机验证清单——一份可以直接照做的企业 AI 知识库选型指南。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/blog/enterprise-ai-knowledge-base-selection-guide.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "2026 企业 AI 知识库选型避坑指南：12 方案能力对照 + 5 类场景决策",
+    "description": "2026 企业 AI 知识库怎么选？12 个主流方案的能力对照、6 个选型维度、5 类典型场景的决策建议、10 大避坑清单，以及一份可以直接照做的真机验证清单。",
+    "author": { "@type": "Organization", "name": "MxsDoc" },
+    "publisher": { "@type": "Organization", "name": "MxsDoc" },
+    "datePublished": "2026-09-27",
+    "dateModified": "2026-09-27",
+    "mainEntityOfPage": "https://ptreezh.github.io/mxsdoc-site/blog/enterprise-ai-knowledge-base-selection-guide.html",
+    "inLanguage": "zh-CN"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "MxsDoc 是 RAG 底座吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "不是。MxsDoc 是 LLM WIKI（内容侧知识底座：每一份文档即知识条目，AI 问答/总结/引用直接在页面级发生）+ 组织 Skills 市场 + 企业内·行业内专家智能体，三位一体——不是外挂检索框架。" }
+      },
+      {
+        "@type": "Question",
+        "name": "MxsDoc 和蓝凌 aiKM 有什么区别？",
+        "acceptedAnswer": { "@type": "Answer", "text": "蓝凌是数智化办公全平台（OA/流程/门户）；MxsDoc 是数据不出内网的 AI 知识库底座（专精单品）。要全家桶选蓝凌，要底座单独评估 MxsDoc。" }
+      },
+      {
+        "@type": "Question",
+        "name": "MxsDoc 能本地化部署吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "本地化部署是 MxsDoc 的默认形态（数据不出内网），属硬性要求，不是可选项。涉密/等保/保密场景可审计、可放行。" }
+      },
+      {
+        "@type": "Question",
+        "name": "MxsDoc 适合什么样的企业？",
+        "acceptedAnswer": { "@type": "Answer", "text": "制造类中小企业 / 知识密集型组织；有图纸、规范、工艺文档；对公有云数据出境敏感；想让 AI 赋能但必须留在内网。" }
+      },
+      {
+        "@type": "Question",
+        "name": "MxsDoc 怎么收费？",
+        "acceptedAnswer": { "@type": "Answer", "text": "企业级部署实施、运维与二次开发定制服务（非 SaaS 订阅）。具体请联系部署咨询 zhangshuren@agent.qq.com 或免费试用 dw.gofreeteam.com。" }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ptreezh.github.io/mxsdoc-site/" },
+      { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://ptreezh.github.io/mxsdoc-site/#blog" },
+      { "@type": "ListItem", "position": 3, "name": "2026 企业 AI 知识库选型避坑指南" }
+    ]
+  }
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 860px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .hook { background: #fff8ec; border-left: 4px solid var(--accent); padding: 1.2rem 1.4rem; border-radius: 0 8px 8px 0; margin: 1.6rem 0; }
+    .hook p { margin: 0 0 .4rem; font-size: .95rem; color: #6b7280; font-style: italic; }
+    .hook .src { display: block; font-size: .82rem; color: #94a3b8; font-style: normal; }
+    .pp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 1.6rem; }
+    .pp { background: #fff; border-radius: 10px; padding: 1.4rem 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .pp h3 { color: var(--primary); font-size: 1.05rem; margin-bottom: .5rem; }
+    .pp p { font-size: .92rem; color: #475569; }
+    .number { font-size: 1.9rem; font-weight: 800; color: var(--accent); display: block; margin-bottom: .3rem; }
+    .tblwrap { overflow-x: auto; margin: 1.6rem 0; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .matrix { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 1080px; background: #fff; }
+    .matrix.small { min-width: 720px; }
+    .matrix th { background: var(--dark); color: #fff; padding: .65rem .7rem; text-align: left; white-space: nowrap; }
+    .matrix td { padding: .6rem .7rem; border-bottom: 1px solid #eef2f7; vertical-align: top; color: #475569; }
+    .matrix tr:nth-child(even) td { background: #f8fafc; }
+    .matrix td.name { font-weight: 600; color: var(--dark); white-space: nowrap; }
+    .matrix td.v { white-space: nowrap; text-align: center; }
+    .matrix tr.hl td { background: #f0f7ff !important; }
+    .matrix tr.hl td.name { color: var(--primary); }
+    .tnote { font-size: .85rem; color: #64748b; margin: .6rem 0 0; }
+    .steps { counter-reset: step; list-style: none; margin-top: 1.6rem; }
+    .steps li { background: #fff; border-radius: 10px; padding: 1.4rem 1.5rem 1.4rem 3.4rem; position: relative; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 1.2rem; top: 1.4rem; width: 1.7rem; height: 1.7rem; background: var(--primary); color: #fff; border-radius: 50%; text-align: center; font-weight: 700; font-size: .95rem; line-height: 1.7rem; }
+    .steps h3 { color: var(--dark); margin-bottom: .4rem; font-size: 1.08rem; }
+    .steps p { font-size: .93rem; color: #475569; }
+    .pitfall { list-style: none; margin-top: 1.2rem; }
+    .pitfall li { background: #fff; border-radius: 10px; padding: 1rem 1.4rem; margin-bottom: .8rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); font-size: .95rem; color: #475569; }
+    .pitfall li strong { color: var(--dark); }
+    .pitfall li .k { color: var(--accent); font-weight: 800; margin-right: .5rem; }
+    .cta-list { background: #fff; border-radius: 10px; padding: 1.5rem 1.6rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-top: 1.6rem; }
+    .cta-list ul { list-style: none; }
+    .cta-list li { padding: .45rem 0 .45rem 1.5rem; position: relative; font-size: .98rem; }
+    .cta-list li::before { content: "→"; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .endnote { font-size: .85rem; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 1.2rem; margin-top: 1.6rem; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/chengdu-jinnuoxin.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · 2026 企业 AI 知识库选型避坑指南</div>
+    <h1>2026 企业 AI 知识库选型避坑指南：12 方案能力对照 + 5 类场景决策</h1>
+    <p class="sub">CSDN 选型清单文阅读量 8.1k~1.3w，收藏数百——企业 AI 知识库"选哪个"是 2026 年信息化负责人的真实焦虑。本文给出一份避坑向的选型指南：12 个主流方案的能力对照、6 个选型维度、5 类典型场景的决策建议，以及一份可以直接照做的验证清单。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-09-27 · 约 10 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+    <h2 id="why">一、为什么 2026 年企业 AI 知识库选型变成"生死问题"</h2>
+    <p>几个真实信号：</p>
+    <div class="pp-grid">
+      <div class="pp">
+        <span class="number">01</span>
+        <h3>失败率触目惊心</h3>
+        <p>知乎《企业 AI 知识库项目的三种败局》一文给出的结构：约 90% 的企业知识库项目沦为"形象工程"（建成不用）；约 9% 死于知识萃取缺失，结果变成"文件垃圾场"；约 1% 死于上下文坍塌——AI 答非所问，信任破产。</p>
+      </div>
+      <div class="pp">
+        <span class="number">02</span>
+        <h3>选型流量证明焦虑真实</h3>
+        <p>CSDN 选型清单文（"14 款开源与免费系统""20 个开源知识管理工具"）阅读量 8.1k~1.3w，收藏数百——客户真的在调研，且主要卡在"选哪个"。</p>
+      </div>
+      <div class="pp">
+        <span class="number">03</span>
+        <h3>私有化是硬约束</h3>
+        <p>《数据主权 vs 云端 API》调研显示：约 68% 的金融、82% 的政务场景，明确要求私有化部署。对涉密、国企、军工类组织，"数据不出内网"不是偏好，是红线。</p>
+      </div>
+    </div>
+    <div class="hook">
+      <p>"不经过知识治理的知识库没有意义。你把垃圾丢进 RAG，出来的依然是垃圾。"</p>
+      <span class="src">—— 知乎专栏《企业 AI 知识库项目的三种败局》核心结论</span>
+    </div>
+    <p>一个被反复验证的结论：选型的起手动作，不是挑 AI 框架，而是先回答——<strong>我的知识能不能被治理、被沉淀、被内网 AI 用起来。</strong></p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="matrix">二、12 个方案的选型能力对照（核心章节）</h2>
+    <p>下表整合了 12 个常见选型方案的 7 项能力对照（下表基于公开资料整理，供横向对照参考）。其中"本地化部署"指能否部署在企业内网、"私有 AI"指 AI 能力是否能在数据不出内网的前提下运行。</p>
+    <div class="tblwrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>方案</th>
+            <th>Git 级版本</th>
+            <th>可视化权限</th>
+            <th>在线协同编辑</th>
+            <th>本地化部署</th>
+            <th>知识库沉淀</th>
+            <th>私有 AI</th>
+            <th>短板</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">裸 Git / Gitea 自建</td>
+            <td class="v">✓</td><td class="v">✗ 命令行/配置文件</td><td class="v">✗ 需另配编辑器</td><td class="v">✓</td><td class="v">△ 需另搭</td><td class="v">✗</td>
+            <td>员工不会命令行，搭建繁琐</td>
+          </tr>
+          <tr>
+            <td class="name">SVN 自建库</td>
+            <td class="v">✓ SVN 级</td><td class="v">✗ 非可视化</td><td class="v">✗</td><td class="v">✓</td><td class="v">△</td><td class="v">✗</td>
+            <td>客户端陈旧，上手门槛中高</td>
+          </tr>
+          <tr>
+            <td class="name">腾讯文档 / 钉钉文档</td>
+            <td class="v">△ 仅历史版本</td><td class="v">✗ 链接级为主</td><td class="v">✓</td><td class="v">✗ 数据在外</td><td class="v">△ 分散</td><td class="v">✗</td>
+            <td>敏感文档出网不可控</td>
+          </tr>
+          <tr>
+            <td class="name">腾讯 IMA（AI 工作台）</td>
+            <td class="v">✗ 无版本树</td><td class="v">✗ 个人库级</td><td class="v">✗ 无协同</td><td class="v">✗ 数据在腾讯云</td><td class="v">△ 个人库</td><td class="v">△ 云上 AI（数据出网）</td>
+            <td>个人向，无组织级治理</td>
+          </tr>
+          <tr>
+            <td class="name">飞书</td>
+            <td class="v">△ 无版本树</td><td class="v">△ 组织级但配置重</td><td class="v">✓</td><td class="v">✗ 数据在字节云（私有化仅旗舰版）</td><td class="v">✓</td><td class="v">△ 平台 AI</td>
+            <td>私有化重而贵，版本非 Git 级</td>
+          </tr>
+          <tr>
+            <td class="name">WPS Office 云 / 金山文档</td>
+            <td class="v">△</td><td class="v">✗ 弱</td><td class="v">✓</td><td class="v">✗ 数据在外</td><td class="v">△</td><td class="v">✗</td>
+            <td>涉密场景不敢用</td>
+          </tr>
+          <tr>
+            <td class="name">公网云盘（百度/阿里/坚果）</td>
+            <td class="v">✗ 弱</td><td class="v">✗ 粗放</td><td class="v">✗</td><td class="v">✗ 数据完全在外网</td><td class="v">✗</td><td class="v">✗</td>
+            <td>泄露风险高，权限粗</td>
+          </tr>
+          <tr>
+            <td class="name">NAS / 共享文件夹</td>
+            <td class="v">✗ 覆盖即丢</td><td class="v">✗ 共享级</td><td class="v">✗</td><td class="v">✓</td><td class="v">✗</td><td class="v">✗</td>
+            <td>无版本、无协同、纯存储</td>
+          </tr>
+          <tr>
+            <td class="name">Obsidian</td>
+            <td class="v">△ 插件/Git 自折腾</td><td class="v">✗ 仓库级</td><td class="v">✗ 官方无实时协同</td><td class="v">✓ 本地</td><td class="v">△ 个人笔记</td><td class="v">△ 插件级</td>
+            <td>官方共享仓库 20 人上限，无细粒度权限</td>
+          </tr>
+          <tr>
+            <td class="name">传统 OA 文档模块（泛微/致远）</td>
+            <td class="v">△</td><td class="v">△</td><td class="v">△ 弱</td><td class="v">✓</td><td class="v">△ 弱</td><td class="v">✗</td>
+            <td>重、贵、实施周期长</td>
+          </tr>
+          <tr>
+            <td class="name">Confluence 私有化</td>
+            <td class="v">△</td><td class="v">△</td><td class="v">△ 页面式</td><td class="v">✓ 可私有</td><td class="v">✓</td><td class="v">△</td>
+            <td>按人授权贵，部署重，无 Git 级版本</td>
+          </tr>
+          <tr>
+            <td class="name">蓝凌 aiKM（全平台 OA/KM）</td>
+            <td class="v">△ 非核心卖点</td><td class="v">△</td><td class="v">△ 集成化</td><td class="v">△ 多形态可出云</td><td class="v">✓</td><td class="v">△ 40+ 智能体模板</td>
+            <td>知识须随整个平台一起买（项目制）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">表格说明：✓ 达标 / △ 部分满足 / ✗ 不满足。基于公开资料整理（2025-2026）。</p>
+    <p style="margin-top:1rem;">综合能力对照：不同方案各有短板，目前尚未有单一方案在版本、权限、协同、本地化、知识库、AI 六类能力上全部达标——这正是企业 AI 知识库底座选型时需要避开的"单点思维"。</p>
+
+    <h3 style="margin-top:2rem; color:var(--dark); font-size:1.25rem;">与蓝凌 aiKM 的场景对照</h3>
+    <p>蓝凌是数智化办公全平台（OA/BPM/知识管理/低代码），其 aiKM 走"AI 大模型 + 知识图谱 + RAG"路线，与"知识库 + AI"同属一个能力域。两者的关键差异（能力对照）：</p>
+    <ol class="steps">
+      <li>
+        <h3>数据主权纯度</h3>
+        <p>蓝凌云+私有化+信创多形态（有出云形态）；MxsDoc 本地化部署为默认形态，数据不出内网。</p>
+      </li>
+      <li>
+        <h3>版本控制</h3>
+        <p>蓝凌以流程/门户为核心；MxsDoc 提供 Git/SVN 级版本树、分支、审计（对接研发协同语义）。</p>
+      </li>
+      <li>
+        <h3>协同编辑</h3>
+        <p>蓝凌 OA 文档模块集成化；MxsDoc 类 Word 在线协同 + 可视化权限，零命令门槛。</p>
+      </li>
+      <li>
+        <h3>成本与落地速度</h3>
+        <p>蓝凌联合版起步价低但项目制实施重、周期长；MxsDoc 轻量部署、快速上线。</p>
+      </li>
+      <li>
+        <h3>知识原生理念</h3>
+        <p>蓝凌"建中台、做图谱、配运营"；MxsDoc"文档进得来 → LLM WIKI 知识留得住 → 专家智能体让 AI 用得上"，小步快跑。</p>
+      </li>
+    </ol>
+    <p>一句话的错位结论：要"数智化办公平台全家桶"选蓝凌；要"数据不出内网、能长出专家智能体的知识库底座"，可以单独评估 MxsDoc——<strong>为知识底座付一次钱，而不是为整个平台付一次钱。</strong></p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="dimensions">三、选型 6 大维度（决策框架）</h2>
+    <p>无论选哪个方案，建议按以下 6 个维度逐项打分，缺一不可：</p>
+    <ol class="steps">
+      <li>
+        <h3>数据主权</h3>
+        <p>涉密、国企、军工场景必须内网；先问"数据能否完全不出内网"，再谈功能。</p>
+      </li>
+      <li>
+        <h3>版本控制</h3>
+        <p>制造、设计院类图纸文档，需要 Git 级或同级的版本树、分支、审计；仅"历史版本"不够。</p>
+      </li>
+      <li>
+        <h3>协同门槛</h3>
+        <p>全员可用，不学命令行、不学 Markdown；上线即用比功能清单更重要。</p>
+      </li>
+      <li>
+        <h3>知识治理</h3>
+        <p>不只是文档存起来，要能沉淀成可检索、可复用的知识资产（LLM WIKI 形态）。</p>
+      </li>
+      <li>
+        <h3>AI 能力</h3>
+        <p>是"知识库底座 + 专家智能体"的形态，而不是外挂一个 RAG 问答框。</p>
+      </li>
+      <li>
+        <h3>成本与交付</h3>
+        <p>轻量部署、快速上线、按规模付费；拒绝"买知识必须先买平台"的隐形成本。</p>
+      </li>
+    </ol>
+    <p style="margin-top:1.4rem;">实战锚点：成都金诺信、福州高意光学自 2025-04 起本地化部署使用，在版本追溯、目录级权限、图纸/图表文件管理与稳定运行上已有落地验证（案例详见<a href="../customers/chengdu-jinnuoxin.html">成都金诺信</a>与<a href="../customers/fuzhou-gaoyi-guangxue.html">福州高意光学</a>案例页）。</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="scenarios">四、5 类典型场景的选型决策</h2>
+    <div class="tblwrap">
+      <table class="matrix small">
+        <thead>
+          <tr>
+            <th>场景</th>
+            <th>典型需求</th>
+            <th>可选方向</th>
+            <th>决策提示</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">① 精密制造图纸管理</td>
+            <td>版本乱、产线用错版</td>
+            <td>MxsDoc / Confluence（自建）</td>
+            <td>图纸场景优先看"Git 级版本 + 目录权限"</td>
+          </tr>
+          <tr>
+            <td class="name">② 涉密/国企文档系统</td>
+            <td>数据绝不出内网</td>
+            <td>MxsDoc</td>
+            <td>数据不出内网 + 知识底座是决策重心；审计留痕是硬要求</td>
+          </tr>
+          <tr>
+            <td class="name">③ AI 转型企业知识底座</td>
+            <td>让 AI 读内网文档问答</td>
+            <td>MxsDoc / IMA（云端）</td>
+            <td>IMA 适合个人/云上；组织级底座需内网化</td>
+          </tr>
+          <tr>
+            <td class="name">④ 研发协同团队</td>
+            <td>多人协同 + 版本审计</td>
+            <td>MxsDoc / Obsidian（小团队）/ GitLab（大团队）</td>
+            <td>Obsidian 20 人共享上限是硬边界</td>
+          </tr>
+          <tr>
+            <td class="name">⑤ 中小企业知识沉淀</td>
+            <td>人走知识没、轻量部署</td>
+            <td>MxsDoc / 飞书（云端）</td>
+            <td>数据敏感度决定是否必须本地化</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="pitfalls">五、10 大选型避坑清单</h2>
+    <ul class="pitfall">
+      <li><span class="k">1.</span><strong>把 RAG 框架当知识库底座</strong>——约 30% 的 RAG 项目静默失败，根因是知识源没治理。</li>
+      <li><span class="k">2.</span><strong>买了 SaaS 才想起数据主权红线</strong>——涉密数据出网一次就是事故，先问部署形态。</li>
+      <li><span class="k">3.</span><strong>以为 Git 命令行员工会用</strong>——版本能力必须封装成可视化操作，否则等于没买。</li>
+      <li><span class="k">4.</span><strong>把蓝凌当知识库买</strong>——它是全平台；为知识付全平台的钱，性价比失衡。</li>
+      <li><span class="k">5.</span><strong>忽略"知识整理"前置工作</strong>——不治理的知识库 = 数字垃圾场。</li>
+      <li><span class="k">6.</span><strong>误选"伪本地"</strong>——部分产品标称私有化，实际数据仍可出云，逐条核协议。</li>
+      <li><span class="k">7.</span><strong>版本控制不是 Git 级</strong>——CVS/SVN 老古董或仅有"历史版本"，制造场景会出事故。</li>
+      <li><span class="k">8.</span><strong>协同工具 ≠ 文档管理</strong>——飞书/腾讯文档协同强，但治理与主权是两回事。</li>
+      <li><span class="k">9.</span><strong>忽视审计留痕</strong>——涉密场景无审计 = 灭顶之灾，权限与操作记录必须可查。</li>
+      <li><span class="k">10.</span><strong>选型不验证真机</strong>——没看 demo 就下单，交付不符预期再换成本更高。</li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="checklist">六、选型验证清单（可以直接照做）</h2>
+    <p><strong>6 步选型流程：</strong></p>
+    <ol class="steps">
+      <li><h3>列需求清单</h3><p>按上文 6 维度逐项列出需求。</p></li>
+      <li><h3>筛候选方案</h3><p>按上文 12 方案对照表做初步排除。</p></li>
+      <li><h3>要求真机演示</h3><p>不少于 10 项场景验证（见下），只看 PPT 不算数。</p></li>
+      <li><h3>真实文档小规模实测</h3><p>用自己 20 篇真实文档做小规模实测（版本、权限、检索、AI 问答各 5 项）。</p></li>
+      <li><h3>内网部署试运行</h3><p>部署到企业内网试运行 1-2 周。</p></li>
+      <li><h3>再谈报价与服务条款</h3><p>之后看实施、运维、二开的报价与服务条款再决策。</p></li>
+    </ol>
+    <p style="margin-top:1.4rem;"><strong>真机 demo 验证清单（≥10 项）：</strong></p>
+    <ul class="pitfall">
+      <li><span class="k">①</span>多人同时编辑同一文档</li>
+      <li><span class="k">②</span>历史版本回溯与恢复</li>
+      <li><span class="k">③</span>目录/用户/角色三级权限配置</li>
+      <li><span class="k">④</span>涉密文档的访问与操作留痕</li>
+      <li><span class="k">⑤</span>全文检索命中率</li>
+      <li><span class="k">⑥</span>内网 AI 对文档的问答与原文引用</li>
+      <li><span class="k">⑦</span>AI 问答数据不出内网（断外网验证）</li>
+      <li><span class="k">⑧</span>手机/多端访问</li>
+      <li><span class="k">⑨</span>批量导入 1 万+ 文档的稳定性</li>
+      <li><span class="k">⑩</span>从零到上线耗时</li>
+      <li><span class="k">⑪</span>员工零培训可上手</li>
+      <li><span class="k">⑫</span>续费与扩展成本是否透明</li>
+    </ul>
+    <div class="cta-list">
+      <p style="font-weight:700; color:var(--dark); margin-bottom:.6rem;">CTA（立即行动）</p>
+      <ul>
+        <li><strong>免费试用真机演示：</strong><a href="https://dw.gofreeteam.com" rel="nofollow noopener" target="_blank">dw.gofreeteam.com</a>（在线演示系统，或见<a href="../demo.html">演示页</a>）</li>
+        <li><strong>部署与选型咨询：</strong><a href="mailto:zhangshuren@agent.qq.com?subject=MxsDoc%20选型咨询">zhangshuren@agent.qq.com</a></li>
+        <li><strong>客户案例参考：</strong><a href="../customers/chengdu-jinnuoxin.html">成都金诺信</a> · <a href="../customers/fuzhou-gaoyi-guangxue.html">福州高意光学</a>（真实客户，本地化部署使用中）</li>
+        <li><strong>12 方案能力对照表（网页版）：</strong><a href="../scenario.html">应用场景与竞品对比</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0;">
+  <div class="container prose">
+    <h2 id="faq-answers">FAQ：选型中真正的高频问题，直接回答</h2>
+    <div class="faq-item">
+      <h4>MxsDoc 是 RAG 底座吗？</h4>
+      <p>不是。MxsDoc 是 LLM WIKI（内容侧知识底座：每一份文档即知识条目，AI 问答/总结/引用直接在页面级发生）+ 组织 Skills 市场 + 企业内·行业内专家智能体，三位一体——不是外挂检索框架。</p>
+    </div>
+    <div class="faq-item">
+      <h4>MxsDoc 和蓝凌 aiKM 有什么区别？</h4>
+      <p>蓝凌是数智化办公全平台（OA/流程/门户）；MxsDoc 是数据不出内网的 AI 知识库底座（专精单品）。要全家桶选蓝凌，要底座单独评估 MxsDoc。</p>
+    </div>
+    <div class="faq-item">
+      <h4>MxsDoc 能本地化部署吗？</h4>
+      <p>本地化部署是 MxsDoc 的默认形态（数据不出内网），属硬性要求，不是可选项。涉密/等保/保密场景可审计、可放行。</p>
+    </div>
+    <div class="faq-item">
+      <h4>MxsDoc 适合什么样的企业？</h4>
+      <p>制造类中小企业 / 知识密集型组织；有图纸、规范、工艺文档；对公有云数据出境敏感；想让 AI 赋能但必须留在内网。</p>
+    </div>
+    <div class="faq-item">
+      <h4>MxsDoc 怎么收费？</h4>
+      <p>企业级部署实施、运维与二次开发定制服务（非 SaaS 订阅）。具体请联系部署咨询（zhangshuren@agent.qq.com）或免费试用 https://dw.gofreeteam.com。</p>
+    </div>
+    <p class="endnote">文末注：本文竞品能力数据基于公开资料整理（2025-2026）；客户案例为实际部署客户（成都金诺信、福州高意光学，本地化部署使用中），详见官网客户案例页。</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>用 12 项真机验证，再做选型决策</h2>
+    <p>本地化部署 · 数据不出内网 · Git/SVN 级版本 · 可视化权限 · LLM WIKI + 专家智能体 —— 与真实制造企业同款配置</p>
+    <a class="btn btn-primary" href="../contact.html">申请免费试用 / 企业部署方案</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../contact.html">免费试用</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
