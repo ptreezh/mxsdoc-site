@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <rect width="800" height="800" fill="#FFFFFF"/>
+
+  <!-- Top: Logo -->
+  <rect x="0" y="0" width="800" height="60" fill="#12253F"/>
+  <text x="40" y="40" font-family="PingFang SC, sans-serif" font-size="22" font-weight="700" fill="#E8B13A">MxsDoc</text>
+  <text x="760" y="40" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="end">双模型协作架构</text>
+
+  <!-- Title -->
+  <text x="400" y="130" font-family="PingFang SC, sans-serif" font-size="36" font-weight="700" fill="#12253F" text-anchor="middle">一个聊天 · 一个判断</text>
+  <text x="400" y="170" font-family="PingFang SC, sans-serif" font-size="18" fill="#64748B" text-anchor="middle">通用对话 + 确定性决策 = 完整 AI 工作流</text>
+
+  <!-- 3 Cards: DeepSeek | Router | Lux-9B -->
+  <!-- DeepSeek (left, blue) -->
+  <g transform="translate(40, 230)">
+    <rect x="0" y="0" width="200" height="240" rx="12" fill="#1A5FB4"/>
+    <text x="100" y="40" font-family="PingFang SC, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">DeepSeek</text>
+    <text x="100" y="70" font-family="PingFang SC, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle" opacity="0.8">16B · INT4 量化</text>
+    <line x1="20" y1="90" x2="180" y2="90" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="100" y="120" font-family="PingFang SC, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">通用对话</text>
+    <text x="100" y="145" font-family="PingFang SC, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">内容总结</text>
+    <text x="100" y="170" font-family="PingFang SC, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">知识检索</text>
+    <text x="100" y="195" font-family="PingFang SC, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">自由生成</text>
+    <rect x="50" y="210" width="100" height="22" rx="11" fill="#FFFFFF" fill-opacity="0.2"/>
+    <text x="100" y="225" font-family="PingFang SC, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">SYSTEM 2</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <g transform="translate(250, 340)">
+    <path d="M 0 0 L 50 0 L 50 -10 L 60 5 L 50 20 L 50 10 L 0 10 Z" fill="#64748B"/>
+  </g>
+
+  <!-- Router (center, dark) -->
+  <g transform="translate(310, 230)">
+    <rect x="0" y="0" width="180" height="240" rx="12" fill="#12253F"/>
+    <text x="90" y="40" font-family="PingFang SC, sans-serif" font-size="20" font-weight="700" fill="#E8B13A" text-anchor="middle">MxsDoc</text>
+    <text x="90" y="65" font-family="PingFang SC, sans-serif" font-size="13" fill="#94A3B8" text-anchor="middle">Model Gateway</text>
+    <line x1="20" y1="85" x2="160" y2="85" stroke="#E8B13A" stroke-opacity="0.4" stroke-width="1"/>
+    <text x="90" y="115" font-family="PingFang SC, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">智能分流</text>
+    <text x="90" y="140" font-family="PingFang SC, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">统一路由</text>
+    <text x="90" y="165" font-family="PingFang SC, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">鉴权审计</text>
+    <text x="90" y="190" font-family="PingFang SC, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">成本控制</text>
+    <rect x="40" y="210" width="100" height="22" rx="11" fill="#E8B13A"/>
+    <text x="90" y="225" font-family="PingFang SC, sans-serif" font-size="12" font-weight="600" fill="#12253F" text-anchor="middle">自研</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <g transform="translate(500, 340)">
+    <path d="M 0 0 L 50 0 L 50 -10 L 60 5 L 50 20 L 50 10 L 0 10 Z" fill="#64748B"/>
+  </g>
+
+  <!-- Lux-9B (right, gold) -->
+  <g transform="translate(560, 230)">
+    <rect x="0" y="0" width="200" height="240" rx="12" fill="#E8B13A"/>
+    <text x="100" y="40" font-family="PingFang SC, sans-serif" font-size="24" font-weight="700" fill="#12253F" text-anchor="middle">Lux-9B</text>
+    <text x="100" y="70" font-family="PingFang SC, sans-serif" font-size="14" fill="#12253F" text-anchor="middle" opacity="0.7">开源决策 #1</text>
+    <line x1="20" y1="90" x2="180" y2="90" stroke="#12253F" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="100" y="120" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#12253F" text-anchor="middle">Choice 选择</text>
+    <text x="100" y="145" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#12253F" text-anchor="middle">Score 评分</text>
+    <text x="100" y="170" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#12253F" text-anchor="middle">Noul 真伪</text>
+    <text x="100" y="195" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#12253F" text-anchor="middle">84.17% 准确</text>
+    <rect x="50" y="210" width="100" height="22" rx="11" fill="#12253F" fill-opacity="0.2"/>
+    <text x="100" y="225" font-family="PingFang SC, sans-serif" font-size="12" font-weight="600" fill="#12253F" text-anchor="middle">SYSTEM 1</text>
+  </g>
+
+  <!-- Bottom: Applications -->
+  <text x="400" y="540" font-family="PingFang SC, sans-serif" font-size="20" font-weight="600" fill="#12253F" text-anchor="middle">应用场景</text>
+
+  <g transform="translate(60, 580)">
+    <rect x="0" y="0" width="220" height="120" rx="12" fill="#FAFAFA" stroke="#E2E8F0"/>
+    <text x="110" y="40" font-family="PingFang SC, sans-serif" font-size="40" text-anchor="middle">📄</text>
+    <text x="110" y="75" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600" fill="#12253F" text-anchor="middle">文档问答</text>
+    <text x="110" y="100" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">DeepSeek 驱动</text>
+  </g>
+
+  <g transform="translate(290, 580)">
+    <rect x="0" y="0" width="220" height="120" rx="12" fill="#FAFAFA" stroke="#E2E8F0"/>
+    <text x="110" y="40" font-family="PingFang SC, sans-serif" font-size="40" text-anchor="middle">🎯</text>
+    <text x="110" y="75" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600" fill="#12253F" text-anchor="middle">工单路由</text>
+    <text x="110" y="100" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">Lux-9B 决策</text>
+  </g>
+
+  <g transform="translate(520, 580)">
+    <rect x="0" y="0" width="220" height="120" rx="12" fill="#FAFAFA" stroke="#E2E8F0"/>
+    <text x="110" y="40" font-family="PingFang SC, sans-serif" font-size="40" text-anchor="middle">🛡️</text>
+    <text x="110" y="75" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600" fill="#12253F" text-anchor="middle">风险拦截</text>
+    <text x="110" y="100" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">Lux-9B 真伪判断</text>
+  </g>
+
+  <!-- Bottom -->
+  <rect x="0" y="760" width="800" height="40" fill="#12253F"/>
+  <text x="400" y="785" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8" text-anchor="middle">Lux-9B 兼容 TypeSafe System One · 开源 Overall #2</text>
+</svg>

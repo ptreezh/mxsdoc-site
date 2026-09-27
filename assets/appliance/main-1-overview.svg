@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAFAFA"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg1)"/>
+
+  <!-- Top: Logo + Brand -->
+  <rect x="0" y="0" width="800" height="60" fill="#12253F"/>
+  <text x="40" y="40" font-family="PingFang SC, sans-serif" font-size="22" font-weight="700" fill="#E8B13A">MxsDoc Appliance</text>
+  <text x="760" y="40" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8" text-anchor="end">本地化部署 · 企业 AI 知识底座</text>
+
+  <!-- Center: 4U Server Render (simplified) -->
+  <g transform="translate(280, 180)">
+    <!-- Server body -->
+    <rect x="0" y="0" width="240" height="380" rx="6" fill="#1F2937" stroke="#475569" stroke-width="2"/>
+    <!-- Front panel -->
+    <rect x="10" y="20" width="220" height="200" fill="#374151" rx="2"/>
+    <!-- Drive bays -->
+    <rect x="20" y="40" width="200" height="20" fill="#475569"/>
+    <rect x="20" y="65" width="200" height="20" fill="#475569"/>
+    <rect x="20" y="90" width="200" height="20" fill="#475569"/>
+    <rect x="20" y="115" width="200" height="20" fill="#475569"/>
+    <rect x="20" y="140" width="200" height="20" fill="#475569"/>
+    <rect x="20" y="165" width="200" height="20" fill="#475569"/>
+    <!-- LED indicators -->
+    <circle cx="35" cy="245" r="4" fill="#22C55E"/>
+    <circle cx="55" cy="245" r="4" fill="#1A5FB4"/>
+    <circle cx="75" cy="245" r="4" fill="#E8B13A"/>
+    <!-- MxsDoc Logo on server -->
+    <text x="120" y="280" font-family="PingFang SC, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">MxsDoc</text>
+    <text x="120" y="300" font-family="PingFang SC, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">4U Rack Server</text>
+    <!-- Bottom: PSU -->
+    <rect x="10" y="240" width="220" height="100" fill="#475569"/>
+    <text x="120" y="280" font-family="PingFang SC, sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">冗余电源</text>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="100" font-family="PingFang SC, sans-serif" font-size="42" font-weight="700" fill="#12253F" text-anchor="middle">MxsDoc Appliance</text>
+
+  <!-- 3 Badges -->
+  <g transform="translate(80, 600)">
+    <rect x="0" y="0" width="200" height="50" rx="8" fill="#22C55E" fill-opacity="0.1" stroke="#22C55E" stroke-width="2"/>
+    <text x="100" y="32" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600" fill="#22C55E" text-anchor="middle">✓ 双大模型</text>
+  </g>
+  <g transform="translate(300, 600)">
+    <rect x="0" y="0" width="200" height="50" rx="8" fill="#F59E0B" fill-opacity="0.1" stroke="#F59E0B" stroke-width="2"/>
+    <text x="100" y="32" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600" fill="#F59E0B" text-anchor="middle">✓ 严格禁外网</text>
+  </g>
+  <g transform="translate(520, 600)">
+    <rect x="0" y="0" width="200" height="50" rx="8" fill="#1A5FB4" fill-opacity="0.1" stroke="#1A5FB4" stroke-width="2"/>
+    <text x="100" y="32" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600" fill="#1A5FB4" text-anchor="middle">✓ 开箱即用</text>
+  </g>
+
+  <!-- Subtitle -->
+  <text x="400" y="700" font-family="PingFang SC, sans-serif" font-size="22" font-weight="600" fill="#1A5FB4" text-anchor="middle">本地化部署 · 双大模型 · 4 天交付</text>
+
+  <!-- Trust badge -->
+  <text x="400" y="740" font-family="PingFang SC, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">已服务：成都金诺信 / 福州高意光学</text>
+
+  <!-- Bottom info -->
+  <rect x="0" y="780" width="800" height="20" fill="#12253F"/>
+  <text x="400" y="794" font-family="PingFang SC, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">含 1 年服务 · 续费 5 万/年 · dw.gofreeteam.com</text>
+</svg>
