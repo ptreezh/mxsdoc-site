@@ -19,7 +19,7 @@
 | `index.html` | 首页：价值主张（企业 AI 知识库底座）+ 客户证明 + 可引用 CLAIMS 句 + 产品与资源区（一体机 / 安装教程 / 演示视频）+ SoftwareApplication/FAQPage schema |
 | `features.html` | 产品功能页：知识库底座核心能力详情（版本/权限/LLM WIKI/Skills/专家智能体）+ FAQ + SoftwareApplication/FAQPage schema |
 | `scenario.html` | 应用场景页：三场景故事（制造图纸/知识库AI问答/涉密合规）+ 12 方案能力对照矩阵（含蓝凌）+ IMA/Obsidian/飞书深度对比 + FAQ schema |
-| `appliance.html` | Appliance 一体机营销页：4 大痛点 + 双大模型架构（预装 Deepseek Qwen 等国产开源大模型 + Lux 判断决策）+ 三 SKU 价格表（10/20/45 万）+ 交付与续费口径 + 5 张主图 + 客户使用证明 PDF 直链 + Product/Offer schema |
+| `appliance.html` | Appliance 一体机营销页：4 大痛点 + 双大模型架构（预装 Deepseek Qwen 等国产开源大模型 + Lux 判断决策）+ 三 SKU 价格表（10/20/45 万）+ 交付与续费口径 + 5 张核心场景图 + 客户使用证明 PDF 直链 + Product/Offer schema |
 | `demo.html` | 在线演示页：live iframe（dw.gofreeteam.com 公开演示系统 V2.02.87）+ 5 张真实界面截图 + 五分钟体验流程 + SoftwareApplication/BreadcrumbList schema |
 | `contact.html` | 留资表单页：免费试用/企业部署咨询（ContactPage schema） |
 | `customers/index.html` | 客户案例索引页：4 个深度案例汇总（附成都 / 苏州盖章使用证明 PDF 直链 + 文件大小实测值）+ 客户500+，下面是部分客户名录（按地域 + 核心字号 4-7 字缩写展示，保留业务类型词）+ 资质背书区块 |
@@ -35,7 +35,7 @@
 | `blog/enterprise-llm-private-vs-cloud-deployment.html` | 博客深度文章：企业大模型私有化 vs 云端 API（核心矛盾分析 + 3 方案对比 + 3 周落地路径 + 6 大避坑清单） |
 | `blog/enterprise-ai-knowledge-base-selection-guide.html` | 博客深度文章：2026 企业 AI 知识库选型避坑指南（12 方案 7 项能力对照矩阵 + 6 选型维度 + 5 类场景决策 + 10 大避坑清单 + 12 项真机验证清单 + FAQ） |
 | `assets/demo/*.jpg` | 演示页真实界面截图（登录页/系统首页/组织权限矩阵/仓库列表/DocSys AI 问答） |
-| `assets/appliance/*.svg` + `png-800/` + `png-1200/` | Appliance 5 张主图 SVG 源 + 双规格 PNG（电商平台可上传） |
+| `assets/appliance/*.svg` + `png-800/` + `png-1200/` | Appliance 5 张核心场景图（SVG 源 + 双规格 PNG） |
 | `assets/video/mxsdoc-marketing.mp4` | 营销视频源文件（约 4.5 MB） |
 | `assets/proofs/chengdu-jinnuoxin-usage-proof.pdf` | 成都金诺信盖章客户使用证明原件（255338 bytes = 249.4 KB，官网公开可点击） |
 | `assets/proofs/suzhou-lantian-ranqi-usage-proof.pdf` | 苏州工业园区蓝天燃气热电盖章客户使用证明原件（182026 bytes = 177.8 KB，官网公开可点击） |
@@ -55,7 +55,7 @@
   - [x] 本地 AI 数字人落地文章（blog/local-ai-digital-human-deployment.html，2026-09-25，借 CSDN 1.1w 阅读热文引流）
   - [x] 企业大模型私有化 vs 云端 API（blog/enterprise-llm-private-vs-cloud-deployment.html，2026-09-26，借 CSDN 1.2k 阅读热文引流）
   - [x] 企业 AI 知识库选型避坑指南（blog/enterprise-ai-knowledge-base-selection-guide.html，2026-09-27，旗舰长文：12 方案能力对照 + 5 类场景决策 + 10 避坑 + 12 项真机验证）
-  - [x] Appliance 一体机营销页（appliance.html，2026-09-27，双大模型 + 三 SKU 报价 + 5 张主图）
+  - [x] Appliance 一体机营销页（appliance.html，2026-09-27，双大模型 + 三 SKU 报价 + 5 张核心场景图）
   - [x] 客户案例扩容（4 个深度案例 + 部分客户名录 + 资质背书，2026-09-27）
   - [x] 安装教程页（docs/docsys-setup.html，2026-09-27，2.02.87 落地全流程）
   - [x] 营销视频页（docs/mxsdoc-marketing-video.html，2026-09-27，约 5 分钟真实录屏）
