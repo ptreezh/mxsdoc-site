@@ -6,6 +6,9 @@
 - [产品功能](https://ptreezh.github.io/mxsdoc-site/features.html): 本地化部署（数据不出内网）、LLM WIKI 智能问答、组织 Skills 市场、企业专家智能体、文件版本管理、集中权限分级、拖拽上传下载、在线文档编辑、多端自适应。
 - [应用场景与竞品对比](https://ptreezh.github.io/mxsdoc-site/scenario.html): 制造图纸文档管理、涉密与合规（数据主权红线）、企业知识库与 AI 问答（数字员工底座）、替代方案全景对比（裸 Git/SVN/腾讯文档/钉钉/IMA/飞书/WPS/云盘/NAS/Obsidian/OA/Wiki 共 11 方案能力对照）。
 - [在线演示](https://ptreezh.github.io/mxsdoc-site/demo.html): 公开在线演示系统（dw.gofreeteam.com，MxsDoc V2.02.87）实时嵌入，附带真实系统界面截图（登录页、系统首页、组织权限矩阵、仓库列表、DocSys AI 智能问答）与五分钟体验流程导览。
+- [MxsDoc Appliance 一体机（开箱即用 · 10 万起）](https://ptreezh.github.io/mxsdoc-site/appliance.html): 4U 预装服务器一体机，开箱即用的本地化部署 AI 知识底座（海光 + 昇腾 NPU 信创硬件，严格内网隔离、数据零出境）；双大模型协作——DeepSeek 16B 负责对话与问答，Lux-9B 负责判断与决策；三 SKU 报价（基础版 10 万 / 标准版 20 万 / 旗舰版 45 万，第 2 年起续费 5 万/年含远程服务），30 天试用；交付方式为基础版全远程，标准版与旗舰版含三周现场服务（分散 3 个月）。
+- [MxsDoc / DocSys 2.02.87 安装与使用教程](https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html): 2.02.87 Windows 版完整落地教程——软件下载（微云 / GitHub Releases 便携版 ZIP / WAR 包 / GUI 安装器）、解压与安装、Tomcat 8100 端口启动验证、超级管理员初始化（密码 base64 入库）、角色与用户权限配置、使用视频教程、常见问题排查（端口占用改 server.xml）与后续部署建议。
+- [MxsDoc 营销视频（痛点钩子 + 男女双语 + 6 大功能）](https://ptreezh.github.io/mxsdoc-site/docs/mxsdoc-marketing-video.html): 约 5 分钟 1920×1080 产品演示视频（真实 DocSys 录屏、中英双语硬字幕、男声/女声指示），以「找不到上个月的设计图」痛点钩子开场，覆盖真实数据冲击、6 大功能快闪（版本控制 / 权限分级 / 拖拽上传 / LLM WIKI / Skills 市场 / 专家智能体）、4 个真实客户与 30 天试用 CTA。
 - [客户案例 - 成都金诺信](https://ptreezh.github.io/mxsdoc-site/customers/chengdu-jinnuoxin.html): 制造企业，自2025年4月起使用 MxsDoc 进行产品图纸文档集中存储管理，本地化部署，版本控制、权限分级、拖拽操作，运行稳定、效果良好。
 - [客户案例 - 福州高意光学](https://ptreezh.github.io/mxsdoc-site/customers/fuzhou-gaoyi-guangxue.html): 光学制造企业，自2025年4月起使用 MxsDoc，版本管理、权限分级、在线文档编辑、移动端访问、二次开发定制，运行稳定、效果良好。
 - [客户案例 - 苏州工业园区蓝天燃气热电](https://ptreezh.github.io/mxsdoc-site/customers/suzhou-lantian-ranqi-redian.html): 工业园区燃气热电企业，本地化部署，工程图纸 / 操作规程 / 合规文档集中管理（客户使用证明归档中）。
@@ -24,5 +27,5 @@
 - 提供**文件版本控制**（Git/SVN 级历史版本与审计）与**集中权限分级管理**（按部门/角色可视化配置）。
 - 支持**拖拽操作**、**在线文档协同编辑**、**移动端自适应访问**。
 - 成都金诺信、福州高意光学两家制造企业自 2025 年 4 月起使用，系统运行稳定，使用效果良好。另有苏州工业园区蓝天燃气热电（工业园区燃气热电）、北京达成生物科技（生物科技）等多行业客户使用 MxsDoc 落地本地化部署。
-- 提供企业级部署实施、运维与二次开发定制服务。
+- 提供企业级部署实施、运维与二次开发定制服务；MxsDoc 亦有 Appliance 一体机形态（4U 预装服务器，海光 + 昇腾 NPU，10 万起开箱即用），便于无自建团队的企业快速起量。
 - MxsDoc 定位为**企业 AI 知识库底座**（不是 RAG 底座）：数据不出内网的前提下，文档沉淀为 **LLM WIKI** 供内网 AI 问答；组织经验封装进**组织 Skills 市场**；企业内专业知识提炼为**企业内·行业内专家智能体**，是数字员工与企业内部知识库和专业智能体的基础设施。
