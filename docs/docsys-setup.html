@@ -7,6 +7,135 @@
   <meta name="description" content="MxsDoc 企业 AI 知识库底座 2.02.87 Windows 安装步骤、超级管理员初始化、角色与权限配置、视频教程。">
   <meta name="keywords" content="MxsDoc 安装,DocSys 教程,文档管理系统,超级管理员,用户角色权限">
   <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html">
+  <meta property="og:title" content="MxsDoc / DocSys 2.02.87 安装与使用教程（Windows）">
+  <meta property="og:description" content="基于 Playwright 真实安装过程：Windows 解压、jdbc.properties 修复、8100 端口启动、超级管理员初始化、6 类角色权限配置与常见问题排查。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html">
+  <meta property="og:image" content="https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Schema.org JSON-LD：TechArticle + HowTo + FAQPage + BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#article",
+        "headline": "MxsDoc / DocSys 2.02.87 安装与使用教程（Windows）",
+        "description": "MxsDoc 企业 AI 知识库底座 2.02.87 Windows 安装步骤、超级管理员初始化、角色与权限配置、常见问题排查。",
+        "image": "https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-1200/main-1-overview.png",
+        "inLanguage": "zh-CN",
+        "datePublished": "2026-09-27",
+        "dateModified": "2026-10-01",
+        "articleSection": "安装教程",
+        "proficiencyLevel": "Beginner",
+        "dependencies": "Windows 10/11；约 2 GB 可用磁盘；解压权限",
+        "isAccessibleForFree": true,
+        "author":    { "@type": "Organization", "name": "MxsDoc" },
+        "publisher": { "@type": "Organization", "name": "MxsDoc" },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html" }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#howto",
+        "name": "在 Windows 上安装并初始化 MxsDoc / DocSys 2.02.87",
+        "description": "下载 docsys-win-2.02.87.zip 便携版，解压后修复 jdbc.properties 占位符，启动服务并在 8100 端口完成首个管理员初始化。",
+        "inLanguage": "zh-CN",
+        "totalTime": "PT40M",
+        "estimatedCost": { "@type": "MonetaryAmount", "currency": "CNY", "value": "0" },
+        "supply": [
+          { "@type": "HowToSupply", "name": "docsys-win-2.02.87.zip（便携版，自带 JRE + Tomcat + MariaDB，1058 MB）" },
+          { "@type": "HowToSupply", "name": "Mxsdoc_Setup_V2.02.87.exe（Windows GUI 安装器，1120 MB，可选）" }
+        ],
+        "tool": [
+          { "@type": "HowToTool", "name": "PowerShell（Expand-Archive 或 tar.exe）" },
+          { "@type": "HowToTool", "name": "sqlite3（可选，仅用于排查）" }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "下载安装包",
+            "text": "从 GitHub Releases 下载 docsys-win-2.02.87.zip（1058 MB，便携版自带 JRE + Tomcat + MariaDB），或使用 Windows GUI 安装器 Mxsdoc_Setup_V2.02.87.exe。",
+            "url": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "解压安装包",
+            "text": "使用 PowerShell 执行 Expand-Archive -LiteralPath \"F:\\gy\\docsys-win-2.02.87.zip\" -DestinationPath \"F:\\gy\\docsys-2.02.87\"，或用 tar.exe 解压。解压后应得到含 start.bat、docsys_start.bat、mysql_start.bat 及 tomcat、mysql 目录的结构。",
+            "url": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "修复 jdbc.properties 占位符",
+            "text": "编辑 tomcat\\webapps\\DocSystem\\WEB-INF\\classes\\jdbc.properties，把 db.url 中的 ${catalina.home} 替换为绝对路径，例如 jdbc:sqlite:F:/gy/docsys-2.02.87/docsys/tomcat/DocSystem.db。占位符未展开会导致数据库连接失败。",
+            "url": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "启动服务",
+            "text": "运行 docsys\\start.bat（实际启动脚本为 docsys_start.bat，会设置 JRE 与 catalina）。等待 30-60 秒后访问 http://localhost:8100/DocSystem/web/。注意默认端口是 8100，不是 8200。",
+            "url": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 5,
+            "name": "验证启动",
+            "text": "执行 Get-NetTCPConnection -LocalPort 8100 -State Listen 确认 8100 处于 LISTEN，再用 Invoke-WebRequest -Uri \"http://localhost:8100/DocSystem/web/\" 确认返回 HTTP 200。",
+            "url": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 6,
+            "name": "初始化超级管理员",
+            "text": "首次访问时系统自动建表（SQLite 27 张表）并弹出创建第一个管理员面板，填写账号、密码、邮箱、手机后由 addFirstAdminUser 接口写入。建议走 install.html 引导流程：http://localhost:8100/DocSystem/web/install.html。",
+            "url": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#faq",
+        "inLanguage": "zh-CN",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "端口被占用怎么办？",
+            "acceptedAnswer": { "@type": "Answer", "text": "修改 tomcat\\conf\\server.xml 中的 &lt;Connector port=\"8100\" protocol=\"HTTP/1.1\" /&gt;，换成未占用的端口。注意 DocSys 默认端口是 8100，不是 8200。" }
+          },
+          {
+            "@type": "Question",
+            "name": "数据库连接失败怎么排查？",
+            "acceptedAnswer": { "@type": "Answer", "text": "先确认 jdbc.properties 里的 ${catalina.home} 占位符已替换为绝对路径，再检查 SQLite 数据库文件所在目录是否存在且可写，并查看 tomcat\\logs\\docsys.log 获取详细报错。" }
+          },
+          {
+            "@type": "Question",
+            "name": "登录提示密码错误但密码没错？",
+            "acceptedAnswer": { "@type": "Answer", "text": "优先改用 install.html 引导流程让系统自动创建管理员。实测直接向 SQLite 写入 base64 密码仍可能报密码错误，可能涉及更复杂的哈希或盐机制。可用浏览器 F12 查看 Network 中 login.do 的 Form Data 里 pwd 字段，确认其与数据库 PWD 字段格式是否一致。" }
+          },
+          {
+            "@type": "Question",
+            "name": "Tomcat 启动很慢正常吗？",
+            "acceptedAnswer": { "@type": "Answer", "text": "正常。首次启动需要加载 27 张表与 250 多个 jar，可能耗时 30-90 秒，可查看 logs/catalina.*.log 跟踪进度。" }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ptreezh.github.io/mxsdoc-site/index.html" },
+          { "@type": "ListItem", "position": 2, "name": "安装教程", "item": "https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 24px; line-height: 1.7; color: #1f2937; background: #f7f9fc; }
     h1 { color: #12253f; border-bottom: 3px solid #1a5fb4; padding-bottom: 12px; }
@@ -294,5 +423,8 @@ UPDATE user SET PWD='ZWRkaXRvckAxMjM=' WHERE NAME='editor01';</code></pre>
   <p>© 2026 MxsDoc · 本地化部署 · 企业 AI 知识库底座</p>
   <p><a href='../index.html'>首页</a> · <a href='../features.html'>产品功能</a> · <a href='../appliance.html'>一体机与报价</a> · <a href='mxsdoc-marketing-video.html'>演示视频</a> · <a href='../contact.html'>联系</a></p>
 </footer>
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
 </body>
 </html>

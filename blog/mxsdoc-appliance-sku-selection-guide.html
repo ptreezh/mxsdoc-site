@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MxsDoc 一体机三档 SKU 选型指南：10 万 / 20 万 / 45 万怎么选 | MxsDoc 博客</title>
+  <meta name="description" content="MxsDoc Appliance 一体机三档 SKU 怎么选？10 万基础版全远程、20 万标准版含三周现场（分散 3 个月）+ 1 年远程、45 万旗舰版再加信创认证。本文逐档拆解服务内容、三周现场分工、续费口径、P0/P1/P2 故障响应 SLA 与 5 问自测清单，帮你按内部 IT 承接能力选档。">
+  <meta name="keywords" content="MxsDoc 一体机,MxsDoc Appliance,一体机选型,SKU 选型,信创认证,私有化部署报价,三周现场,故障响应 SLA">
+  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/blog/mxsdoc-appliance-sku-selection-guide.html">
+  <meta property="og:title" content="MxsDoc 一体机三档 SKU 选型指南：10 万 / 20 万 / 45 万怎么选">
+  <meta property="og:description" content="三档差价的本质是服务形态，不是硬件档位：10 万全远程、20 万加三周现场（分散 3 个月）+ 1 年远程、45 万再加信创认证。逐档拆解 + 5 问自测清单。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/blog/mxsdoc-appliance-sku-selection-guide.html">
+  <meta property="og:image" content="https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "MxsDoc 一体机三档 SKU 选型指南：10 万 / 20 万 / 45 万怎么选",
+    "description": "MxsDoc Appliance 三档 SKU 逐档拆解：10 万基础版全远程、20 万标准版含三周现场（分散 3 个月）+ 1 年远程、45 万旗舰版再加信创认证。含三周现场分工、续费口径、P0/P1/P2 故障响应 SLA 与 5 问自测清单。",
+    "author": { "@type": "Organization", "name": "MxsDoc" },
+    "publisher": { "@type": "Organization", "name": "MxsDoc" },
+    "datePublished": "2026-10-01",
+    "dateModified": "2026-10-01",
+    "mainEntityOfPage": "https://ptreezh.github.io/mxsdoc-site/blog/mxsdoc-appliance-sku-selection-guide.html",
+    "inLanguage": "zh-CN"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "三档差别在硬件还是服务？",
+        "acceptedAnswer": { "@type": "Answer", "text": "官方页面按 SKU 给出的明示差异集中在服务与认证：基础版 10 万为全部远程服务（无现场，价格卡未在卡片上标注年限）；标准版 20 万含三周现场（分散 3 个月）+ 1 年远程；旗舰版 45 万在此基础上再加信创认证。硬件层页面只给出一套统一规格（4U 标准机架、Intel/海光 CPU、NVIDIA/昇腾 NPU、384GB 内存、12TB 存储），未按 SKU 分别列出硬件差异。" }
+      },
+      {
+        "@type": "Question",
+        "name": "20 万标准版的三周现场具体做什么？",
+        "acceptedAnswer": { "@type": "Answer", "text": "三周现场分散在 3 个月内完成：第 1 个月第 1 周做系统初始化、知识导入与培训；第 2 个月第 2 周做权限配置、业务场景适配与用户培训；第 3 个月第 3 周做性能调优、验收与知识资产化辅导。不含差旅费，由乙方报销差旅费并安排食宿。" }
+      },
+      {
+        "@type": "Question",
+        "name": "现场服务费不启用能退吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "不能。官方口径为现场服务费不退——无论是否启用，服务费均不退还；第 2 年起现场服务为可选项。这一点建议在合同阶段就写清楚。" }
+      },
+      {
+        "@type": "Question",
+        "name": "第二年怎么续费？",
+        "acceptedAnswer": { "@type": "Answer", "text": "三档价格卡的续费口径一致：第 2 年起 5 万/年（含远程；现场服务为可选项）。官网服务承诺区块列出的 1 年远程服务含 7×24 远程支持、模型升级、安全补丁与季度巡检（远程）。" }
+      },
+      {
+        "@type": "Question",
+        "name": "一体机预装了什么模型和服务？",
+        "acceptedAnswer": { "@type": "Answer", "text": "硬件层为 4U 标准机架、Intel/海光 CPU、NVIDIA/昇腾 NPU、384GB 内存、12TB 存储；软件层为 MxsDoc 自研的 LLM WIKI 知识底座 + 组织 Skills 市场 + 企业专家智能体（5+ 项软著）；AI 层预装 Deepseek、Qwen 等国产开源大模型（通用对话）+ Lux 开源决策模型（结构化输出、可代码解析）。" }
+      },
+      {
+        "@type": "Question",
+        "name": "买之前能先试吗？",
+        "acceptedAnswer": { "@type": "Answer", "text": "可以。真机演示环境公开访问（dw.gofreeteam.com），30 天试用期内不满意全额退款。" }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ptreezh.github.io/mxsdoc-site/" },
+      { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://ptreezh.github.io/mxsdoc-site/#blog" },
+      { "@type": "ListItem", "position": 3, "name": "MxsDoc 一体机三档 SKU 选型指南" }
+    ]
+  }
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 860px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .hook { background: #fff8ec; border-left: 4px solid var(--accent); padding: 1.2rem 1.4rem; border-radius: 0 8px 8px 0; margin: 1.6rem 0; }
+    .hook p { margin: 0 0 .4rem; font-size: .95rem; color: #6b7280; font-style: italic; }
+    .hook .src { display: block; font-size: .82rem; color: #94a3b8; font-style: normal; }
+    .pp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 1.6rem; }
+    .pp { background: #fff; border-radius: 10px; padding: 1.4rem 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .pp h3 { color: var(--primary); font-size: 1.05rem; margin-bottom: .5rem; }
+    .pp p { font-size: .92rem; color: #475569; }
+    .price { font-size: 2.4rem; font-weight: 800; color: var(--accent); display: block; margin: .2rem 0 .4rem; }
+    .price-note { font-size: .85rem; color: #64748b; margin-bottom: .6rem; }
+    .tblwrap { overflow-x: auto; margin: 1.6rem 0; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .matrix { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 1080px; background: #fff; }
+    .matrix.small { min-width: 720px; }
+    .matrix th { background: var(--dark); color: #fff; padding: .65rem .7rem; text-align: left; white-space: nowrap; }
+    .matrix td { padding: .6rem .7rem; border-bottom: 1px solid #eef2f7; vertical-align: top; color: #475569; }
+    .matrix tr:nth-child(even) td { background: #f8fafc; }
+    .matrix td.name { font-weight: 600; color: var(--dark); white-space: nowrap; }
+    .matrix td.v { white-space: nowrap; text-align: center; }
+    .matrix tr.hl td { background: #f0f7ff !important; }
+    .matrix tr.hl td.name { color: var(--primary); }
+    .tnote { font-size: .85rem; color: #64748b; margin: .6rem 0 0; }
+    .steps { counter-reset: step; list-style: none; margin-top: 1.6rem; }
+    .steps li { background: #fff; border-radius: 10px; padding: 1.4rem 1.5rem 1.4rem 3.4rem; position: relative; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 1.2rem; top: 1.4rem; width: 1.7rem; height: 1.7rem; background: var(--primary); color: #fff; border-radius: 50%; text-align: center; font-weight: 700; font-size: .95rem; line-height: 1.7rem; }
+    .steps h3 { color: var(--dark); margin-bottom: .4rem; font-size: 1.08rem; }
+    .steps p { font-size: .93rem; color: #475569; }
+    .pitfall { list-style: none; margin-top: 1.2rem; }
+    .pitfall li { background: #fff; border-radius: 10px; padding: 1rem 1.4rem; margin-bottom: .8rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); font-size: .95rem; color: #475569; }
+    .pitfall li strong { color: var(--dark); }
+    .pitfall li .k { color: var(--accent); font-weight: 800; margin-right: .5rem; }
+    .checklist { background: #fff; border-radius: 10px; padding: 1.5rem 1.6rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-top: 1.6rem; }
+    .checklist ol { padding-left: 1.3rem; }
+    .checklist li { padding: .45rem 0; font-size: .98rem; color: #475569; }
+    .checklist li strong { color: var(--dark); }
+    .cta-list { background: #fff; border-radius: 10px; padding: 1.5rem 1.6rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-top: 1.6rem; }
+    .cta-list ul { list-style: none; }
+    .cta-list li { padding: .45rem 0 .45rem 1.5rem; position: relative; font-size: .98rem; }
+    .cta-list li::before { content: "→"; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .endnote { font-size: .85rem; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 1.2rem; margin-top: 1.6rem; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../appliance.html">一体机</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · MxsDoc 一体机三档 SKU 选型指南</div>
+    <h1>MxsDoc 一体机三档 SKU 选型指南：10 万 / 20 万 / 45 万怎么选</h1>
+    <p class="sub">一体机报价页被高频问到的问题是「我该买哪一档」。本文把三档 SKU 逐条拆开：差价的本质不是硬件档位，而是服务形态——10 万是全部远程，20 万起才有工程师上门，45 万的增量主要在信创认证。附三周现场的具体分工、续费口径、P0/P1/P2 故障响应 SLA 与 5 问自测清单。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-10-01 · 约 7 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+    <h2>先说结论：三档差的是服务，不是配置 <small>以下全部口径来自官网 Appliance 营销页公开信息</small></h2>
+
+    <div class="hook">
+      <p>一体机页面把产品定义为「一台预装好所有软件的 4U 服务器」：硬件层 4U 标准机架 · Intel/海光 CPU · NVIDIA/昇腾 NPU · 384GB 内存 · 12TB 存储。</p>
+      <span class="src">证据：appliance.html:334、338</span>
+    </div>
+
+    <p>关键在于：页面按 SKU 列出的明示差异，集中在<strong>服务与认证</strong>三件事上——现场服务、远程服务年限、信创认证。硬件层只给出一套统一规格，并未按 SKU 分别列出硬件差异。所以 10 万 / 20 万 / 45 万不是「低配 / 中配 / 高配」的三档机器，而是<strong>三种不同的交付方式</strong>。</p>
+
+    <div class="tblwrap">
+      <table class="matrix small">
+        <thead>
+          <tr><th>SKU</th><th>报价</th><th>现场服务</th><th>远程服务</th><th>信创认证</th><th>第 2 年起续费</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="name">基础版</td><td class="v">10 万</td><td>无现场</td><td>全部远程</td><td>—</td><td class="v">5 万/年</td></tr>
+          <tr class="hl"><td class="name">标准版 ⭐</td><td class="v">20 万</td><td>三周现场（分散 3 个月）</td><td class="v">1 年</td><td>—</td><td class="v">5 万/年</td></tr>
+          <tr><td class="name">旗舰版</td><td class="v">45 万</td><td>三周现场（分散 3 个月）</td><td class="v">1 年</td><td class="v">含</td><td class="v">5 万/年</td></tr>
+        </tbody>
+      </table>
+      <p class="tnote">证据：appliance.html:436-453。「⭐」为官网标注。续费三档一致为 5 万/年。基础版价格卡只写「全部远程服务（无现场）」，未在卡片上标注年限；「1 年远程」是官网服务承诺区块对远程服务的统一口径（appliance.html:463、482-490）。</p>
+    </div>
+
+    <p>换句话说：<strong>10 万 → 20 万的 10 万增量，买的是 3 周工程师上门</strong>；<strong>20 万 → 45 万的 25 万增量，主要买的是信创认证</strong>。这两笔钱的性质完全不同，决策依据也应该完全不同。</p>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <h2>基础版 10 万：适合内部已有 IT 承接能力的企业 <small>全部远程服务，无现场</small></h2>
+
+    <div class="pp-grid">
+      <div class="pp">
+        <h3>你买到什么</h3>
+        <p><span class="price">10 万</span></p>
+        <p class="price-note">全部远程服务（无现场）<br>第 2 年起续费 5 万/年</p>
+        <p>官网口径的 1 年远程服务含 7×24 远程支持、模型升级、安全补丁、季度巡检（远程）。<span class="tnote">证据：appliance.html:482-490（服务承诺区块的统一口径）。</span></p>
+      </div>
+      <div class="pp">
+        <h3>选它，前提是这三条都成立</h3>
+        <p>① 内部有能独立完成知识导入与权限配置的 IT 人员；<br>② 关键岗位（工艺、研发、售后）愿意配合做知识梳理；<br>③ 能接受「问题靠远程解决、上门要另约」。</p>
+      </div>
+    </div>
+
+    <p>如果这三条里有任何一条不成立，10 万档的真实成本往往不在预算表上，而在落地周期上——远程推进依赖对方 IT 主动推动，而知识库项目的瓶颈通常是「谁把知识整理出来」，不是「谁装系统」。</p>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <h2>标准版 20 万：三周现场到底做什么 <small>官网标注 ⭐，现场分 3 个月落地</small></h2>
+
+    <p>官网把服务承诺写成「三周现场 + 1 年远程 + 终身软件升级」。其中三周现场被明确拆成三个月各一周，每一周有指定交付物：</p>
+
+    <ol class="steps">
+      <li>
+        <h3>第 1 个月（第 1 周）：系统初始化 + 知识导入 + 培训</h3>
+        <p>完成系统初始化，把首批知识导入系统，并做一轮基础培训。</p>
+      </li>
+      <li>
+        <h3>第 2 个月（第 2 周）：权限配置 + 业务场景适配 + 用户培训</h3>
+        <p>配置分级权限，按具体业务场景做适配，并面向实际使用者做用户培训。</p>
+      </li>
+      <li>
+        <h3>第 3 个月（第 3 周）：性能调优 + 验收 + 知识资产化辅导</h3>
+        <p>做性能调优、交付验收，并辅导把已沉淀内容转为可复用的知识资产。</p>
+      </li>
+    </ol>
+    <p class="tnote">证据：appliance.html:469-474。</p>
+
+    <div class="pitfall">
+      <p><span class="k">⚠</span><strong>差旅与退费口径要在合同里写清。</strong>官网原文注明：<strong>不含差旅费</strong>（由乙方报销差旅费并安排食宿）；<strong>现场服务费不退</strong>——无论是否启用，服务费均不退还；第 2 年起现场服务为可选项。</p>
+      <p class="tnote">证据：appliance.html:476、490、524。这三条是选 20 万档时容易被忽略的条款。</p>
+    </div>
+
+    <p>三周现场分散在三个月，而不是集中在三周连着做——这个设计对制造类企业其实更友好：不会一次性占用关键岗位三周，也不会让现场工程师在还没拿到真实业务反馈时就撤场。</p>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <h2>旗舰版 45 万：多出来的 25 万买的是信创认证 <small>服务内容与标准版一致</small></h2>
+
+    <div class="pp-grid">
+      <div class="pp">
+        <h3>与标准版的差异</h3>
+        <p><span class="price">45 万</span></p>
+        <p class="price-note">三周现场（分散 3 个月）+ 1 年远程 + <strong>信创认证</strong><br>第 2 年起续费 5 万/年</p>
+      </div>
+      <div class="pp">
+        <h3>什么情况下需要它</h3>
+        <p>当采购流程里有信创/国产化替代相关的硬性要求时，25 万增量换到的是「信创认证」这一项交付物，而不是多几周现场服务。官网未标明该认证的出具机构与级别，采购时应直接向销售确认所需的具体认证名称。</p>
+      </div>
+    </div>
+
+    <p>如果项目没有信创相关的强制要求，这 25 万对应的服务内容与标准版相同——官网按 SKU 列出的差异中，旗舰版多出来的只有「+ 信创认证」这一项。<strong>没有信创要求时，旗舰版相对标准版多付的钱换不回对应的服务增量。</strong></p>
+    <p class="tnote">证据：appliance.html:452。</p>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <h2>三档共同项：续费、SLA 与预装内容 <small>选哪档都适用</small></h2>
+
+    <h3 style="font-size:1.15rem;color:var(--dark);margin:1.4rem 0 .6rem;">续费口径</h3>
+    <p>三档一致：<strong>第 2 年起续费 5 万/年（含远程；现场服务为可选项）</strong>。1 年远程服务包含 7×24 远程支持、模型升级、安全补丁、季度巡检（远程）。<span class="tnote">证据：appliance.html:485-490。续费 5 万/年为三档一致口径（appliance.html:439、446、453）；远程年限按官网服务承诺区块的统一表述（appliance.html:463、482）。</span></p>
+
+    <h3 style="font-size:1.15rem;color:var(--dark);margin:1.4rem 0 .6rem;">故障响应 SLA</h3>
+    <div class="tblwrap">
+      <table class="matrix small">
+        <thead>
+          <tr><th>故障等级</th><th>响应时间</th><th>解决时间</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="name">P0 整机宕机</td><td class="v" style="color:#ef4444;font-weight:700;">2 小时</td><td class="v">24 小时</td></tr>
+          <tr><td class="name">P1 功能故障</td><td class="v">4 小时</td><td class="v">48 小时</td></tr>
+          <tr><td class="name">P2 性能问题</td><td class="v">8 小时</td><td class="v">72 小时</td></tr>
+        </tbody>
+      </table>
+      <p class="tnote">证据：appliance.html:496-508。</p>
+    </div>
+
+    <h3 style="font-size:1.15rem;color:var(--dark);margin:1.4rem 0 .6rem;">预装了什么（不分档）</h3>
+    <div class="tblwrap">
+      <table class="matrix small">
+        <thead><tr><th>层</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="name">硬件层</td><td>4U 标准机架 · Intel/海光 CPU · NVIDIA/昇腾 NPU · 384GB 内存 · 12TB 存储</td></tr>
+          <tr><td class="name">软件层（MxsDoc 自研）</td><td>LLM WIKI 知识底座 + 组织 Skills 市场 + 企业专家智能体 · 5+ 项软著</td></tr>
+          <tr><td class="name">AI 层（双大模型）</td><td>Deepseek · Qwen 等国产开源大模型（通用对话）+ Lux（开源决策模型，结构化输出可代码解析）</td></tr>
+        </tbody>
+      </table>
+      <p class="tnote">证据：appliance.html:337-347。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <h2>5 问自测：你该买哪一档</h2>
+    <div class="checklist">
+      <ol>
+        <li><strong>项目有没有信创 / 国产化替代的硬性要求？</strong><br>有 → 旗舰版 45 万；没有 → 继续第 2 问。</li>
+        <li><strong>内部有没有人能独立完成知识导入 + 权限配置？</strong><br>没有 → 标准版 20 万起（这 10 万买的是现场带跑）；有 → 基础版 10 万可以认真评估。</li>
+        <li><strong>关键岗位能否配合 3 个月各一周的现场节奏？</strong><br>不能 → 提前把时间表谈定，否则三周现场会拖成三个月以上。</li>
+        <li><strong>现场服务费不退、不含差旅费这两条，你的采购流程能接受吗？</strong><br>建议在合同中逐条写明，避免验收阶段产生分歧。</li>
+        <li><strong>第 2 年 5 万/年是否已在预算里？</strong><br>把它当作固定运维成本纳入三年 TCO，而不是首年预算外的一次性支出。</li>
+      </ol>
+    </div>
+
+    <div class="cta-list">
+      <ul>
+        <li>真机演示环境公开访问：<a href="https://dw.gofreeteam.com" target="_blank" rel="noopener">dw.gofreeteam.com</a>（V2.02.87）</li>
+        <li>30 天试用期内不满意全额退款</li>
+        <li>三档完整报价与服务条款：<a href="../appliance.html">Appliance 一体机页</a></li>
+        <li>部署咨询与试用申请：<a href="mailto:zhangshuren@agent.qq.com?subject=30天试用申请">zhangshuren@agent.qq.com</a></li>
+      </ul>
+    </div>
+
+    <p class="endnote">本文所有价格、服务内容、SLA、硬件与预装模型信息均摘自 MxsDoc 官网 Appliance 营销页（appliance.html），并在文中标注对应行号，便于核对。选型建议部分为基于上述公开交付条款的整理，具体方案请以商务合同为准。</p>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <h2>常见问题</h2>
+    <div class="faq-item">
+      <h4>三档差别在硬件还是服务？</h4>
+      <p>官方页面按 SKU 给出的明示差异集中在服务与认证：基础版 10 万为全部远程服务（无现场，价格卡未在卡片上标注年限）；标准版 20 万含三周现场（分散 3 个月）+ 1 年远程；旗舰版 45 万在此基础上再加信创认证。硬件层页面只给出一套统一规格（4U 标准机架、Intel/海光 CPU、NVIDIA/昇腾 NPU、384GB 内存、12TB 存储），未按 SKU 分别列出硬件差异。</p>
+    </div>
+    <div class="faq-item">
+      <h4>20 万标准版的三周现场具体做什么？</h4>
+      <p>三周现场分散在 3 个月内完成：第 1 个月第 1 周做系统初始化、知识导入与培训；第 2 个月第 2 周做权限配置、业务场景适配与用户培训；第 3 个月第 3 周做性能调优、验收与知识资产化辅导。不含差旅费，由乙方报销差旅费并安排食宿。</p>
+    </div>
+    <div class="faq-item">
+      <h4>现场服务费不启用能退吗？</h4>
+      <p>不能。官方口径为现场服务费不退——无论是否启用，服务费均不退还；第 2 年起现场服务为可选项。这一点建议在合同阶段就写清楚。</p>
+    </div>
+    <div class="faq-item">
+      <h4>第二年怎么续费？</h4>
+      <p>三档价格卡的续费口径一致：第 2 年起 5 万/年（含远程；现场服务为可选项）。官网服务承诺区块列出的 1 年远程服务含 7×24 远程支持、模型升级、安全补丁与季度巡检（远程）。</p>
+    </div>
+    <div class="faq-item">
+      <h4>一体机预装了什么模型和服务？</h4>
+      <p>硬件层为 4U 标准机架、Intel/海光 CPU、NVIDIA/昇腾 NPU、384GB 内存、12TB 存储；软件层为 MxsDoc 自研的 LLM WIKI 知识底座 + 组织 Skills 市场 + 企业专家智能体（5+ 项软著）；AI 层预装 Deepseek、Qwen 等国产开源大模型（通用对话）+ Lux 开源决策模型（结构化输出、可代码解析）。</p>
+    </div>
+    <div class="faq-item">
+      <h4>买之前能先试吗？</h4>
+      <p>可以。真机演示环境公开访问（dw.gofreeteam.com），30 天试用期内不满意全额退款。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>先看真机，再定档位</h2>
+    <p>10 万 / 20 万 / 45 万 · 三档续费同为 5 万/年 · P0 整机宕机 2 小时响应</p>
+    <a class="btn btn-primary" href="../contact.html">申请免费试用 / 企业部署方案</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../appliance.html">一体机</a> · <a href="../contact.html">免费试用</a></div>
+  </div>
+</footer>
+
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
+</body>
+</html>

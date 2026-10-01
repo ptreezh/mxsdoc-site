@@ -12,7 +12,7 @@
 
 ## GEO 技术清单
 
-全站 **18 个 HTML 页面** + 3 个 GEO 配置文件，sitemap 收录全部 18 条 URL。
+全站 **19 个 HTML 页面** + 3 个 GEO 配置文件，sitemap 收录全部 19 条 URL。
 
 | 文件 | 说明 |
 |------|------|
@@ -34,14 +34,15 @@
 | `blog/local-ai-digital-human-deployment.html` | 博客深度文章：8G 显卡跑本地 AI 数字人（企业级落地三道坎 + 三方案对比 + 6 步 Docker Compose 部署 + 真机验收） |
 | `blog/enterprise-llm-private-vs-cloud-deployment.html` | 博客深度文章：企业大模型私有化 vs 云端 API（核心矛盾分析 + 3 方案对比 + 3 周落地路径 + 6 大避坑清单） |
 | `blog/enterprise-ai-knowledge-base-selection-guide.html` | 博客深度文章：2026 企业 AI 知识库选型避坑指南（12 方案 7 项能力对照矩阵 + 6 选型维度 + 5 类场景决策 + 10 大避坑清单 + 12 项真机验证清单 + FAQ） |
+| `blog/mxsdoc-appliance-sku-selection-guide.html` | 博客深度文章：MxsDoc 一体机三档 SKU 选型指南（10/20/45 万三档服务与信创认证差异 + 三周现场分工 + 续费口径 + P0/P1/P2 SLA + 5 问自测清单 + FAQ） |
 | `assets/demo/*.jpg` | 演示页真实界面截图（登录页/系统首页/组织权限矩阵/仓库列表/DocSys AI 问答） |
 | `assets/appliance/*.svg` + `png-800/` + `png-1200/` | Appliance 5 张核心场景图（SVG 源 + 双规格 PNG） |
 | `assets/video/mxsdoc-marketing.mp4` | 营销视频源文件（约 4.5 MB） |
 | `assets/proofs/chengdu-jinnuoxin-usage-proof.pdf` | 成都金诺信盖章客户使用证明原件（255338 bytes = 249.4 KB，官网公开可点击） |
 | `assets/proofs/suzhou-lantian-ranqi-usage-proof.pdf` | 苏州工业园区蓝天燃气热电盖章客户使用证明原件（182026 bytes = 177.8 KB，官网公开可点击） |
-| `llms.txt` | AI 可读站点摘要（Claude/GPT 等读取，含全站 18 页索引） |
+| `llms.txt` | AI 可读站点摘要（Claude/GPT 等读取，含全站 19 页索引） |
 | `robots.txt` | 放行 GPTBot/ClaudeBot/Google-Extended/PerplexityBot/CCBot 等 AI 爬虫 |
-| `sitemap.xml` | 站点地图（18 URL，与实际页面一一对应） |
+| `sitemap.xml` | 站点地图（19 URL，与实际页面一一对应） |
 
 ## 路线图
 
@@ -64,6 +65,9 @@
   - [x] 客户使用证明公开（成都 / 苏州盖章 PDF 上站可点击 + 苏州案例页证据落地）
   - [x] 表述与文案口径统一：客户名录改为「客户500+，下面是部分客户名录」；预装模型改为「Deepseek Qwen 等国产开源大模型」（去除 16B / 9B 参数）
   - [x] 事实口径与盖章 PDF 逐条对齐：删除无来源的 84.17% 准确率；成都 / 苏州证据区块改为原件勾选项逐条摘录；福州降级为客户反馈（盖章原件待授权）；北京去除未证实的 GMP / ISO 客户事实陈述（2026-09-29）
+  - [x] 统计加载器（analytics.js）：全站统一注入，默认 no-op，配置 GA4 / Plausible / Umami，遵守 DNT/GPC（2026-09-30）
+  - [x] docs 两页结构化数据：安装教程页补 TechArticle/HowTo/FAQPage/@graph，营销视频页补 VideoObject/@graph（2026-09-30）
+  - [x] Appliance 三档 SKU 选型指南（blog/mxsdoc-appliance-sku-selection-guide.html，2026-10-01：服务与认证差异 + 三周现场分工 + 续费口径 + SLA + 5 问自测）
 
 ## 本地预览
 
