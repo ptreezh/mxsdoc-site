@@ -12,6 +12,8 @@ MxsDoc - 企业 AI 知识库（本地化部署）
 - [安装与使用教程](https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html) — MxsDoc/DocSys 2.02.87 完整落地教程
 - [联系与试用](https://ptreezh.github.io/mxsdoc-site/contact.html) — 免费试用与企业级部署咨询
 
+- [行业解决方案](https://ptreezh.github.io/mxsdoc-site/solutions/)：面向制造业-设计院、工程咨询-建设单位、政府-国企-军工、泛行业-选型对比的针对性解决方案彩页
+
 ## 完整清单
 
 MxsDoc - 企业 AI 知识库（本地化部署）
