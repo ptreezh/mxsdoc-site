@@ -1,9 +1,12 @@
 #!/bin/sh
-# MxsDoc-Site pre-commit 门禁：拦截缺少 /mxsdoc-site/ 前缀的裸根路径
+# MxsDoc-Site pre-commit 门禁：拦截非相对站内链接
 #
-# 站点部署在 GitHub Pages 子路径 /mxsdoc-site/ 下，裸 "/x" 会解析到
-# ptreezh.github.io 顶层 → 404。凡是 href/src/action/css-url 出现
-# 根绝对路径（非 /mxsdoc-site/ 开头）即拒绝提交。
+# 站点同时部署在两处，路径前缀不同：
+#   - GitHub Pages 子路径  https://ptreezh.github.io/mxsdoc-site/
+#   - 独立域名（自动抓取镜像）https://agent.gofreeteam.com/
+# 因此站内链接必须使用相对链接。凡是 href/src/css-url 出现根绝对路径
+# （"/x"）或同站绝对 URL（https://ptreezh.github.io/mxsdoc-site/x.html"）
+# 即拒绝提交。
 #
 # 启用:  git config core.hooksPath .githooks   （commit 文件后即可克隆复用）
 
@@ -18,7 +21,7 @@ python "$root/.githooks/check-root-paths.py" --staged
 rc=$?
 if [ $rc -ne 0 ]; then
     echo ""
-    echo "✋ 提交被门禁拦截：请修复上述裸根路径后重新 git add + git commit。"
+    echo "✋ 提交被门禁拦截：请把上述非相对站内链接改为相对链接后重新 git add + git commit。"
     exit $rc
 fi
 exit 0

@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-MxsDoc-Site 根路径门禁检查器 (GitHub Pages 子路径部署)
-========================================================
-站点部署在 https://ptreezh.github.io/mxsdoc-site/ 子路径下。
-任何裸 "/x.html" 根路径会解析到 https://ptreezh.github.io/x.html（顶层 → 404）。
+MxsDoc-Site 站内链接门禁检查器（相对链接策略）
+====================================================
+站点同时部署在两处：
+  - GitHub Pages 子路径: https://ptreezh.github.io/mxsdoc-site/
+  - 独立域名（自动抓取镜像）: https://agent.gofreeteam.com/
+两处路径前缀不同，因此站内链接必须使用**相对链接**，
+才能在两处同时正确解析。
 
 规则（匹配即违规，提交被拦截）：
-  - 双引号根路径:   "/(?!mxsdoc-site|//)
-    e.g. href="/"、href="/#features"、href="/scenario.html"、src="/x.js"
-  - style url():    url(/x)、url("/x")、url('/x')
+  1. 根绝对路径:  href="/x.html"、src="/x.js"、url(/x)
+                  -> 裸 "/" 开头在两处都解析错（GitHub Pages 顶层 404 / 域名根目录错位）
+  2. 同站绝对 URL: href="https://ptreezh.github.io/mxsdoc-site/x.html"
+                  -> 镜像站会跳回 GitHub，破坏"站内相对"要求
 
 合法（放行）：
-  - "/mxsdoc-site/..."   已带前缀
-  - "//cdn.xxx/..."      协议相对 URL
-  - "https://..."/"mailto:"/"tel:"/"javascript:"/"data:"  完整/特殊协议
-  - 相对路径 ../x.html、x.html、#anchor、/mxsdoc-site/#anchor
+  - 相对路径: index.html、../index.html、customers/index.html、#anchor
+  - 协议相对: "//cdn.xxx/..."
+  - 外部完整 URL: "https://..."（非本站）、"mailto:"、"tel:"、"javascript:"、"data:"
+  - <link rel="canonical">：SEO 要求绝对 URL，逐行豁免
 
 用法:
   python check-root-paths.py            # 扫描整个仓库
@@ -28,22 +32,26 @@ import subprocess
 import sys
 
 # 违规模式
-PATTERN_QUOTED = re.compile(r'"(/(?!mxsdoc-site|//))')          # "/(...) 双引号根路径
-PATTERN_URL = re.compile(r'url\(\s*[\'"]?(/(?!mxsdoc-site|//))')  # url(/...) 样式内根路径
+PATTERN_ROOT_ABS = re.compile(r"""(?i)\b(?:href|src)\s*=\s*["']/(?!/)""")
+PATTERN_URL_FUNC = re.compile(r"""(?i)url\(\s*["']?/(?!/)""")
+PATTERN_ABS_SITE = re.compile(
+    r"""(?i)\b(?:href|src)\s*=\s*["']https?://"""
+    r"""(?:ptreezh\.github\.io/mxsdoc-site|agent\.gofreeteam\.com)"""
+)
+PATTERN_CANONICAL = re.compile(r"""(?i)<link[^>]*rel=["']canonical["']""")
 
-# 需要补前缀的文件扩展名
-TARGET_EXTS = {".html", ".htm", ".shtml", ".xhtml", ".xml", ".json", ".js", ".css", ".txt"}
-# xml/json/js/css/txt 也纳入？js/css 内的根路径同样 404。但 canonical/og 多为完整URL。
-# 这里保持专注 HTML（含内联样式）。js 中的路径由 sitemap/API 层处理，另行维护。
+# 需要检查的文件扩展名
+TARGET_EXTS = {".html", ".htm", ".shtml", ".xhtml"}
+# 只扫 HTML：canonical / og / JSON-LD 里的绝对 URL 是 SEO 规范，不在此拦截
 
 
-def walk_html_files(root, staged_files=None):
+def walk_html_files(root: str, staged_files: list[str] | None = None) -> list[str]:
     """返回待检查的 html 文件绝对路径列表。"""
     if staged_files is not None:
         # staged 模式: 来自 git diff --cached
         r = []
         for f in staged_files:
-            if os.path.splitext(f)[1].lower() in {".html", ".htm", ".shtml", ".xhtml"}:
+            if os.path.splitext(f)[1].lower() in TARGET_EXTS:
                 p = os.path.join(root, f)
                 if os.path.isfile(p):
                     r.append(p)
@@ -54,33 +62,37 @@ def walk_html_files(root, staged_files=None):
         dirnames[:] = [d for d in dirnames
                        if d not in (".git", "node_modules", "dist", "build", "vendor")]
         for fn in filenames:
-            if os.path.splitext(fn)[1].lower() in {".html", ".htm", ".shtml", ".xhtml"}:
+            if os.path.splitext(fn)[1].lower() in TARGET_EXTS:
                 r.append(os.path.join(dirpath, fn))
     return r
 
 
-def check_file(path):
+def check_file(path: str) -> list[tuple[int, str, str]]:
     """返回违规行列表 [(line_no, matched_part, line_text), ...] 或 []。"""
     violations = []
     try:
         with open(path, "r", encoding="utf-8", errors="replace") as fh:
             for lineno, line in enumerate(fh, 1):
                 line = line.rstrip("\r\n")
-                for pat in (PATTERN_QUOTED, PATTERN_URL):
+                is_canonical = bool(PATTERN_CANONICAL.search(line))
+                pats = [PATTERN_ROOT_ABS, PATTERN_URL_FUNC]
+                if not is_canonical:
+                    pats.append(PATTERN_ABS_SITE)
+                for pat in pats:
                     m = pat.search(line)
                     if m:
                         # 只截取违规片段用于展示
                         s = max(0, m.start() - 25)
                         e = min(len(line), m.end() + 45)
                         snippet = line[s:e]
-                        violations.append((lineno, m.group(1), snippet))
+                        violations.append((lineno, m.group(0), snippet))
                         break  # 一行只报一次
     except OSError as exc:
         violations.append((0, "", f"<read error: {exc}>"))
     return violations
 
 
-def main():
+def main() -> int:
     root = os.path.dirname(os.path.abspath(__file__))
     # 仓库根 = .githooks 的上一级
     repo_root = os.path.dirname(root)
@@ -110,17 +122,18 @@ def main():
                 print(f"   :{lineno}  {snippet}")
     if total_bad:
         print("")
-        print(f"❌ 发现 {total_bad} 处缺少 /mxsdoc-site/ 前缀的根路径。")
-        print("   本仓库部署在 GitHub Pages 子路径 /mxsdoc-site/ 下，裸 /x 会 404。")
+        print(f"❌ 发现 {total_bad} 处非相对站内链接。")
+        print("   站点同时部署在 GitHub Pages 子路径 /mxsdoc-site/ 与 agent.gofreeteam.com，")
+        print("   站内链接必须是相对链接，否则其中一处必然 404 或跳回 GitHub。")
         print("   修复示例:")
-        print('     href="/"           ->  href="/mxsdoc-site/"')
-        print('     href="/#features"  ->  href="/mxsdoc-site/#features"')
-        print('     href="/x.html"     ->  href="/mxsdoc-site/x.html"')
-        print('   (子目录页面也可用相对路径 ../x.html)')
+        print('     href="/scenario.html"                          ->  href="scenario.html"')
+        print('     href="/mxsdoc-site/scenario.html"               ->  href="scenario.html"')
+        print('     href="https://ptreezh.github.io/mxsdoc-site/x.html" ->  href="x.html"')
+        print('     (一级子目录页面用 ../ 前缀，例如 ../index.html)')
         return 1
     # 非 staged 模式打印汇总
     if not staged:
-        print(f"✅ 扫描 {len(files)} 个 HTML 文件，0 处裸根路径。")
+        print(f"✅ 扫描 {len(files)} 个 HTML 文件，0 处非相对站内链接。")
     return 0
 
 

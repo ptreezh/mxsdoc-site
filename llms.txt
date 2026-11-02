@@ -3,24 +3,30 @@ MxsDoc - 企业 AI 知识库（本地化部署）
 > MxsDoc 是本地化部署的企业 AI 知识库底座：文档版本管理、集中权限分级、在线文档编辑、LLM WIKI 智能问答、组织 Skills 市场、企业专家智能体。数据不出内网，企业完全掌握数据主权。
 
 ## 核心页面（优先阅读）
-- [首页](https://ptreezh.github.io/mxsdoc-site/) — 产品定位、核心能力、客户案例与 FAQ
-- [MxsDoc Appliance 一体机](https://ptreezh.github.io/mxsdoc-site/appliance.html) — 三档 SKU（10万/20万/45万）、服务承诺、现场服务与选型指南
-- [产品功能](https://ptreezh.github.io/mxsdoc-site/features.html) — 版本控制、权限分级、Office/WPS 协同、AI 检索与 Agent 能力
-- [应用场景](https://ptreezh.github.io/mxsdoc-site/scenario.html) — 设计院、工程咨询、制造、政企知识管理等典型场景
-- [客户案例与名录](https://ptreezh.github.io/mxsdoc-site/customers/) — 4 个深度案例 + 500+ 客户名录（政府/央企/上市公司/设计院）
-- [博客](https://ptreezh.github.io/mxsdoc-site/blog/) — 技术选型、部署实践与 AI 知识库选型避坑指南
-- [安装与使用教程](https://ptreezh.github.io/mxsdoc-site/docs/docsys-setup.html) — MxsDoc/DocSys 2.02.87 完整落地教程
-- [联系与试用](https://ptreezh.github.io/mxsdoc-site/contact.html) — 免费试用与企业级部署咨询
+- [首页](https://agent.gofreeteam.com/) — 产品定位、核心能力、客户案例与 FAQ
+- [MxsDoc Appliance 一体机](https://agent.gofreeteam.com/appliance.html) — 三档 SKU（10万/20万/45万）、服务承诺、现场服务与选型指南
+- [产品功能](https://agent.gofreeteam.com/features.html) — 版本控制、权限分级、Office/WPS 协同、AI 检索与 Agent 能力
+- [应用场景](https://agent.gofreeteam.com/scenario.html) — 设计院、工程咨询、制造、政企知识管理等典型场景
+- [客户案例与名录](https://agent.gofreeteam.com/customers/index.html) — 4 个深度案例 + 500+ 客户名录（政府/央企/上市公司/设计院）
+- [博客文章](https://agent.gofreeteam.com/blog/enterprise-ai-knowledge-base-selection-guide.html) — 技术选型、部署实践与 AI 知识库选型避坑指南（共 6 篇，完整清单见下方）
+- [安装与使用教程](https://agent.gofreeteam.com/docs/docsys-setup.html) — MxsDoc/DocSys 2.02.87 完整落地教程
+- [联系与试用](https://agent.gofreeteam.com/contact.html) — 免费试用与企业级部署咨询
 
-- [行业解决方案](https://ptreezh.github.io/mxsdoc-site/solutions/)：面向制造业-设计院、工程咨询-建设单位、政府-国企-军工、泛行业-选型对比的针对性解决方案彩页
+- [行业解决方案](https://agent.gofreeteam.com/solutions/index.html)：面向制造业-设计院、工程咨询-建设单位、政府-国企-军工、泛行业-选型对比的针对性解决方案彩页
 
 ## 完整清单
 
 MxsDoc - 企业 AI 知识库（本地化部署）
-https://ptreezh.github.io/mxsdoc-site/ — 首页：产品定位、核心能力、客户案例与 FAQ
-https://ptreezh.github.io/mxsdoc-site/appliance.html — MxsDoc Appliance 一体机：三档 SKU、服务承诺、现场服务与选型指南
-https://ptreezh.github.io/mxsdoc-site/features.html — 核心功能：版本控制、权限分级、Office/WPS 协同、AI 检索与 Agent 能力
-https://ptreezh.github.io/mxsdoc-site/scenario.html — 应用场景：设计院、工程咨询、制造、政企知识管理等典型场景
-https://ptreezh.github.io/mxsdoc-site/customers/ — 客户案例与 500+ 客户名录，政府/央企/上市公司/设计院等行业覆盖
-https://ptreezh.github.io/mxsdoc-site/blog/ — 官方博客：技术选型、部署实践与 AI 知识库选型避坑指南
+https://agent.gofreeteam.com/ — 首页：产品定位、核心能力、客户案例与 FAQ
+https://agent.gofreeteam.com/appliance.html — MxsDoc Appliance 一体机：三档 SKU、服务承诺、现场服务与选型指南
+https://agent.gofreeteam.com/features.html — 核心功能：版本控制、权限分级、Office/WPS 协同、AI 检索与 Agent 能力
+https://agent.gofreeteam.com/scenario.html — 应用场景：设计院、工程咨询、制造、政企知识管理等典型场景
+https://agent.gofreeteam.com/customers/index.html — 客户案例与 500+ 客户名录，政府/央企/上市公司/设计院等行业覆盖
+https://agent.gofreeteam.com/blog/ai-agent-knowledge-first.html — 博客：先整理知识再上智能体，上下文交叉污染与四步落地法
+https://agent.gofreeteam.com/blog/enterprise-ai-knowledge-base-selection-guide.html — 博客：2026 企业 AI 知识库选型避坑指南（12 方案对照 + 10 大避坑 + 12 项真机验证）
+https://agent.gofreeteam.com/blog/mxsdoc-appliance-sku-selection-guide.html — 博客：MxsDoc 一体机三档 SKU 选型指南（服务与认证差异 + SLA）
+https://agent.gofreeteam.com/blog/mechanical-drawing-version-control.html — 博客：机械设计审图不止于看图，制造场景版本治理三道坎
+https://agent.gofreeteam.com/blog/local-ai-digital-human-deployment.html — 博客：8G 显卡跑本地 AI 数字人，企业级落地三道坎
+https://agent.gofreeteam.com/blog/enterprise-llm-private-vs-cloud-deployment.html — 博客：企业大模型私有化 vs 云端 API，核心矛盾与 3 周落地路径
+https://agent.gofreeteam.com/solutions/index.html — 行业解决方案：制造业-设计院 / 工程咨询-建设单位 / 政府-国企-军工 / 泛行业选型对比
 

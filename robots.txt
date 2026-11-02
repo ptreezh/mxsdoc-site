@@ -26,4 +26,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://ptreezh.github.io/mxsdoc-site/sitemap.xml
+Sitemap: https://agent.gofreeteam.com/sitemap.xml

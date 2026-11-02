@@ -1,0 +1,63 @@
+/* ==========================================================================
+   MxsDoc-Site 共享样式（solutions/* 页面使用）
+   与首页内联样式保持同一套设计令牌
+   ========================================================================== */
+:root {
+  --primary: #1a5fb4;
+  --dark: #12253f;
+  --accent: #e8b13a;
+  --bg: #f7f9fc;
+  --text: #1f2937;
+  --muted: #64748b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.75;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+/* 顶部导航 */
+.navbar { background: var(--dark); padding: 1.1rem 0; }
+.navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.navbar-brand { color: #fff; font-size: 1.35rem; font-weight: 700; }
+.navbar-brand:hover { color: var(--accent); text-decoration: none; }
+
+/* 面包屑 */
+.breadcrumb { list-style: none; font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
+.breadcrumb li { display: inline; }
+.breadcrumb li + li::before { content: " / "; color: #94a3b8; }
+.breadcrumb a { color: var(--muted); }
+
+/* 内容区 */
+.hero { padding: 3rem 0 2rem; }
+section { padding: 2rem 0; }
+h1 { font-size: 2.1rem; line-height: 1.35; margin-bottom: .8rem; }
+h2 { font-size: 1.45rem; margin: 1.8rem 0 .8rem; padding-left: .6rem; border-left: 4px solid var(--primary); }
+h3 { font-size: 1.1rem; margin: 1.2rem 0 .5rem; }
+.lead { font-size: 1.05rem; color: var(--muted); }
+ul, ol { padding-left: 1.4rem; margin: .6rem 0 1rem; }
+li { margin: .3rem 0; }
+strong { color: #0f172a; }
+
+/* 行动号召块 */
+.cta { background: #f5f9ff; border: 1px solid #dbeafe; }
+
+/* 页脚 */
+footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; margin-top: 3rem; font-size: .88rem; }
+footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+footer a { color: #b8cbe0; }
+.site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.7rem; }
+  .hero { padding: 2rem 0 1rem; }
+}

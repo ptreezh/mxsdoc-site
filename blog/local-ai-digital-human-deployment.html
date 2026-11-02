@@ -6,12 +6,12 @@
   <title>8G 显卡也能跑本地 AI 数字人：从 8G 显存到企业级落地的三道坎 | MxsDoc 博客</title>
   <meta name="description" content="CSDN 1.1w 阅读热文《8G显卡不只跑聊天模型：用Voice Companion搭本地AI数字人》的企业级落地复盘：跑通 Demo 只是入场券，知识从哪来、多轮上下文怎么管、权限审计怎么做——这三道坎才是决定能否上生产的关键。含三方案对比、6 步 Docker Compose 部署、真机验收清单。">
   <meta name="keywords" content="8G显卡,本地AI数字人,Voice Companion,本地大模型,Qwen2.5,CosyVoice,FunASR,Ollama,知识治理,版本控制,数据不出内网,MxsDoc">
-  <link rel="canonical" href="https://ptreezh.github.io/mxsdoc-site/blog/local-ai-digital-human-deployment.html">
+  <link rel="canonical" href="https://agent.gofreeteam.com/blog/local-ai-digital-human-deployment.html">
   <meta property="og:title" content="8G 显卡也能跑本地 AI 数字人：从 8G 显存到企业级落地的三道坎 | MxsDoc 博客">
   <meta property="og:description" content="为什么「跑通 Demo」不等于「上线可用」？本地 AI 数字人企业级落地的三道坎：知识从哪来、多轮上下文怎么管、权限审计怎么做。含三方案对比 + Docker Compose 部署步骤。">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://ptreezh.github.io/mxsdoc-site/blog/local-ai-digital-human-deployment.html">
-  <meta property="og:image" content="https://ptreezh.github.io/mxsdoc-site/assets/appliance/png-1200/main-1-overview.png">
+  <meta property="og:url" content="https://agent.gofreeteam.com/blog/local-ai-digital-human-deployment.html">
+  <meta property="og:image" content="https://agent.gofreeteam.com/assets/appliance/png-1200/main-1-overview.png">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
@@ -23,7 +23,7 @@
     "publisher": { "@type": "Organization", "name": "MxsDoc" },
     "datePublished": "2026-09-25",
     "dateModified": "2026-09-25",
-    "mainEntityOfPage": "https://ptreezh.github.io/mxsdoc-site/blog/local-ai-digital-human-deployment.html",
+    "mainEntityOfPage": "https://agent.gofreeteam.com/blog/local-ai-digital-human-deployment.html",
     "inLanguage": "zh-CN"
   }
   </script>
@@ -70,8 +70,8 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ptreezh.github.io/mxsdoc-site/" },
-      { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://ptreezh.github.io/mxsdoc-site/#blog" },
+      { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://agent.gofreeteam.com/" },
+      { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://agent.gofreeteam.com/#blog" },
       { "@type": "ListItem", "position": 3, "name": "本地 AI 数字人企业级落地" }
     ]
   }
@@ -111,18 +111,19 @@
     .cta-band a:hover { background: #f4c84d; text-decoration: none; }
     footer { background: var(--dark); color: #94a3b8; padding: 1.5rem 0; margin-top: 3rem; text-align: center; font-size: .85rem; }
     footer a { color: var(--accent); }
-  </style>
+        .site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+</style>
 </head>
 <body>
   <header>
     <div class="container">
-      <a href="/mxsdoc-site/" class="logo">MxsDoc · 企业 AI 知识库底座</a>
+      <a href="../index.html" class="logo">MxsDoc · 企业 AI 知识库底座</a>
       <nav>
-        <a href="/mxsdoc-site/#features">能力</a>
-        <a href="/mxsdoc-site/scenario.html">场景对比</a>
-        <a href="/mxsdoc-site/customers/index.html">客户案例</a>
-        <a href="/mxsdoc-site/#blog">博客</a>
-        <a href="/mxsdoc-site/contact.html">联系</a>
+        <a href="../index.html#features">能力</a>
+        <a href="../scenario.html">场景对比</a>
+        <a href="../customers/index.html">客户案例</a>
+        <a href="../index.html#blog">博客</a>
+        <a href="../contact.html">联系</a>
       </nav>
     </div>
   </header>
@@ -298,8 +299,8 @@ services:
         <h3>想看真机演示？</h3>
         <p style="margin-bottom:1rem;">dw.gofreeteam.com 常驻演示环境（含图纸版本树、工艺库、语音数字人全链路）</p>
         <a href="mailto:zhangshuren@agent.qq.com?subject=MxsDoc%20试用申请&body=公司名称：%0A行业：%0A员工规模：%0A需求描述：">申请免费试用</a>
-        <a href="/mxsdoc-site/contact.html">联系部署咨询</a>
-        <a href="/mxsdoc-site/customers/chengdu-jinnuoxin.html">查看成都金诺信案例</a> · <a href="/mxsdoc-site/customers/index.html">更多案例 + 名录</a>
+        <a href="../contact.html">联系部署咨询</a>
+        <a href="../customers/chengdu-jinnuoxin.html">查看成都金诺信案例</a> · <a href="../customers/index.html">更多案例 + 名录</a>
       </div>
 
       <h2>七、FAQ（精选）</h2>
@@ -327,7 +328,10 @@ services:
 
   <footer>
     <div class="container">
-      © 2026 MxsDoc · 本地化部署的企业 AI 知识库底座 · <a href="/mxsdoc-site/">返回首页</a> · <a href="mailto:zhangshuren@agent.qq.com">联系商务</a>
+      © 2026 MxsDoc · 本地化部署的企业 AI 知识库底座 · <a href="../index.html">返回首页</a> · <a href="mailto:zhangshuren@agent.qq.com">联系商务</a>
+      <div class="site-icp">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">浙ICP备15034351号-1</a> · 自由团队 · gofreeteam.com · 高雨
+      </div>
     </div>
   </footer>
   <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->

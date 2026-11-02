@@ -12,7 +12,7 @@
 
 ## GEO 技术清单
 
-全站 **19 个 HTML 页面** + 3 个 GEO 配置文件，sitemap 收录全部 19 条 URL。
+全站 **24 个 HTML 页面** + 3 个 GEO 配置文件，sitemap 收录全部 24 条 URL。
 
 | 文件 | 说明 |
 |------|------|
@@ -35,14 +35,22 @@
 | `blog/enterprise-llm-private-vs-cloud-deployment.html` | 博客深度文章：企业大模型私有化 vs 云端 API（核心矛盾分析 + 3 方案对比 + 3 周落地路径 + 6 大避坑清单） |
 | `blog/enterprise-ai-knowledge-base-selection-guide.html` | 博客深度文章：2026 企业 AI 知识库选型避坑指南（12 方案 7 项能力对照矩阵 + 6 选型维度 + 5 类场景决策 + 10 大避坑清单 + 12 项真机验证清单 + FAQ） |
 | `blog/mxsdoc-appliance-sku-selection-guide.html` | 博客深度文章：MxsDoc 一体机三档 SKU 选型指南（10/20/45 万三档服务与信创认证差异 + 三周现场分工 + 续费口径 + P0/P1/P2 SLA + 5 问自测清单 + FAQ） |
+| `solutions/index.html` | 行业解决方案索引页：制造业-设计院 / 工程咨询-建设单位 / 政府-国企-军工 / 泛行业-选型对比 4 个彩页入口（引用 `assets/css/main.css`） |
+| `solutions/solution-manufacturing-design-institute.html` | 行业方案页：制造业-设计院（行业痛点 + 解决思路 + 核心能力匹配 + 2-4 周实施路径 + 预期收益） |
+| `solutions/solution-engineering-consulting.html` | 行业方案页：工程咨询-建设单位（同上结构） |
+| `solutions/solution-gov-enterprise-defense.html` | 行业方案页：政府-国企-军工（同上结构） |
+| `solutions/solution-industry-comparison.html` | 行业方案页：泛行业-选型对比（同上结构） |
+| `assets/css/main.css` | solutions/* 5 页共用的站点样式（设计令牌与首页一致，含 `.site-icp` 认证信息样式） |
+| `assets/img/og.png` | 社交分享图 1200×630（`og:image` / `twitter:image` 引用，AI 抓取用） |
+| `assets/img/mxsdoc-logo.png` | 站点 logo 512×512（JSON-LD `Organization.logo` 引用） |
 | `assets/demo/*.jpg` | 演示页真实界面截图（登录页/系统首页/组织权限矩阵/仓库列表/DocSys AI 问答） |
 | `assets/appliance/*.svg` + `png-800/` + `png-1200/` | Appliance 5 张核心场景图（SVG 源 + 双规格 PNG） |
 | `assets/video/mxsdoc-marketing.mp4` | 营销视频源文件（约 4.5 MB） |
 | `assets/proofs/chengdu-jinnuoxin-usage-proof.pdf` | 成都金诺信盖章客户使用证明原件（255338 bytes = 249.4 KB，官网公开可点击） |
 | `assets/proofs/suzhou-lantian-ranqi-usage-proof.pdf` | 苏州工业园区蓝天燃气热电盖章客户使用证明原件（182026 bytes = 177.8 KB，官网公开可点击） |
-| `llms.txt` | AI 可读站点摘要（Claude/GPT 等读取，含全站 19 页索引） |
+| `llms.txt` | AI 可读站点摘要（Claude/GPT 等读取，含全站 24 页索引） |
 | `robots.txt` | 放行 GPTBot/ClaudeBot/Google-Extended/PerplexityBot/CCBot 等 AI 爬虫 |
-| `sitemap.xml` | 站点地图（19 URL，与实际页面一一对应） |
+| `sitemap.xml` | 站点地图（24 URL，与实际页面一一对应） |
 
 ## 路线图
 
@@ -68,6 +76,37 @@
   - [x] 统计加载器（analytics.js）：全站统一注入，默认 no-op，配置 GA4 / Plausible / Umami，遵守 DNT/GPC（2026-09-30）
   - [x] docs 两页结构化数据：安装教程页补 TechArticle/HowTo/FAQPage/@graph，营销视频页补 VideoObject/@graph（2026-09-30）
   - [x] Appliance 三档 SKU 选型指南（blog/mxsdoc-appliance-sku-selection-guide.html，2026-10-01：服务与认证差异 + 三周现场分工 + 续费口径 + SLA + 5 问自测）
+  - [x] 双站点相对链接改造（2026-11-02）：全站 24 页站内链接/资源引用统一改为相对路径（GitHub Pages 子路径 /mxsdoc-site/ 与 agent.gofreeteam.com 根域名同时可用）+ 全站页脚补齐备案认证信息（浙ICP备15034351号-1 / 自由团队 / gofreeteam.com / 高雨）+ 修复 solutions/ 5 页指向根目录的死链与缺失的 assets/css/main.css + 门禁改为拦截一切非相对站内链接
+  - [x] 主域切换到 agent.gofreeteam.com（2026-11-02）：canonical / og:url / JSON-LD / sitemap.xml / llms.txt / robots.txt Sitemap 全部由 `ptreezh.github.io/mxsdoc-site` 切到 `https://agent.gofreeteam.com`（GitHub Pages 降为镜像，相对链接保证仍可用）；补齐缺失的 `assets/img/og.png`（1200×630）与 `assets/img/mxsdoc-logo.png`（512×512），修复 solutions 页 og:image 属性残缺，移除指向不存在 `/search` 端点的 SearchAction
+
+## 部署与链接策略（双站点）
+
+站点同时部署在两处，**路径前缀不同**：
+
+| 环境 | 地址 | 根路径 | 角色 |
+|------|------|--------|------|
+| 独立域名（自动抓取镜像） | `https://agent.gofreeteam.com/` | `/` | **主域**（canonical / og:url / JSON-LD / sitemap / llms.txt / robots Sitemap 全部指向这里） |
+| GitHub Pages | `https://ptreezh.github.io/mxsdoc-site/` | `/mxsdoc-site/` | 镜像（相对链接自动兼容，canonical 指回主域，避免重复收录） |
+
+因此**站内所有超链接与资源引用必须使用相对链接**，才能在两处同时正确解析：
+
+| 页面位置 | 首页 | 同级页 | 上级页 | 兄弟目录 |
+|----------|------|--------|--------|----------|
+| 根目录（`index.html`） | `index.html` | `features.html` | — | `customers/index.html`、`blog/xxx.html`、`solutions/index.html` |
+| 一级子目录（`blog/`、`customers/`、`docs/`、`solutions/`） | `../index.html` | `xxx.html` | `../index.html` | `../customers/index.html` |
+
+- `<link rel="canonical">`、`og:url`、JSON-LD 的 `url`/`item` **保持绝对 URL**（SEO 规范要求，`<link rel="canonical">` 被门禁逐行豁免），但**一律指向主域 `agent.gofreeteam.com`**，且路径部分与仓库内文件一一对应（不使用目录式 `/xxx/`，统一写 `/xxx/index.html`）
+- `sitemap.xml` / `llms.txt` / `robots.txt` 的 `Sitemap:` 同样指向主域（AI 爬虫按规范要求绝对地址），其中列出的页面地址均指向真实存在的 `.html` 文件
+
+## 页脚认证信息
+
+全部 24 个页面页脚统一包含备案与主体信息（`.site-icp` 区块）：
+
+```
+浙ICP备15034351号-1 · 自由团队 · gofreeteam.com · 高雨
+```
+
+备案号按工信部要求链接到 `https://beian.miit.gov.cn/`。
 
 ## 本地预览
 
@@ -75,5 +114,17 @@
 # 任选：直接打开 index.html，或用 Python 起本地服务
 python -m http.server 8000
 ```
+
 ## 开发门禁
-本仓库 git pre-commit hook 会拦截缺少 /mxsdoc-site/ 前缀的裸根路径。启用方式：git config core.hooksPath .githooks
+
+本仓库 git pre-commit hook 拦截**非相对站内链接**（裸根路径 `/x.html`、`/mxsdoc-site/...` 前缀式、同站绝对 URL `https://ptreezh.github.io/mxsdoc-site/...` 或 `https://agent.gofreeteam.com/...`）。启用方式：
+
+```bash
+git config core.hooksPath .githooks
+```
+
+手动全量体检：
+
+```bash
+python .githooks/check-root-paths.py
+```
