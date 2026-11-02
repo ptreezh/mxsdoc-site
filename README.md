@@ -78,6 +78,7 @@
   - [x] Appliance 三档 SKU 选型指南（blog/mxsdoc-appliance-sku-selection-guide.html，2026-10-01：服务与认证差异 + 三周现场分工 + 续费口径 + SLA + 5 问自测）
   - [x] 双站点相对链接改造（2026-11-02）：全站 24 页站内链接/资源引用统一改为相对路径（GitHub Pages 子路径 /mxsdoc-site/ 与 agent.gofreeteam.com 根域名同时可用）+ 全站页脚补齐备案认证信息（浙ICP备15034351号-1 / 自由团队 / gofreeteam.com / 高雨）+ 修复 solutions/ 5 页指向根目录的死链与缺失的 assets/css/main.css + 门禁改为拦截一切非相对站内链接
   - [x] 主域切换到 agent.gofreeteam.com（2026-11-02）：canonical / og:url / JSON-LD / sitemap.xml / llms.txt / robots.txt Sitemap 全部由 `ptreezh.github.io/mxsdoc-site` 切到 `https://agent.gofreeteam.com`（GitHub Pages 降为镜像，相对链接保证仍可用）；补齐缺失的 `assets/img/og.png`（1200×630）与 `assets/img/mxsdoc-logo.png`（512×512），修复 solutions 页 og:image 属性残缺，移除指向不存在 `/search` 端点的 SearchAction
+  - [x] demo.html HTTPS 降级（2026-11-02）：演示系统 `dw.gofreeteam.com` 仅支持 HTTP（实测 SSL 握手失败），主域启用 HTTPS 后内嵌会被浏览器按混合内容拦截；页面检测到 https 协议时自动把 iframe 换成可点击外链，并补 `<noscript>` 兜底
 
 ## 部署与链接策略（双站点）
 
@@ -97,6 +98,26 @@
 
 - `<link rel="canonical">`、`og:url`、JSON-LD 的 `url`/`item` **保持绝对 URL**（SEO 规范要求，`<link rel="canonical">` 被门禁逐行豁免），但**一律指向主域 `agent.gofreeteam.com`**，且路径部分与仓库内文件一一对应（不使用目录式 `/xxx/`，统一写 `/xxx/index.html`）
 - `sitemap.xml` / `llms.txt` / `robots.txt` 的 `Sitemap:` 同样指向主域（AI 爬虫按规范要求绝对地址），其中列出的页面地址均指向真实存在的 `.html` 文件
+
+### ⚠️ 镜像与主域的文件级去重不可行（重要）
+
+镜像站 `agent.gofreeteam.com` 是 GitHub Pages 部署结果的**逐字节拷贝**（实测：镜像的 `robots.txt` 与 `sitemap.xml` 与仓库内容完全一致）。因此：
+
+> **不能在本仓库的 `robots.txt` 或 HTML 里给 Pages 侧加 `noindex` / `Disallow` —— 那些文件会被原样拷贝到主域，等于把主域一起屏蔽掉，主域将无法被收录。**
+
+当前采用的正确做法是 **canonical 归一**：
+
+| 信号 | 位置 | 指向 |
+|------|------|------|
+| `<link rel="canonical">` | 24 页 | `https://agent.gofreeteam.com/…` |
+| `og:url` | 24 页 | `https://agent.gofreeteam.com/…` |
+| `sitemap.xml` / `llms.txt` / `robots.txt` | 仓库根 | `https://agent.gofreeteam.com/…` |
+
+Google 会据此只收录主域，Pages 副本表现为「重复内容，规范网址指向别处」——这是 Search Console 里的一条提示，不是排名问题。
+
+若要彻底让 Pages 副本零收录，唯一路径是**在 Pages 站点前置层做 301**（给 Pages 挂自定义域名 + Cloudflare 等可配跳转的代理），把 `ptreezh.github.io/mxsdoc-site/*` 301 到 `agent.gofreeteam.com/*`。⚠️ 抓取源正是 Pages 站点，301 后抓取器会跨域跟到主域，链路变脆。
+
+结论：**保持 canonical 归一，不在共享文件里加 noindex。** 残余影响仅为 Pages 副本仍会被少量抓取（24 页规模，成本可忽略）。
 
 ## 页脚认证信息
 

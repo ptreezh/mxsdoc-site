@@ -126,8 +126,25 @@
     <h2>实时演示系统<small>公开演示实例 · 可直接操作 · 数据为演示数据</small></h2>
     <div class="demo-box">
       <iframe class="demo-frame" src="http://dw.gofreeteam.com/DocSystem/web/" loading="lazy" title="MxsDoc 在线演示系统（V2.02.87）" referrerpolicy="no-referrer"></iframe>
+      <noscript><p class="demo-note">当前页面为 HTTPS 且未启用 JavaScript，演示系统（HTTP）无法内嵌嵌入，请直接访问下方地址。</p></noscript>
       <p class="demo-note">演示系统地址：<code>http://dw.gofreeteam.com/DocSystem/web/</code>（MxsDoc V2.02.87 公开演示实例）。如当前网络无法访问演示站，请参考下方 <a href="#gallery">真实界面截图</a> 了解系统全貌。</p>
     </div>
+    <script>
+      // HTTPS 降级：演示系统当前仅支持 HTTP，HTTPS 页面内嵌会被浏览器按「混合内容」拦截。
+      // 检测到页面协议为 https 且 iframe 指向 http 时，改为可点击的外链，不留空白框。
+      (function () {
+        var frame = document.querySelector('iframe.demo-frame');
+        if (!frame) return;
+        var src = frame.getAttribute('src') || '';
+        if (location.protocol !== 'https:' || src.indexOf('http://') !== 0) return;
+        var tip = document.createElement('p');
+        tip.className = 'demo-note';
+        tip.innerHTML = '当前页面为 HTTPS，演示系统仍为 HTTP，内嵌嵌入已被浏览器安全策略拦截。'
+          + '<a href="' + src + '" target="_blank" rel="noopener">点此在新窗口打开在线演示</a>'
+          + '（如需继续内嵌，请为 dw.gofreeteam.com 配置 HTTPS 证书）。';
+        frame.parentNode.replaceChild(tip, frame);
+      })();
+    </script>
   </div>
 </section>
 
