@@ -60,7 +60,7 @@
       {
         "@type": "Question",
         "name": "涉密场景下本地 AI 数字人怎么部署？",
-        "acceptedAnswer": { "@type": "Answer", "text": "物理隔离网 + MxsDoc 离线部署包（含所有镜像/依赖）+ 国产 GPU 适配（海光 DCU / 昇腾 NPU / 摩尔线程），全程无外网依赖。涉密场景对外仅宣「智能体能力」，不强调数字员工（合规红线）。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "物理隔离网 + MxsDoc 离线部署包（含所有镜像/依赖）+ 国产 GPU 适配（主流国产化算力平台），全程无外网依赖。涉密场景对外仅宣「智能体能力」，不强调数字员工（合规红线）。" }
       }
     ]
   }
@@ -196,7 +196,7 @@
       <ul>
         <li>文档级/目录级/字段级权限 + 操作审计日志</li>
         <li>私有化部署时，权限模型跟随企业现有 AD/LDAP/钉钉/飞书同步</li>
-        <li><strong>已适配海光 DCU / 昇腾 NPU / 摩尔线程</strong>，支持按等保三级要求部署</li>
+        <li><strong>已适配主流国产化算力平台</strong>，支持按等保三级要求部署</li>
       </ul>
 
       <h2>三、方案对比：三条路径的取舍</h2>
@@ -210,7 +210,7 @@
           <tr><td><strong>知识治理</strong></td><td>靠云厂商 RAG（黑盒）</td><td>自己搭向量库（易踩坑）</td><td>✅ Git 版本控制 + LLM WIKI 显式治理</td></tr>
           <tr><td><strong>权限/审计</strong></td><td>云厂商 IAM</td><td>需自建</td><td>✅ 原生文档级权限 + 审计日志</td></tr>
           <tr><td><strong>运维成本</strong></td><td>低（按量付费）</td><td>高（模型/推理框架/语音栈全维护）</td><td>中（MxsDoc 统一底座，模型可热插拔）</td></tr>
-          <tr><td><strong>适配国产化</strong></td><td>依赖云厂商</td><td>需适配国产 GPU/算子</td><td>✅ 已适配海光/昇腾/摩尔线程</td></tr>
+          <tr><td><strong>适配国产化</strong></td><td>依赖云厂商</td><td>需适配国产 GPU/算子</td><td>✅ 已适配主流国产化算力平台</td></tr>
         </tbody>
       </table>
       <blockquote>
@@ -275,7 +275,7 @@ services:
           <tr><td>16G 显存跑 14B Int4</td><td>✅ 已验证</td><td>Qwen2.5-14B-Int4 效果显著更好，建议预算允许上 16G+</td></tr>
           <tr><td>多轮语音上下文保持</td><td>✅ 5-8 轮</td><td>依赖 MxsDoc 结构化上下文注入，非纯模型记忆</td></tr>
           <tr><td>权限隔离</td><td>✅ 生产可用</td><td>文档级/字段级/操作审计，支持按等保三级要求部署</td></tr>
-          <tr><td>国产 GPU 适配</td><td>🟡 进行中</td><td>海光 DCU / 昇腾 NPU 适配中，预计 Q1 完工</td></tr>
+          <tr><td>国产 GPU 适配</td><td>🟡 进行中</td><td>主流国产化算力平台适配中，预计 Q1 完工</td></tr>
         </tbody>
       </table>
 

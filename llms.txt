@@ -4,7 +4,7 @@ MxsDoc - 企业 AI 知识库（本地化部署）
 
 ## 核心页面（优先阅读）
 - [首页](https://agent.gofreeteam.com/) — 产品定位、核心能力、客户案例与 FAQ
-- [MxsDoc Appliance 一体机](https://agent.gofreeteam.com/appliance.html) — 三档 SKU（10万/20万/45万）、服务承诺、现场服务与选型指南
+- [MxsDoc Appliance 一体机](https://agent.gofreeteam.com/appliance.html) — 三档 SKU（15万/25万/50万）、服务承诺、现场服务与选型指南
 - [产品功能](https://agent.gofreeteam.com/features.html) — 版本控制、权限分级、Office/WPS 协同、AI 检索与 Agent 能力
 - [应用场景](https://agent.gofreeteam.com/scenario.html) — 设计院、工程咨询、制造、政企知识管理等典型场景
 - [客户案例与名录](https://agent.gofreeteam.com/customers/index.html) — 4 个深度案例 + 500+ 客户名录（政府/央企/上市公司/设计院）

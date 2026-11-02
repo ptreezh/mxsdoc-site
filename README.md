@@ -5,7 +5,7 @@
 ## 站点内容
 
 - **产品**：MxsDoc 企业 AI 知识库底座（不是 RAG 底座）——LLM WIKI 智能问答、组织 Skills 市场、企业内·行业内专家智能体，叠加版本管理、集中权限分级、拖拽操作、在线编辑、移动端访问，全部本地化部署、数据不出内网
-- **产品形态**：软件底座（企业级部署实施、运维与二次开发定制服务）+ MxsDoc Appliance 一体机（4U 预装服务器，海光 + 昇腾 NPU，10 万 / 20 万 / 45 万三 SKU，30 天试用）
+- **产品形态**：软件底座（企业级部署实施、运维与二次开发定制服务）+ MxsDoc Appliance 一体机（机架式硬件平台预装部署，15 万 / 25 万 / 50 万三 SKU，30 天试用）
 - **客户证明**：4 个深度案例（成都金诺信、福州高意光学自 2025-04 起使用，苏州工业园区蓝天燃气热电自 2026-03 起使用，均运行稳定、效果良好；北京达成生物科技客户使用证明归档中）+ 客户500+，下面是部分客户名录；成都金诺信与苏州工业园区蓝天燃气热电的盖章使用证明 PDF 已随站点公开、可直接点击查看
 - **销售标的**：企业级部署实施、运维与二次开发定制服务
 - **对外合规**：竞品只做能力对照、不贬低；不点名低毁，只讲"场景不匹配"；禁用"唯一/最/第一/首选"
@@ -19,7 +19,7 @@
 | `index.html` | 首页：价值主张（企业 AI 知识库底座）+ 客户证明 + 可引用 CLAIMS 句 + 产品与资源区（一体机 / 安装教程 / 演示视频）+ SoftwareApplication/FAQPage schema |
 | `features.html` | 产品功能页：知识库底座核心能力详情（版本/权限/LLM WIKI/Skills/专家智能体）+ FAQ + SoftwareApplication/FAQPage schema |
 | `scenario.html` | 应用场景页：三场景故事（制造图纸/知识库AI问答/涉密合规）+ 12 方案能力对照矩阵（含蓝凌）+ IMA/Obsidian/飞书深度对比 + FAQ schema |
-| `appliance.html` | Appliance 一体机营销页：4 大痛点 + 双大模型架构（预装 Deepseek Qwen 等国产开源大模型 + Lux 判断决策）+ 三 SKU 价格表（10/20/45 万）+ 交付与续费口径 + 5 张核心场景图 + 客户使用证明 PDF 直链 + Product/Offer schema |
+| `appliance.html` | Appliance 一体机营销页：4 大痛点 + 双大模型架构（预装 Deepseek Qwen 等国产开源大模型 + Lux 判断决策）+ 三 SKU 价格表（15/25/50 万）+ 交付与续费口径 + 5 张核心场景图 + 客户使用证明 PDF 直链 + Product/Offer schema |
 | `demo.html` | 在线演示页：live iframe（dw.gofreeteam.com 公开演示系统 V2.02.87）+ 5 张真实界面截图 + 五分钟体验流程 + SoftwareApplication/BreadcrumbList schema |
 | `contact.html` | 留资表单页：免费试用/企业部署咨询（ContactPage schema） |
 | `customers/index.html` | 客户案例索引页：4 个深度案例汇总（附成都 / 苏州盖章使用证明 PDF 直链 + 文件大小实测值）+ 客户500+，下面是部分客户名录（按地域 + 核心字号 4-7 字缩写展示，保留业务类型词）+ 资质背书区块 |
@@ -34,7 +34,7 @@
 | `blog/local-ai-digital-human-deployment.html` | 博客深度文章：8G 显卡跑本地 AI 数字人（企业级落地三道坎 + 三方案对比 + 6 步 Docker Compose 部署 + 真机验收） |
 | `blog/enterprise-llm-private-vs-cloud-deployment.html` | 博客深度文章：企业大模型私有化 vs 云端 API（核心矛盾分析 + 3 方案对比 + 3 周落地路径 + 6 大避坑清单） |
 | `blog/enterprise-ai-knowledge-base-selection-guide.html` | 博客深度文章：2026 企业 AI 知识库选型避坑指南（12 方案 7 项能力对照矩阵 + 6 选型维度 + 5 类场景决策 + 10 大避坑清单 + 12 项真机验证清单 + FAQ） |
-| `blog/mxsdoc-appliance-sku-selection-guide.html` | 博客深度文章：MxsDoc 一体机三档 SKU 选型指南（10/20/45 万三档服务与信创认证差异 + 三周现场分工 + 续费口径 + P0/P1/P2 SLA + 5 问自测清单 + FAQ） |
+| `blog/mxsdoc-appliance-sku-selection-guide.html` | 博客深度文章：MxsDoc 一体机三档 SKU 选型指南（15/25/50 万三档服务与信创认证差异 + 三周现场分工 + 续费口径 + P0/P1/P2 SLA + 5 问自测清单 + FAQ） |
 | `solutions/index.html` | 行业解决方案索引页：制造业-设计院 / 工程咨询-建设单位 / 政府-国企-军工 / 泛行业-选型对比 4 个彩页入口（引用 `assets/css/main.css`） |
 | `solutions/solution-manufacturing-design-institute.html` | 行业方案页：制造业-设计院（行业痛点 + 解决思路 + 核心能力匹配 + 2-4 周实施路径 + 预期收益） |
 | `solutions/solution-engineering-consulting.html` | 行业方案页：工程咨询-建设单位（同上结构） |
@@ -79,6 +79,7 @@
   - [x] 双站点相对链接改造（2026-11-02）：全站 24 页站内链接/资源引用统一改为相对路径（GitHub Pages 子路径 /mxsdoc-site/ 与 agent.gofreeteam.com 根域名同时可用）+ 全站页脚补齐备案认证信息（浙ICP备15034351号-1 / 自由团队 / gofreeteam.com / 高雨）+ 修复 solutions/ 5 页指向根目录的死链与缺失的 assets/css/main.css + 门禁改为拦截一切非相对站内链接
   - [x] 主域切换到 agent.gofreeteam.com（2026-11-02）：canonical / og:url / JSON-LD / sitemap.xml / llms.txt / robots.txt Sitemap 全部由 `ptreezh.github.io/mxsdoc-site` 切到 `https://agent.gofreeteam.com`（GitHub Pages 降为镜像，相对链接保证仍可用）；补齐缺失的 `assets/img/og.png`（1200×630）与 `assets/img/mxsdoc-logo.png`（512×512），修复 solutions 页 og:image 属性残缺，移除指向不存在 `/search` 端点的 SearchAction
   - [x] demo.html HTTPS 降级（2026-11-02）：演示系统 `dw.gofreeteam.com` 仅支持 HTTP（实测 SSL 握手失败），主域启用 HTTPS 后内嵌会被浏览器按混合内容拦截；页面检测到 https 协议时自动把 iframe 换成可点击外链，并补 `<noscript>` 兜底
+  - [x] Appliance 价格全站对齐 15/25/50 万 + 去除硬件配置明细（2026-11-02）：三档 SKU 报价由 10/20/45 万统一更正为 15/25/50 万（appliance.html 价格卡与 JSON-LD Offer price、SKU 选型指南全文、首页卡片与文案、llms.txt、README 全部同步，档间增量 10 万 / 25 万 不变）；公开页面不再写明整机配置（CPU/NPU 型号、内存、存储、机型），统一表述为「具体配置按交付合同约定」；涉密/信创文章中的国产算力厂商名泛化为「主流国产化算力平台」，
 
 ## 部署与链接策略（双站点）
 
