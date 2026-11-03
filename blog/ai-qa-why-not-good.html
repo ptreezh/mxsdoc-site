@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 问答效果不好，问题多半不在模型：制造企业先做知识治理 — MxsDoc 博客</title>
+  <meta name="description" content="制造企业老板普遍遇到的坎：知识库已经本地化部署，AI 问答效果还是不好，说不清 AI 到底帮上了什么。本文从知识治理、上下文污染与内网 LLM WIKI 入手，给出制造企业可落地的排查清单、落地路径与 30 天试用验收口径。">
+  <meta name="keywords" content="知识治理,上下文污染,LLM WIKI,RAG">
+  <link rel="canonical" href="https://agent.gofreeteam.com/blog/ai-qa-why-not-good.html">
+  <meta property="og:title" content="AI 问答效果不好，问题多半不在模型：制造企业先做知识治理">
+  <meta property="og:description" content="制造企业老板普遍遇到的坎：知识库已经本地化部署，AI 问答效果还是不好，说不清 AI 到底帮上了什么。本文从知识治理、上下文污染与内网 LLM WIKI 入手，给出制造企业可落地的排查清单、落地路径与 30 天试用验收口径。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://agent.gofreeteam.com/blog/ai-qa-why-not-good.html">
+  <meta property="og:image" content="https://agent.gofreeteam.com/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI 问答效果不好，问题多半不在模型：制造企业先做知识治理",
+  "description": "制造企业老板普遍遇到的坎：知识库已经本地化部署，AI 问答效果还是不好，说不清 AI 到底帮上了什么。本文从知识治理、上下文污染与内网 LLM WIKI 入手，给出制造企业可落地的排查清单、落地路径与 30 天试用验收口径。",
+  "keywords": "知识治理,上下文污染,LLM WIKI,RAG",
+  "author": {
+    "@type": "Organization",
+    "name": "MxsDoc"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MxsDoc",
+    "url": "https://agent.gofreeteam.com"
+  },
+  "datePublished": "2026-11-03",
+  "dateModified": "2026-11-03",
+  "mainEntityOfPage": "https://agent.gofreeteam.com/blog/ai-qa-why-not-good.html",
+  "inLanguage": "zh-CN"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q1: 上下文污染是什么，怎么识别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "上下文污染指的是：喂给问答系统的料里，混进了过期版文件、作废图纸或互相矛盾的参数，导致答案被一起带偏。它不是模型算错，是料错。识别办法很简单：看答案里引用的文件编号是否还现行、同一问题换个问法答案是否打架、答不出的问题它敢不敢说「不知道」。只要这三条不过关，先别急着怀疑模型。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q2: 已经上线了一段时间但效果不好，怎么整改？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "按四步走：先盘点——每份现行文档登记负责人、版本、适用范围、废止时间；再隔离——废止版本移出检索，只留现行版；然后分级——按组织收敛权限、车间只看本产线；最后闭环——挑一个部门把验收题库跑通，再决定扩大。整改周期里不要并行铺开，先赢一个点再谈全量。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q3: 内网 LLM WIKI 和 RAG 有什么区别，怎么为场景选型？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAG 偏临场检索，来问题现找材料现拼答案，适合临时性查阅；内网 LLM WIKI 偏沉淀，先把知识整理成带版本、带权限、可追溯的底座条目，适合工艺、图纸、维保这类错了会出事的知识。选型顺序是先场景后方案：问清你的问题属于哪一类，各有侧重，不存在谁取代谁。如果你不确定，拿 30 天试用导入真实资料真机跑一轮，看引用是否对得上现行版，再定方案。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q4: 30 天试用期间怎么验收，什么算合格？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "合格标准写清楚三条：引用的文件版本能对上现行版、回答能标出依据、答不上的问题会坦白说不知道。验收题库必须来自你们的车间、售后或工艺的真实问题，每题标注现行依据；同一问题追问几次口径要一致。三条都过，再谈扩档和续费；有一条过不了，先回头治理资料和权限，不要硬推上线。"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://agent.gofreeteam.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客",
+      "item": "https://agent.gofreeteam.com/#blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI 问答效果不好，问题多半不在模型：制造企业先做知识治"
+    }
+  ]
+}
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 800px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .prose h3 { font-size: 1.15rem; color: var(--dark); margin: 1.6rem 0 .6rem; }
+    .prose ul { margin: 0 0 1.1rem 1.4rem; color: #334155; }
+    .prose li { margin: .35rem 0; }
+    .prose blockquote { background: #fff; border-left: 4px solid var(--primary); padding: 1rem 1.3rem; margin: 1.4rem 0; color: #475569; border-radius: 0 8px 8px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; font-size: .93rem; }
+    .prose th, .prose td { border: 1px solid #e2e8f0; padding: .65rem .8rem; text-align: left; vertical-align: top; }
+    .prose th { background: #f1f5f9; color: var(--dark); font-weight: 600; }
+    .prose code { background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+        .site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · AI 问答效果不好，问题多半不在模型：制造企业先做知识治</div>
+    <h1>AI 问答效果不好，问题多半不在模型：制造企业先做知识治理</h1>
+    <p class="sub">制造企业老板普遍遇到的坎：知识库已经本地化部署，AI 问答效果还是不好，说不清 AI 到底帮上了什么。本文从知识治理、上下文污染与内网 LLM WIKI 入手，给出制造企业可落地的排查清单、落地路径与 30 天试用验收口径。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-11-03 · 约 7 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+<div class="hook"><p><strong>本文要点</strong></p><ul><li>AI 问答效果不好，问题多半不在模型，而在知识治理与上下文污染</li><li>先盘点定责、隔离废止版本、按组织分级权限，单部门闭环落地</li><li>用 30 天试用做真机验收，通过再谈扩档与续费</li></ul></div>
+<h2>一、痛点场景：投了钱看不到效果，说不清 AI 到底帮了什么</h2>
+<p>你大概也参加过这样的会议：供应商进门，先挑几个拟好的提问，演示现场答得头头是道；三个月之后，车间拿同一套系统问「这批图纸到底以哪一版为准」，它把作废版和现行版搅在一块儿，答得有模有样。紧接着是返工，是质检开会，是法务一句话否掉整个方案：「这个依据不成立。」</p>
+<p>作为制造企业老板或者业务线负责人，你现在的处境多半是这样的：工艺变更单压在工艺部，图纸版本散落在共享盘和工程师自己的电脑里，设备维保手册既有纸质版又有扫描件，售后故障代码的处理经验全在老师傅脑子里。新来的技术员不知道「最终版二」是不是真的最终版，产线工人拿着作业指导书上的参数去调机，发现那本手册早在三年前就改过。知识库上了之后，你想听到的不是「AI 很聪明」，而是两笔账算清楚：这件事到底替公司省了什么、返了几批料、少走了多少弯路；下一年续费的时候，你拿什么说服自己，又拿什么跟团队解释这笔投入。</p>
+<p>可现实往往是：系统里放了很多文件，每天有人在查，但没人能证明它改变了任何一个决策。你说不清 AI 到底帮上了什么，只是眼睁睁看着它每个月被打开几次、闲置大多数时间——这不是模型的问题，是料的问题，也是题的问题。</p>
+<p>有一点话要先说在前面：我见过不少把演示当验收的现场，说来惭愧，我自己早年也干过。问题不在谁的错，在于制造场景的知识先天是「带版本、带权限、带责任人」的，不经过治理直接喂给任何问答系统，出来的东西就是「像那么回事但经不起追问」。把这件事看清楚了，后面的排查才有方向。</p>
+<h2>二、三道坎：问出来的答案为什么总差一点</h2>
+<p>多数制造企业 AI 问答效果不佳，问题不在模型，而在下面三道坎依次叠加。先对照下表看自己卡在哪一道，比盲目换模型有用得多。</p>
+<table><thead><tr><th>现象</th><th>真正根因</th><th>处置动作</th></tr></thead><tbody><tr><td>答得出口但对不上现行版文件</td><td>资料只进不治，没有负责人、版本与废止流程</td><td>知识治理：每份现行文档登记负责人、版本、适用范围、废止时间</td></tr><tr><td>同一问题两种说法都「有理」</td><td>上下文污染：过期版与现行版同时进入检索</td><td>隔离废止版本，只保留现行版进入在线知识底座</td></tr><tr><td>核心人员看不全，车间又全看不见</td><td>权限没有按组织分级，要么放水要么锁死</td><td>按公司、事业部、车间、班组逐级收敛权限</td></tr><tr><td>老师傅退休，问答系统一夜「失忆」</td><td>知识沉淀在个人脑中，没有外化进底座</td><td>把高频经验整理进内网 LLM WIKI，配套专家智能体</td></tr><tr><td>演示很好看，落地没人用</td><td>用演示题验收，没用车间真实问题验收</td><td>用 30 天试用做真机验收，不通过不扩档</td></tr></tbody></table>
+<h3>坎一：资料只进不治</h3>
+<p>最典型的表现是文件命名灾难：「最终版」「最终版二」「送审版」「下发版」并存，扫描件无人核对，同一道工序在两份作业指导书上写了两个参数，没人知道哪个生效。根因不是员工不认真，而是企业里从来没有一件叫「知识治理」的事——没人负责这批资料的真假，没人负责它什么时候作废，没人负责它对谁开放。文档进了系统不等于资产沉淀，只是把过去的混乱摊得更开。</p>
+<h3>坎二：上下文污染</h3>
+<p>检索式问答有一个先天倾向：它优先找「像的」，不保证找「对的」。过期的 SOP、作废的图纸、打通不同产线的参数，只要混进上下文，模型就会一本正经地引用它们，给出一本正经的错——这比答不上来更危险，因为它让你以为你已经确认过了。制造场景里错一个参数是返工的事，错一版图纸是事故的事。上下文污染不除，换什么模型都是往坏料里搅拌，电机再足也出不了好面粉。</p>
+<h3>坎三：权限不分级、经验不外化</h3>
+<p>权限这件事常常两头失控：要么全员可见，核心工艺和客户资料随手扩散；要么大多数人打不开，车间要用的作业指导书卡在等级森严的流程里，最后大家绕回纸质文件。与此对应的另一头是经验外化：老师傅知道故障代码背后那串没写进手册的经验，但这部分知识没有进入任何系统，一旦人走，灯灭。</p>
+<h3>关键判断：LLM WIKI 和 RAG，不是谁取代谁</h3>
+<p>这里顺带讲清楚一个常被问起的对比：内网 LLM WIKI 和 RAG 是两种思路，各有侧重，也最容易被互相误读。RAG 偏临场——来一个问题，检索相似片段，临时拼装答案，用完即散，每次相当于现找材料写一段。内网 LLM WIKI 偏沉淀——先把企业知识整理成带版本、带权限、可追溯的条目，问答每次都回到同一份被治理过的底座上。需要临时查一眼的场景，RAG 够用；涉及工艺、图纸、维保这类「错了会出事」的知识，沉淀式的底座更稳当。这不是谁替代谁，是你的问题属于哪一类，先分清楚再选型。把这件事说到这里为止，不拉踩任何一类方案，选型顺序永远是「先场景、后方案」。</p>
+<p>MxsDoc 的定位是本地化部署的企业 AI 知识库底座：数据不出内网，文件版本控制 + 集中权限分级 + 在线协同编辑 + 内网 LLM WIKI 知识底座 + 组织 Skills 市场 + 企业专家智能体。它不是 RAG 底座，能力清单为：文件版本控制、集中权限分级管理、拖拽上传下载、在线文档编辑、移动端自适应访问、内网 LLM WIKI 知识底座、组织 Skills 市场、企业专家智能体——没有一项超出能力清单。</p>
+<h2>三、落地路径：先盘点、再闭环、后验收</h2>
+<p>下面这套路径按次序走，可以显著降低「上了之后没人用」的风险。它不是方法论课件，是我反复在制造企业看到能跑通的顺序。</p>
+<ol><li><strong>选一个处境最痛、责任人明确的环节</strong>。建议从售后故障处理、工艺变更或图纸发放里挑一个，不要全公司铺开。处境越痛，落地时握力越足。</li><li><strong>盘点定责</strong>。每份现行文档登记四项：负责人、版本、适用范围、废止时间。做不到这一步，后面都是空中楼阁。</li><li><strong>隔离废止版本</strong>。「最终版二」一律移出在线检索，或明确标注已废止，目标是任何人搜出来的都是现行版。</li><li><strong>按组织分级权限</strong>。公司、事业部、车间、班组逐级收敛：工艺部看全套，车间看本产线，管理层看汇总。权限不继承、不打理，半年后等于没有。</li><li><strong>走在线文档编辑，留痕版本控制</strong>。工艺变更直接在在线文档里改，自动记下谁改了什么、什么时候改的、为什么改——这是「版本追溯」的底气。</li><li><strong>沉淀进内网 LLM WIKI</strong>。把高频问答整理为底座条目，关联到设备型号、产线、产品系列；对应的角色技能上架组织 Skills 市场，企业专家智能体按角色调用，问答每次都落回到可追溯的底座。</li><li><strong>车间走移动端</strong>。移动端自适应访问让车间扫码看作业指导，比守在工位终端前查快得多。</li><li><strong>用 30 天试用做真机验收</strong>。30 天试用期间导入真实资料、问真实问题、看真实答案。验收不通过，不扩档、不续费。</li></ol>
+<p>验收题库怎么建，直接给四条判断标准：</p>
+<ul><li>题目来自车间和售后的真实问题，不来自供应商演示脚本；</li><li>每题标注现行依据是哪份文件的哪一版；</li><li>答不上的题必须能坦白说「不知道」，而不是编一个；</li><li>同一问题追问几次，答案口径必须保持一致。</li></ul>
+<p>档位与价格按公开口径列明，便于你算这笔账：</p>
+<table><thead><tr><th>档位</th><th>价格</th><th>适合场景</th><th>口径</th></tr></thead><tbody><tr><td>基础版</td><td>15 万</td><td>远程交付可接受的企业</td><td>全部远程</td></tr><tr><td>标准版</td><td>25 万</td><td>希望有人到场落地</td><td>含现场实施与一年远程支持</td></tr><tr><td>旗舰版</td><td>50 万</td><td>有信创合规要求的企业</td><td>在标准版基础上增加信创认证</td></tr></tbody></table>
+<p>续费口径统一为续费 5 万/年；三档都支持 30 天试用；涉及硬件时具体配置按交付合同约定，公开资料不写明整机明细。</p>
+<h2>四、避坑清单：这些坑踩一个，AI 就白用了</h2>
+<ul><li><strong>把知识库当网盘，只传不治</strong>。问答质量等于扫描件质量，这是最常见的失败。</li><li><strong>痴迷「等模型再聪明一点」</strong>。聪明救不了过期图纸，上下文污染清不掉，换什么模型都一样。</li><li><strong>权限走过场</strong>。设完没人维护，过阵子又全量可见，等于没设。</li><li><strong>试用当演示</strong>。只跑供应商准备的题，不拿车间真实问题验收，等于没验收。</li><li><strong>交付标准没人写下来</strong>。交付之前就定好验收题库：看什么、谁来看、看到什么算过，白纸黑字。</li><li><strong>只算购机不算续费</strong>。续费 5 万/年是明账；隐账是老师傅带着经验走掉而你没留下任何东西。</li></ul>
+<p>下面是坚持和止损的信号，帮你判断这笔投入要不要继续：</p>
+<ul><li>坚持信号：验收题库通过率稳步改善、车间主动用起来了、返工和扯皮在减少；</li><li>止损信号：资料盘点推不动、车间无人打开、管理层连问都不问——这不是工具问题，是组织问题，先把组织理顺，再谈 AI。</li></ul>
+<p>关于客户证明，已公开的事实只有三家，不多讲，你直接拿去打听比什么宣讲都实在：成都金诺信、福州高意光学（自 2025 年 4 月起使用）、苏州工业园区蓝天燃气热电（自 2026 年 3 月起使用）。建议你亲自约这几家企业的使用负责人聊一聊：先从哪个环节闭环、用了什么才真正用起来、踩过什么坑——同行业的一通电话，顶过十场供应商演示。<a href="../customers/index.html">客户案例与名录</a>里能查到基本背景。</p>
+<p>最后还要提醒一句报价口径，别被过期的价格单子误导：基础版 15 万、标准版 25 万、旗舰版 50 万，续费 5 万/年——任何低于这个口径的说法都不对应现行方案。想了解完整档位差异，可以看<a href="../appliance.html">一体机与报价</a>；<a href="../features.html">产品功能对照</a>能帮你把能力清单逐条对上验收题库；如果已定下先内部跑一轮，直接去<a href="../contact.html">申请试用</a>。</p>
+<h2>参考与说明</h2>
+<p>本文仅引用可回溯的站内公开页面，未外引无法核对的外部报告或数据：</p>
+<ul><li><a href="../features.html">MxsDoc 产品功能：版本 / 权限 / 内网 LLM WIKI / Skills / 专家智能体</a></li><li><a href="../appliance.html">MxsDoc 一体机与报价</a></li><li><a href="../scenario.html">MxsDoc 应用场景与竞品能力对照</a></li><li><a href="../customers/index.html">MxsDoc 客户案例与名录</a></li></ul>
+<h2>常见问题</h2>
+<div class="faq-item"><h4>Q1: 上下文污染是什么，怎么识别？</h4><p>上下文污染指的是：喂给问答系统的料里，混进了过期版文件、作废图纸或互相矛盾的参数，导致答案被一起带偏。它不是模型算错，是料错。识别办法很简单：看答案里引用的文件编号是否还现行、同一问题换个问法答案是否打架、答不出的问题它敢不敢说「不知道」。只要这三条不过关，先别急着怀疑模型。</p></div>
+<div class="faq-item"><h4>Q2: 已经上线了一段时间但效果不好，怎么整改？</h4><p>按四步走：先盘点——每份现行文档登记负责人、版本、适用范围、废止时间；再隔离——废止版本移出检索，只留现行版；然后分级——按组织收敛权限、车间只看本产线；最后闭环——挑一个部门把验收题库跑通，再决定扩大。整改周期里不要并行铺开，先赢一个点再谈全量。</p></div>
+<div class="faq-item"><h4>Q3: 内网 LLM WIKI 和 RAG 有什么区别，怎么为场景选型？</h4><p>RAG 偏临场检索，来问题现找材料现拼答案，适合临时性查阅；内网 LLM WIKI 偏沉淀，先把知识整理成带版本、带权限、可追溯的底座条目，适合工艺、图纸、维保这类错了会出事的知识。选型顺序是先场景后方案：问清你的问题属于哪一类，各有侧重，不存在谁取代谁。如果你不确定，拿 30 天试用导入真实资料真机跑一轮，看引用是否对得上现行版，再定方案。</p></div>
+<div class="faq-item"><h4>Q4: 30 天试用期间怎么验收，什么算合格？</h4><p>合格标准写清楚三条：引用的文件版本能对上现行版、回答能标出依据、答不上的问题会坦白说不知道。验收题库必须来自你们的车间、售后或工艺的真实问题，每题标注现行依据；同一问题追问几次口径要一致。三条都过，再谈扩档和续费；有一条过不了，先回头治理资料和权限，不要硬推上线。</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>把知识沉淀下来，比选一个模型更重要</h2>
+    <p>文档进得来、知识留得住、AI 用得上——先在真机上验证一次。</p>
+    <a class="btn btn-primary" href="../contact.html">申请 30 天免费试用</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../scenario.html">应用场景</a> · <a href="../appliance.html">一体机与报价</a> · <a href="../customers/index.html">客户案例</a> · <a href="../contact.html">联系试用</a></div>
+    <div class="site-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">浙ICP备15034351号-1</a> · 自由团队 · gofreeteam.com · 高雨
+    </div>
+  </div>
+</footer>
+
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
+</body>
+</html>

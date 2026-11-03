@@ -30,3 +30,4 @@ https://agent.gofreeteam.com/blog/local-ai-digital-human-deployment.html — 博
 https://agent.gofreeteam.com/blog/enterprise-llm-private-vs-cloud-deployment.html — 博客：企业大模型私有化 vs 云端 API，核心矛盾与 3 周落地路径
 https://agent.gofreeteam.com/solutions/index.html — 行业解决方案：制造业-设计院 / 工程咨询-建设单位 / 政府-国企-军工 / 泛行业选型对比
 
+https://agent.gofreeteam.com/blog/ai-qa-why-not-good.html — AI 问答效果不好，问题多半不在模型：制造企业先做知识治理：制造企业老板普遍遇到的坎：知识库已经本地化部署，AI 问答效果还是不好，说不清 AI 到底帮上了什么。本文从知识治理、上下文污染与内网 LLM WIKI 入手，给出制造企业可落地的排查清单、落地路径与 30 天试用验收口径。
