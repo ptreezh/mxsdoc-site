@@ -39,6 +39,6 @@
 
   <!-- Footer -->
   <rect x="0" y="680" width="800" height="120" fill="#0F1A2D"/>
-  <text x="400" y="720" font-family="PingFang SC, sans-serif" font-size="22" font-weight="700" fill="#22C55E" text-anchor="middle">✓ 支持按等保三级要求部署/ 分级保护（涉密可选）</text>
+  <text x="400" y="720" font-family="PingFang SC, sans-serif" font-size="22" font-weight="700" fill="#22C55E" text-anchor="middle">✓ 支持按等保三级要求部署 / 分级保护（涉密可选）</text>
   <text x="400" y="760" font-family="PingFang SC, sans-serif" font-size="14" fill="#94A3B8" text-anchor="middle">自 2025-04 起稳定运行 · 成都金诺信 / 福州高意光学</text>
 </svg>

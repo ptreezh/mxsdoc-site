@@ -79,7 +79,8 @@
   - [x] 双站点相对链接改造（2026-11-02）：全站 24 页站内链接/资源引用统一改为相对路径（GitHub Pages 子路径 /mxsdoc-site/ 与 agent.gofreeteam.com 根域名同时可用）+ 全站页脚补齐备案认证信息（浙ICP备15034351号-1 / 自由团队 / gofreeteam.com / 高雨）+ 修复 solutions/ 5 页指向根目录的死链与缺失的 assets/css/main.css + 门禁改为拦截一切非相对站内链接
   - [x] 主域切换到 agent.gofreeteam.com（2026-11-02）：canonical / og:url / JSON-LD / sitemap.xml / llms.txt / robots.txt Sitemap 全部由 `ptreezh.github.io/mxsdoc-site` 切到 `https://agent.gofreeteam.com`（GitHub Pages 降为镜像，相对链接保证仍可用）；补齐缺失的 `assets/img/og.png`（1200×630）与 `assets/img/mxsdoc-logo.png`（512×512），修复 solutions 页 og:image 属性残缺，移除指向不存在 `/search` 端点的 SearchAction
   - [x] demo.html HTTPS 降级（2026-11-02）：演示系统 `dw.gofreeteam.com` 仅支持 HTTP（实测 SSL 握手失败），主域启用 HTTPS 后内嵌会被浏览器按混合内容拦截；页面检测到 https 协议时自动把 iframe 换成可点击外链，并补 `<noscript>` 兜底
-  - [x] Appliance 价格全站对齐 15/25/50 万 + 去除硬件配置明细（2026-11-02）：三档 SKU 报价由 10/20/45 万统一更正为 15/25/50 万（appliance.html 价格卡与 JSON-LD Offer price、SKU 选型指南全文、首页卡片与文案、llms.txt、README 全部同步，档间增量 10 万 / 25 万 不变）；公开页面不再写明整机配置（CPU/NPU 型号、内存、存储、机型），统一表述为「具体配置按交付合同约定」；涉密/信创文章中的国产算力厂商名泛化为「主流国产化算力平台」，
+  - [x] Appliance 价格全站对齐 15/25/50 万 + 去除硬件配置明细（2026-11-02）：三档 SKU 报价由 10/20/45 万统一更正为 15/25/50 万（appliance.html 价格卡与 JSON-LD Offer price、SKU 选型指南全文、首页卡片与文案、llms.txt、README 全部同步，档间增量 10 万 / 25 万 不变）；公开页面不再写明整机配置（CPU/NPU 型号、内存、存储、机型），统一表述为「具体配置按交付合同约定」；涉密/信创文章中的国产算力厂商名泛化为「主流国产化算力平台」
+  - [x] 等保测评表述合规整改（2026-11-04）：全站清除无测评报告支撑的等保达标断言（等保达标结论、密评达标结论、合规已通过结论三类），涉及 blog/local-ai-digital-human-deployment.html（2 处）、blog/mechanical-drawing-version-control.html（3 处，含 FAQ JSON-LD）、blog/enterprise-llm-private-vs-cloud-deployment.html（3 处，含文末证据来源注记）、assets/appliance/main-3-zero-exfiltration.svg、assets/appliance/main-5-customer-cases.svg（2 处）+ 对应 PNG 导出图（800/1200 双规格，Chrome 无头重新导出，与 main-2/main-4 的 800 版逐像素同管线）；统一改为「支持按等保三级要求部署」/「等保对标项逐条可查」；依据：等保是「定级—备案—建设整改—测评—监督检查」机制，对象为客户侧信息系统而非软件产品，本公司无测评报告或备案证明可对外出具，故不得宣称已达标
 
 ## 部署与链接策略（双站点）
 

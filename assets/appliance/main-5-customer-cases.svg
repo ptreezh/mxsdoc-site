@@ -27,8 +27,8 @@
     <rect x="0" y="0" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
     <text x="20" y="40" font-family="PingFang SC, sans-serif" font-size="32">🔒</text>
     <text x="20" y="75" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#1A5FB4">涉密国企</text>
-    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">物理隔离 + 等保</text>
-    <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">合规通过</text>
+    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">物理隔离 · 按等保部署</text>
+    <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">可按等保交付</text>
   </g>
 
   <!-- AI 转型 -->
@@ -46,7 +46,7 @@
     <rect x="0" y="0" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
     <text x="20" y="40" font-family="PingFang SC, sans-serif" font-size="32">🏛️</text>
     <text x="20" y="75" font-family="PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#1A5FB4">金融/政务</text>
-    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">等保三级</text>
+    <text x="20" y="105" font-family="PingFang SC, sans-serif" font-size="12" fill="#64748B">按等保三级部署</text>
     <text x="20" y="130" font-family="PingFang SC, sans-serif" font-size="14" font-weight="600" fill="#22C55E">信创合规</text>
   </g>
 
