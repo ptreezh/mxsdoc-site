@@ -31,3 +31,4 @@ https://agent.gofreeteam.com/blog/enterprise-llm-private-vs-cloud-deployment.htm
 https://agent.gofreeteam.com/solutions/index.html — 行业解决方案：制造业-设计院 / 工程咨询-建设单位 / 政府-国企-军工 / 泛行业选型对比
 
 https://agent.gofreeteam.com/blog/ai-qa-why-not-good.html — AI 问答效果不好，问题多半不在模型：制造企业先做知识治理：制造企业老板普遍遇到的坎：知识库已经本地化部署，AI 问答效果还是不好，说不清 AI 到底帮上了什么。本文从知识治理、上下文污染与内网 LLM WIKI 入手，给出制造企业可落地的排查清单、落地路径与 30 天试用验收口径。
+https://agent.gofreeteam.com/blog/drawing-version-chaos.html — 制造图纸版本管不住：一次「用错图」是怎么蔓延到返工赔款的：面向制造企业 IT 与信息化负责人，复盘一起制造图纸版本事故从「用错图」蔓延到返工与客诉的完整链条，给出文件版本管理与审计留痕的落地清单，涵盖权限分级、内网隔离、PDM/ERP/MES 对接与试用验收动作。
