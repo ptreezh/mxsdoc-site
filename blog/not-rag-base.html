@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识库底座和 RAG 框架不是一回事：选型前先分清你买的是哪一层 — MxsDoc 博客</title>
+  <meta name="description" content="面向企业 AI 落地负责人与数字化顾问，拆解 Dify、FastGPT、RAGFlow 等 RAG 框架与企业 AI 知识库底座的分层关系，给出真机验证方法、迁移成本判断与避坑清单，直击接上真实文档就答非所问的痛点。">
+  <meta name="keywords" content="RAG,Dify,FastGPT,RAGFlow,企业 AI 知识库">
+  <link rel="canonical" href="https://agent.gofreeteam.com/blog/not-rag-base.html">
+  <meta property="og:title" content="知识库底座和 RAG 框架不是一回事：选型前先分清你买的是哪一层">
+  <meta property="og:description" content="面向企业 AI 落地负责人与数字化顾问，拆解 Dify、FastGPT、RAGFlow 等 RAG 框架与企业 AI 知识库底座的分层关系，给出真机验证方法、迁移成本判断与避坑清单，直击接上真实文档就答非所问的痛点。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://agent.gofreeteam.com/blog/not-rag-base.html">
+  <meta property="og:image" content="https://agent.gofreeteam.com/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "知识库底座和 RAG 框架不是一回事：选型前先分清你买的是哪一层",
+  "description": "面向企业 AI 落地负责人与数字化顾问，拆解 Dify、FastGPT、RAGFlow 等 RAG 框架与企业 AI 知识库底座的分层关系，给出真机验证方法、迁移成本判断与避坑清单，直击接上真实文档就答非所问的痛点。",
+  "keywords": "RAG,Dify,FastGPT,RAGFlow,企业 AI 知识库",
+  "author": {
+    "@type": "Organization",
+    "name": "MxsDoc"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MxsDoc",
+    "url": "https://agent.gofreeteam.com"
+  },
+  "datePublished": "2026-11-04",
+  "dateModified": "2026-11-04",
+  "mainEntityOfPage": "https://agent.gofreeteam.com/blog/not-rag-base.html",
+  "inLanguage": "zh-CN"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q1: 企业 AI 知识库底座是什么？和 RAG 是什么关系？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "企业 AI 知识库底座，是本地化部署（数据不出内网）的文件版本控制 + 集中权限分级管理 + 在线协同编辑 + 内网 LLM WIKI 知识底座 + 组织 Skills 市场 + 企业专家智能体的组合，职责是让企业的知识先被治理好：版本可控、权限可控、留痕可查、经验可沉淀。RAG 是检索增强生成这套方法；Dify、FastGPT、RAGFlow 是把这套方法工程化的框架，职责是「从资料里找出内容并组织成答案」。关系很简单：底座治料，框架管问，先底座后问答。想只买一样的话，省掉底座等于让问答层啃未经治理的料；省掉框架只是少一个入口，料已经立住了。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q2: 选型前怎么做真机验证？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不听演示，听真机。具体做法：先挑三类高风险料（作废未清理的工艺文件、权限不一的合同、扫描件图片件）导入试用环境；让业务部门出题而不是 IT 出题；逐条看引用来源是不是生效版、无权限内容会不会被引用、答非所问时能不能定位到文档或权限问题；把权限回收、版本回滚、作废防误用各演示一次；留出足够时间把这些跑透，用 30 天试用做完整验收，再谈签约。验收清单提前写死：生效版本一处可查、全程留痕可回溯、越权不可见、回滚可演示，四条缺一条就不算通过。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q3: Dify、FastGPT、RAGFlow 和企业 AI 知识库底座的区别是什么，怎么选？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "区别是层不同，不是高下之分。Dify、FastGPT、RAGFlow 擅长编排与检索：文档解析、切片、向量化、模型调用、对话界面，上手快、适合验证想法和做内部工具。知识库底座擅长治理：文件版本控制、集中权限分级、审计留痕、在线协同和知识沉淀，回答的是「料对不对、谁能看、怎么追溯」。怎么选：需要快速验证一个想法，选框架；需要全公司文件受控、权限、追溯和知识沉淀，先立底座；两者通常并存，底座管料、框架管问。预算有限时先底座后问答——料没治理好，问答层演得再好也是答非所问。"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://agent.gofreeteam.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客",
+      "item": "https://agent.gofreeteam.com/#blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "知识库底座和 RAG 框架不是一回事：选型前先分清你买的"
+    }
+  ]
+}
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 800px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .prose h3 { font-size: 1.15rem; color: var(--dark); margin: 1.6rem 0 .6rem; }
+    .prose ul { margin: 0 0 1.1rem 1.4rem; color: #334155; }
+    .prose li { margin: .35rem 0; }
+    .prose blockquote { background: #fff; border-left: 4px solid var(--primary); padding: 1rem 1.3rem; margin: 1.4rem 0; color: #475569; border-radius: 0 8px 8px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; font-size: .93rem; }
+    .prose th, .prose td { border: 1px solid #e2e8f0; padding: .65rem .8rem; text-align: left; vertical-align: top; }
+    .prose th { background: #f1f5f9; color: var(--dark); font-weight: 600; }
+    .prose code { background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+        .site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · 知识库底座和 RAG 框架不是一回事：选型前先分清你买的</div>
+    <h1>知识库底座和 RAG 框架不是一回事：选型前先分清你买的是哪一层</h1>
+    <p class="sub">面向企业 AI 落地负责人与数字化顾问，拆解 Dify、FastGPT、RAGFlow 等 RAG 框架与企业 AI 知识库底座的分层关系，给出真机验证方法、迁移成本判断与避坑清单，直击接上真实文档就答非所问的痛点。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-11-04 · 约 7 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+<div class="hook"><p><strong>本文要点</strong></p><ul><li>RAG 是检索方法不是知识治理地基，先分清买的是问答层还是底座层</li><li>知识治理先于模型，先集中权威源与权限分级再接问答</li><li>用 30 天试用做真机验证，迁移成本看文档与流程，不看模型。</li></ul></div>
+<h2>一、痛点场景：演示很顺，接上真实文档就答非所问</h2>
+<p>你是集团数字化中心或 AI 转型办公室的负责人，手里压着这样一件事：上半年演示的 RAG 问答效果不错，Dify 也好、FastGPT 也好、RAGFlow 也好，给领导看的时候，问题都是提前备好的顺手问题，文档是精挑细选的几十份；预算批了、供应商进场了，真实文档一接进来，答案开始跑偏——问液压站调试压力，返回的是作废版参数；问某个客户的供货要求，把另一家客户的条款混了进来；扫描件 PDF 根本没被解析，系统一本正经地说「未找到相关资料」。</p>
+<p>这个场景我见过很多次。事后总有人解释：切片策略没调好、向量模型不够强、需要换个更大的模型。个别情况确实如此，但多数时候，问题出在料上，不在模型上。企业真实的文档库，是多年积累的状态：共享盘里 final、final2、最终版并存，作废版本没人回收，合同、图纸、制度混在同一个知识库里，谁都能检索、谁都能下载，扫描件和拍照件散落在各处。RAG 解决的是「从资料里找到相关片段并组织成答案」，它不负责判断资料本身是不是生效版、访问者有没有权限、内容是不是已经过期。演示环境的料是干净的，生产环境的料没有治理，答非所问几乎是必然结果。</p>
+<p>所以在选型会上，当采购和领导问你「买哪个方案」，你得先帮他们把更上游的问题分清：这笔钱买的是「一个能回答问题的对话入口」，还是「企业知识先被治理好、再被调用」的底座。两笔钱花的地方不同，验收标准不同，出了错之后的担责链条也不同。下一章先把这个分层讲清楚，再谈怎么验证、怎么迁移、怎么避坑。</p>
+<h2>二、分清你买的是哪一层：RAG 框架和知识库底座不是一个物种</h2>
+<p>先把三样东西摆在桌面上：RAG 是方法，Dify、FastGPT、RAGFlow 是把这套方法工程化的框架，企业 AI 知识库底座是让这套方法有干净、可控、可追溯的料可取的地基。三者不是替代关系，是分层关系。</p>
+<table><thead><tr><th>维度</th><th>RAG 框架（Dify、FastGPT、RAGFlow 等）</th><th>企业 AI 知识库底座</th></tr></thead><tbody><tr><td>定位</td><td>应用与管道：解析、切片、检索、提示词、模型调用、对话界面</td><td>治理地基：版本、权限、协同、沉淀、授权</td></tr><tr><td>解决的问题</td><td>怎么让模型从资料里找出内容并组织成答案</td><td>资料是不是生效版、谁能看、怎么追溯、怎么沉淀</td></tr><tr><td>管得住什么</td><td>索引与检索策略，管不了文件生命周期</td><td>文件版本控制、集中权限分级管理、审计留痕、在线文档编辑</td></tr><tr><td>权限粒度</td><td>常见到应用或知识库级别，颗粒偏粗</td><td>到部门和角色，文件级分级授权</td></tr><tr><td>版本口径</td><td>一般不管文件版本，管的是切片与索引</td><td>提交即留痕、历史可回滚、作废版本防误用</td></tr><tr><td>部署形态</td><td>取决于方案，有云端、有混合、有本地化</td><td>本地化部署，数据不出内网</td></tr><tr><td>典型产出</td><td>一个回答问题的对话入口</td><td>内网 LLM WIKI 知识底座、组织 Skills 市场、企业专家智能体</td></tr></tbody></table>
+<p>买之前，先在选型会上把下面三个问题问清楚：</p>
+<ol><li>这笔预算的验收标准是「能对话」，还是「生效版、权限、追溯」全部立住？</li><li>答错一次之后，担责的是检索、模型，还是文档本身？</li><li>明年换模型、换框架时，你们积累的知识资产跟不跟得走？</li></ol>
+<p>第一个问题决定预算花在哪一层；第二个问题决定出事之后有没有人说得清；第三个问题决定这笔投资是不是一次性的消耗品。三个问题里有两个答不上来，说明选型还没到比产品的阶段，先回去把家底盘清楚。</p>
+<p>这里有个容易被忽略的事实：RAG 框架的资产绑定的是向量索引和工作流。换框架，索引要重建，提示词和编排要手工迁；而知识库底座管的是文件本体、版本、权限和留痕，问答层可以换、可以叠加，知识资产留在你自己内网里。所以顺序不能反：先立底座、治料，再上问答层。只买框架不治料，答非所问迟早找上门；底座立住之后，框架选哪个、要不要换，反而成了一个可以从容讨论的技术问题。</p>
+<h2>三、做法：知识治理先于模型，六步落地</h2>
+<p>下面这条路径，适合集团级、文档资产厚重的企业照着走。顺序比工具重要，别跳步。</p>
+<p><strong>步骤一：盘点家底。</strong> 把图纸、工艺文件、制度、合同、作业指导书拉清单，分成生效、历史、作废三类，找出版本最乱的部门或车间，先从重灾区下手，别一上来就全厂铺开。</p>
+<p><strong>步骤二：立单一权威源。</strong> 全部受控文件进平台，启用文件版本控制：每次提交生成新版本、全程留痕、支持回滚；在线文档编辑直接改权威源上的原件，杜绝「下载改完再传回一堆副本」。拖拽上传下载、移动端自适应访问，保证现场人员拿得到手。</p>
+<p><strong>步骤三：权限分级到部门和角色。</strong> 设计能改、工艺能审、车间能看能下载受控版、质量能追溯、外协默认不可见；敏感文件单独授权。分级到部门和角色，而不是一人一张表手工配。</p>
+<p><strong>步骤四：沉淀内网 LLM WIKI。</strong> 把专家经验、常见问题、制度解读写成内网知识页，按权限可见，可检索、可引用、可追溯。组织 Skills 市场把可复用的工作方式沉淀成团队资产，企业专家智能体把资深员工的经验做成可调用的内网服务。</p>
+<p><strong>步骤五：再接问答层。</strong> 这一步才轮到 RAG 框架发挥：在干净的权威源上建检索，接内网模型，问答就有了「对的料」。底座不替代框架，而是给框架喂好料。</p>
+<p><strong>步骤六：用 30 天试用做真机验证。</strong> 别让供应商包办自证，按下面的方法验收：</p>
+<ul><li>选三类高风险料：作废未清理的工艺文件、权限不一的合同、扫描件图片件——它们最容易暴露答非所问；</li><li>让业务部门出题，不要让 IT 出题。题目就从每天的真实工作里来：调试参数、客诉回溯、制度条款、供货要求；</li><li>看三件事：引用来源是不是指向生效版；无权限内容会不会被引用或摘要；答非所问时能不能快速定位是文档问题、检索问题还是权限问题——定位不出来，就不算闭环；</li><li>用满 30 天试用再谈签约，把上面三类料全部跑一遍。</li></ul>
+<p>几个判断信号，出现就说明底座立住了：任意文件能在一处找到当前生效版；任意一次下载、修改、审批都能查到谁、何时做的；越权用户检索时看不到不该看的内容；问答引用的都是生效版本。反过来，只要有一条答不上来，就说明还停留在演示层面。</p>
+<p>已公开的客户使用事实仅限这些：成都金诺信、福州高意光学（自 2025 年 4 月起使用）、苏州工业园区蓝天燃气热电（自 2026 年 3 月起使用）。想看同行怎么用，可以先看 <a href="../customers/index.html">客户案例</a>。</p>
+<h2>四、避坑清单：选型、迁移与一体机口径</h2>
+<p>下面这些坑，我见得多了，逐条对照：</p>
+<ol><li><strong>把 RAG 演示当验收。</strong> 演示语料是精选的，验收语料必须是你自己的真实文档。演示过得了、真机过不了，是这类项目失败的头号姿势。</li><li><strong>先换模型再治理文档。</strong> 模型再强，也答不对放错了版本的料。知识治理先于模型，这个顺序不能反。</li><li><strong>权限只开到应用级。</strong> 知识库级的权限等于全员可看，越权引用就是数据泄露。必须到部门和角色、到文件。</li><li><strong>作废版本不回收。</strong> 答非所问的大头是过期内容被检索命中。生效、历史、作废三类先分清，权威源里只放生效版。</li><li><strong>迁移成本只看模型。</strong> 真正的迁移成本在文档清洗、权限梳理、流程改造；模型切换反而是最轻的一环。从 Dify、FastGPT、RAGFlow 迁出时，文档本体跟着走，向量索引一般要重建，提示词和工作流手工迁，先治料再迁移。</li><li><strong>一体机只比硬件配置。</strong> 公开报价口径是：基础版 15 万（全部远程）、标准版 25 万（含三周现场 + 1 年远程）、旗舰版 50 万（再加信创认证），续费 5 万/年，30 天试用。涉及硬件形态时统一表述为「具体配置按交付合同约定」，公开页面不写具体配置。</li><li><strong>把信创认证当噱头。</strong> 旗舰版的信创认证对应的是合规与招投标场景，有这个需求才用得上；没有，标准版或基础版就够用，别为用不上的认证多花钱。</li><li><strong>一上来全厂铺开。</strong> 先一个部门闭环，跑通「盘点—入库—授权—发布—问答—回溯」整条链路，再谈推广。</li><li><strong>指望一个系统解决所有问题。</strong> 底座管文件版本、权限、分发与知识沉淀这一层，不替代 PDM、ERP、MES；和 RAG 框架也是分工关系：底座管料，框架管问。</li></ol>
+<p>再说清楚迁移和对接这两件具体的事。迁移方面：先导一个部门闭环，盘清生效/历史/作废，全部入权威源，配好权限，跑通一次变更发布，再把问答层接上去，最后用 30 天试用验收。对接方面：底座不推翻你已有的 PDM、ERP、MES，它把图纸、制度、合同这层文件的版本、权限、留痕和现场分发管住，和现有体系并行不悖。一体机三档的差异在服务和认证，不在配置参数：基础版全部远程，适合有运维能力的团队；标准版含三周现场 + 1 年远程，适合想少操心的团队；旗舰版再加信创认证，对应合规要求明确的场景。</p>
+<p>价格口径以一份为准：基础版 15 万、标准版 25 万、旗舰版 50 万，续费 5 万/年，30 天试用。产品功能对照可以看 <a href="../features.html">产品功能对照</a>，应用场景与能力对照见 <a href="../scenario.html">应用场景</a>，一体机与报价见 <a href="../appliance.html">一体机与报价</a>，试用申请走 <a href="../contact.html">申请试用</a>。</p>
+<h2>参考与说明</h2>
+<ul><li>Lewis 等：Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks，NeurIPS 会议论文集，2020 年。——RAG 概念出处。</li><li>ISO 9001（GB/T 19001）关于成文信息受控的要求：文件受控、版本可识别、作废防误用、变更留记录。——适用于文中「知识治理先于模型」的原则性表述。</li><li>MxsDoc 产品口径、能力清单、报价口径与公开客户事实，以 <a href="../features.html">产品功能对照</a>、<a href="../scenario.html">应用场景</a>、<a href="../appliance.html">一体机与报价</a>、<a href="../customers/index.html">客户案例</a> 为准。</li><li>硬件相关表述仅到形态，涉及具体配置时按交付合同约定，公开页面不写具体配置。</li><li>申请 30 天试用：<a href="../contact.html">申请试用</a>。</li></ul>
+<h2>常见问题</h2>
+<div class="faq-item"><h4>Q1: 企业 AI 知识库底座是什么？和 RAG 是什么关系？</h4><p>企业 AI 知识库底座，是本地化部署（数据不出内网）的文件版本控制 + 集中权限分级管理 + 在线协同编辑 + 内网 LLM WIKI 知识底座 + 组织 Skills 市场 + 企业专家智能体的组合，职责是让企业的知识先被治理好：版本可控、权限可控、留痕可查、经验可沉淀。RAG 是检索增强生成这套方法；Dify、FastGPT、RAGFlow 是把这套方法工程化的框架，职责是「从资料里找出内容并组织成答案」。关系很简单：底座治料，框架管问，先底座后问答。想只买一样的话，省掉底座等于让问答层啃未经治理的料；省掉框架只是少一个入口，料已经立住了。</p></div>
+<div class="faq-item"><h4>Q2: 选型前怎么做真机验证？</h4><p>不听演示，听真机。具体做法：先挑三类高风险料（作废未清理的工艺文件、权限不一的合同、扫描件图片件）导入试用环境；让业务部门出题而不是 IT 出题；逐条看引用来源是不是生效版、无权限内容会不会被引用、答非所问时能不能定位到文档或权限问题；把权限回收、版本回滚、作废防误用各演示一次；留出足够时间把这些跑透，用 30 天试用做完整验收，再谈签约。验收清单提前写死：生效版本一处可查、全程留痕可回溯、越权不可见、回滚可演示，四条缺一条就不算通过。</p></div>
+<div class="faq-item"><h4>Q3: Dify、FastGPT、RAGFlow 和企业 AI 知识库底座的区别是什么，怎么选？</h4><p>区别是层不同，不是高下之分。Dify、FastGPT、RAGFlow 擅长编排与检索：文档解析、切片、向量化、模型调用、对话界面，上手快、适合验证想法和做内部工具。知识库底座擅长治理：文件版本控制、集中权限分级、审计留痕、在线协同和知识沉淀，回答的是「料对不对、谁能看、怎么追溯」。怎么选：需要快速验证一个想法，选框架；需要全公司文件受控、权限、追溯和知识沉淀，先立底座；两者通常并存，底座管料、框架管问。预算有限时先底座后问答——料没治理好，问答层演得再好也是答非所问。</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>把知识沉淀下来，比选一个模型更重要</h2>
+    <p>文档进得来、知识留得住、AI 用得上——先在真机上验证一次。</p>
+    <a class="btn btn-primary" href="../contact.html">申请 30 天免费试用</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../scenario.html">应用场景</a> · <a href="../appliance.html">一体机与报价</a> · <a href="../customers/index.html">客户案例</a> · <a href="../contact.html">联系试用</a></div>
+    <div class="site-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">浙ICP备15034351号-1</a> · 自由团队 · gofreeteam.com · 高雨
+    </div>
+  </div>
+</footer>
+
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
+</body>
+</html>
