@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据不出内网怎么证明：从部署形态到可审计的证据链 — MxsDoc 博客</title>
+  <meta name="description" content="写给涉密与政企信息化负责人：当领导问「你怎么证明数据不出内网」，答案不在口号，而在可核验的证据链。本文从物理隔离网下的部署形态、离线部署包与镜像依赖、集中权限分级到审计留痕，逐环节给出可落地的验收清单。">
+  <meta name="keywords" content="数据不出内网,物理隔离网,离线部署包,审计留痕">
+  <link rel="canonical" href="https://agent.gofreeteam.com/blog/data-never-leaves.html">
+  <meta property="og:title" content="数据不出内网怎么证明：从部署形态到可审计的证据链">
+  <meta property="og:description" content="写给涉密与政企信息化负责人：当领导问「你怎么证明数据不出内网」，答案不在口号，而在可核验的证据链。本文从物理隔离网下的部署形态、离线部署包与镜像依赖、集中权限分级到审计留痕，逐环节给出可落地的验收清单。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://agent.gofreeteam.com/blog/data-never-leaves.html">
+  <meta property="og:image" content="https://agent.gofreeteam.com/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "数据不出内网怎么证明：从部署形态到可审计的证据链",
+  "description": "写给涉密与政企信息化负责人：当领导问「你怎么证明数据不出内网」，答案不在口号，而在可核验的证据链。本文从物理隔离网下的部署形态、离线部署包与镜像依赖、集中权限分级到审计留痕，逐环节给出可落地的验收清单。",
+  "keywords": "数据不出内网,物理隔离网,离线部署包,审计留痕",
+  "author": {
+    "@type": "Organization",
+    "name": "MxsDoc"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MxsDoc",
+    "url": "https://agent.gofreeteam.com"
+  },
+  "datePublished": "2026-11-05",
+  "dateModified": "2026-11-05",
+  "mainEntityOfPage": "https://agent.gofreeteam.com/blog/data-never-leaves.html",
+  "inLanguage": "zh-CN"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q1: 数据不出内网，「不出」到底是什么意思？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「不出」指数据在存储、处理、调用的全链路里都不离开客户侧的内网环境：不经外部网络回传，不经外部接口处理，不生成可被外网读取的副本。落到验收上，就是部署架构图上看不到出网链路、离线部署包入网有登记记录、审计留痕能证明数据流转停留在内网之内。它不是一句「我们重视安全」，而是一组可以逐份调阅的材料。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q2: 物理隔离网里怎么部署，又怎么验证真的没出网？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "部署上走离线部署包：供应商交付部署包与镜像清单，介质入网登记、内容核验后安装，运维按现场方式进行。验证上分三步走：部署前对架构图与端口清单做边界确认，部署中保留安装记录与介质流转记录，上线后抽查审计留痕与文件版本追溯，导出日志核对是否有出内网的访问记录。三步都留痕，验证结论才可归档。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q3: 离线部署包与一体机，两者的区别在哪？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "离线部署包是交付形态之一，解决的是「内网装不了外部依赖」的问题，可以部署在客户已有的服务器上；一体机是硬件与软件打包的交付形态，解决的是「客户不想自己拼装环境」的问题，到场接电接网即可启用。两者不是高低之分，而是场景之分：已有算力资源、希望利旧的，走离线部署包；希望开箱即用、统一运维的，走一体机。具体配置按交付合同约定，档位与报价见 [一体机页面](../appliance.html)。"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://agent.gofreeteam.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客",
+      "item": "https://agent.gofreeteam.com/#blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "数据不出内网怎么证明：从部署形态到可审计的证据链"
+    }
+  ]
+}
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 800px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .prose h3 { font-size: 1.15rem; color: var(--dark); margin: 1.6rem 0 .6rem; }
+    .prose ul { margin: 0 0 1.1rem 1.4rem; color: #334155; }
+    .prose li { margin: .35rem 0; }
+    .prose blockquote { background: #fff; border-left: 4px solid var(--primary); padding: 1rem 1.3rem; margin: 1.4rem 0; color: #475569; border-radius: 0 8px 8px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; font-size: .93rem; }
+    .prose th, .prose td { border: 1px solid #e2e8f0; padding: .65rem .8rem; text-align: left; vertical-align: top; }
+    .prose th { background: #f1f5f9; color: var(--dark); font-weight: 600; }
+    .prose code { background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+        .site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · 数据不出内网怎么证明：从部署形态到可审计的证据链</div>
+    <h1>数据不出内网怎么证明：从部署形态到可审计的证据链</h1>
+    <p class="sub">写给涉密与政企信息化负责人：当领导问「你怎么证明数据不出内网」，答案不在口号，而在可核验的证据链。本文从物理隔离网下的部署形态、离线部署包与镜像依赖、集中权限分级到审计留痕，逐环节给出可落地的验收清单。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-11-05 · 约 6 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+<div class="hook"><p><strong>本文要点</strong></p><ul><li>数据不出内网不是一句承诺，而是一条可逐环节复核的证据链</li><li>先按文中清单把部署形态、离线部署包、权限分级、审计留痕落实进验收文档，再用 30 天试用做一次真机验收，把「证明」变成盖章前的标准动作。</li></ul></div>
+<h2>一、痛点场景：领导一句「你怎么证明数据没出内网」，卡住的是整个评估组</h2>
+<p>你大概率经历过这个场面：物理隔离网的新建或改造项目上了评估会，方案汇报讲到一半，主管领导或者保密办的老师打断一句：「外部大模型不行，这个没异议。那你们这个内网 AI，凭什么证明图纸、合同、工艺文件没出去？」</p>
+<p>屋里安静几秒。方案里写着「私有化部署」"「数据不出内网」，可对方要的是另外一样东西——不是承诺，是证据。</p>
+<p>这是涉密与政企信息化负责人最常被问住的一环。政府、国企、军工、研究所这类场景里，涉密信息不能出内网，外部 AI 与公有云一律不可用；可「数据不出内网」如果只是一页 PPT 上的口号，它经不起一次等保测评的问询，也经不起一次介质交叉检查，更经不起事后审计时逐条对日志。</p>
+<p>我做企业落地这些年，见过太多卡在这一步的项目：技术上其实早就部署完了，就是拿不出一套能让保密、安全、审计三方都点头的证明。这篇文章不讲概念，只讲一件事——怎么把「数据不出内网」从一句立场，变成一条能被反复抽查的证据链。</p>
+<h2>二、三个先后：先定形态，再定边界，最后定证据</h2>
+<p>很多项目一上来就谈「部署了没有」，顺序其实是反的。正确的顺序是三个先后：先确定部署形态，再划定边界，最后才谈证据。</p>
+<h3>先后之一：部署形态——在物理隔离网里，本地化部署才自洽</h3>
+<p>三种常见形态，先放在一张表里对比清楚：</p>
+<table><thead><tr><th>形态</th><th>数据落点</th><th>适用场景</th><th>说明</th></tr></thead><tbody><tr><td>公有云 SaaS</td><td>数据存于云服务商侧</td><td>非涉密、通用协作</td><td>场景不匹配，涉密与内网项目通常直接排除</td></tr><tr><td>托管私有化（专有云）</td><td>数据在客户指定的云机房</td><td>部分政企非涉密系统</td><td>边界在合同里，仍属「托管」，介质与运维需额外约定</td></tr><tr><td>物理隔离网内本地化部署</td><td>数据全程不离开客户内网</td><td>涉密、政企、军工、研究所</td><td>交付物在客户侧，运维边界由客户侧掌握</td></tr></tbody></table>
+<p>对涉密场景而言，只有第三种形态是自洽的。注意一个常见误解：「私有化」三个字不自动等于「数据不出内网」——托管机房里的私有化，数据物理上仍在别人机房里，边界要靠合同和人品，而不是靠架构。对评估组来说，这个区别是要当面讲清楚的。</p>
+<h3>先后之二：边界——出得了的只有三类东西，其余一律在内</h3>
+<p>边界不是一句「内外网不通」就完事了，要拆成四个面写进方案：</p>
+<ul><li><strong>接入侧边界</strong>：谁能登录、从哪里登录、要不要双人复核。物理隔离网里通常不存在外部直连入口，接入环节全部落在内网终端。</li><li><strong>数据侧边界</strong>：什么数据可以进、什么样的数据不许进。涉密级别高的资料，入库前先过定密流程。</li><li><strong>介质侧边界</strong>：U 盘、移动硬盘、光盘怎么进出。离线部署包本身就是一块介质，它的入网登记、病毒查杀、内容核验要走完，不能「工程师自己带盘就装了」。</li><li><strong>运维侧边界</strong>：远程还是现场。远程运维就意味着一条逻辑通道，涉密场景里这条通道默认不存在，运维全部按现场处理，或按合同约定的受控方式执行。</li></ul>
+<h3>先后之三：证据——没有可复核的材料，再好的形态也只是说法</h3>
+<p>证据链按时间分三段，每段都有对应的材料和验收人：</p>
+<table><thead><tr><th>环节</th><th>证据要件</th><th>谁来验</th></tr></thead><tbody><tr><td>部署前</td><td>交付合同约定的部署架构图、网络边界说明、开放端口与服务清单、介质管控办法</td><td>客户侧信息化 + 保密 / 安全部门</td></tr><tr><td>部署中</td><td>离线部署包与镜像的校验记录、入网介质登记、安装过程记录、介质消毒与归还记录</td><td>实施工程师 + 客户侧值守人</td></tr><tr><td>上线后</td><td>集中权限分级配置记录、文件版本追溯抽查、审计留痕导出样例、试用验收结论</td><td>客户侧 + 供应商共同确认</td></tr></tbody></table>
+<p>这张表就是你带进评估会的东西。领导问「怎么证明」，你把三段证据逐项摊开，每个环节谁签字、材料归谁管，说清楚了，这件事就立住了。</p>
+<h2>三、落地做法：把「证明」写进五个动作里</h2>
+<p>空讲边界没有用，落到动作上才有用。下面这五个动作，按顺序走一遍，「数据不出内网」就从立场变成了可以归档的验收记录。</p>
+<p><strong>先：摸清家底，确定什么资料进库。</strong> 图纸、合同、工艺文件、检验记录、客户档案，哪些进知识库，进库前定密和脱敏怎么做，谁审批。这一步不做，后面所有权限设计都是空谈——权限分级管理的前提是你知道分几级。</p>
+<p><strong>接着：选定部署形态并写进合同。</strong> 用一体机还是用现有服务器部署，资源从哪来，具体配置按交付合同约定，公开页面不写整机配置，这是行业惯例也是保护双方的方式。合同里把部署架构、边界口径、运维方式、介质办法白纸黑字写下来，这是整条证据链的根。</p>
+<p><strong>然后：离线部署包入网。</strong> 内网环境通常拿不到外部源，安装依赖必须由供应商打包成离线部署包连同镜像清单一起交付。入网前走完介质登记和内容核验，安装完保留记录。这里最容易糊弄的是「依赖到底装了什么」——离线部署包的清单要留档，事后可查。</p>
+<p><strong>之后：配置权限分级与审计留痕。</strong> 集中权限分级管理先按部门和角色建好，谁能看、谁能下、谁能改、谁能导出，说清楚。文件版本控制保证每一次改动可追溯、回滚路径清晰；审计留痕把谁在什么时候做了什么记下来，导出格式和保存口径提前约定好，别等审计要日志时才发现没地方拿。</p>
+<p><strong>最后：真机试用验收。</strong> 拿 30 天试用做一次真实部门的闭环：导入一批真实资料，跑一遍上传、协同编辑、检索、权限隔离、版本回滚，让业务人员现场确认「内网里够不够用」，同时让信息化部门对着证据链走一遍「真没出内网」。试用结束，验收结论写进档案，双方签字。</p>
+<p>以 MxsDoc 为例，本地化部署（数据不出内网）的企业 AI 知识库底座，覆盖的能力恰好对应上面五个动作：文件版本控制、集中权限分级管理、拖拽上传下载、在线文档编辑、移动端自适应访问、内网 LLM WIKI 知识底座、组织 Skills 市场、企业专家智能体。硬件形态上以一体机交付，基础版 15 万（全部远程）、标准版 25 万（含三周现场与 1 年远程）、旗舰版 50 万（再加信创认证），续费 5 万/年，支持 30 天试用——先 <a href="../contact.html">30 天试用</a> 跑通一个部门，再谈全院铺开，是风险最低的节奏。已公开的使用事实仅限：成都金诺信、福州高意光学（自 2025 年 4 月起使用）、苏州工业园区蓝天燃气热电（自 2026 年 3 月起使用），其余一概不引申、不杜撰。</p>
+<p>关于等级保护与商用密码这类表述，请守住一条线：可以承诺「支持按相关要求部署」，但能不能通过测评、是否通过定级备案，一律以客户侧的定级备案与测评结果为准，供应商不对此作结论式承诺。把话说满的供应商，恰恰是你应该从名单上划掉的。</p>
+<p>完整的产品能力对照见 <a href="../features.html">产品功能页</a>，一体机档位与报价见 <a href="../appliance.html">一体机页面</a>，更多已落地的客户实践见 <a href="../customers/index.html">客户案例</a>。</p>
+<h2>四、避坑清单：把口径写死，别让验收会变成扯皮会</h2>
+<p>最后给一份可直接打印的避坑清单。每一条都对应一种真实出现过的扯皮：</p>
+<ul><li><strong>不写整机配置进方案</strong>。公开材料里不写 CPU、内存、存储型号与容量，涉及硬件统一表述为「具体配置按交付合同约定」。写了也是错的——写了就意味着合同外承诺，验收时全是麻烦。</li><li><strong>不宣称「已通过等级保护测评」或「天然满足商用密码应用安全性评估」</strong>。正确表述只有一种：「支持按相关要求部署，以客户侧定级备案与测评为准」。</li><li><strong>不把外部大模型的「能力」偷运进内网</strong>。任何经由外部接口回传数据的做法，在物理隔离网里都不成立。内网 LLM WIKI 知识底座、组织 Skills 市场、企业专家智能体，都应当跑在内网侧。</li><li><strong>审计留痕要约定导出格式与保存口径</strong>。日志留在服务器上不叫审计，能按约定格式导出、可供核查、保存周期达成一致，才叫审计留痕。</li><li><strong>介质办法要覆盖离线部署包本身</strong>。带盘进网不是「临时安排」，是部署环节的一部分，登记、查杀、核验、归还，一项都不能省。</li><li><strong>试用要做真机验收，不做演示参观</strong>。30 天试用里导入真实资料、走真实协同、留真实日志，这是检验「数据不出内网」最便宜的一次演练。</li><li><strong>价格口径写死</strong>：基础版 15 万、标准版 25 万、旗舰版 50 万，续费 5 万/年。任何其他数字出现在报价单上，都值得当场追问。</li><li><strong>客户名只引用已公开的</strong>：成都金诺信、福州高意光学、苏州工业园区蓝天燃气热电。任何「某某大厂也在用」式的说法，不在公开口径内，不进你的验收报告。</li><li><strong>对比竞品只讲场景匹配</strong>。托管形态更适合非涉密的轻量场景，本地化部署更适合物理隔离网，这是侧重不同，不是谁替代谁。选型文档里不写贬低任何一方的话，评估组反而更信你。</li></ul>
+<h2>参考与说明</h2>
+<ul><li>GB/T 22239《信息安全技术 网络安全等级保护基本要求》，国家市场监督管理总局、国家标准化管理委员会发布，全文公开可查；等级保护的定级、备案、测评主体均为客户侧。</li><li>本文产品口径、价格档位、已公开客户事实，均以 MxsDoc 官网公开页面为准：<a href="../index.html">首页</a>、<a href="../features.html">产品功能</a>、<a href="../scenario.html">应用场景</a>、<a href="../appliance.html">一体机与报价</a>、<a href="../customers/index.html">客户案例</a>、<a href="../contact.html">申请试用</a>。</li><li>文中「支持按相关要求部署」「以客户侧定级备案与测评为准」为合规表述边界，供应商不对客户侧的测评结论作保证。</li></ul>
+<h2>常见问题</h2>
+<div class="faq-item"><h4>Q1: 数据不出内网，「不出」到底是什么意思？</h4><p>「不出」指数据在存储、处理、调用的全链路里都不离开客户侧的内网环境：不经外部网络回传，不经外部接口处理，不生成可被外网读取的副本。落到验收上，就是部署架构图上看不到出网链路、离线部署包入网有登记记录、审计留痕能证明数据流转停留在内网之内。它不是一句「我们重视安全」，而是一组可以逐份调阅的材料。</p></div>
+<div class="faq-item"><h4>Q2: 物理隔离网里怎么部署，又怎么验证真的没出网？</h4><p>部署上走离线部署包：供应商交付部署包与镜像清单，介质入网登记、内容核验后安装，运维按现场方式进行。验证上分三步走：部署前对架构图与端口清单做边界确认，部署中保留安装记录与介质流转记录，上线后抽查审计留痕与文件版本追溯，导出日志核对是否有出内网的访问记录。三步都留痕，验证结论才可归档。</p></div>
+<div class="faq-item"><h4>Q3: 离线部署包与一体机，两者的区别在哪？</h4><p>离线部署包是交付形态之一，解决的是「内网装不了外部依赖」的问题，可以部署在客户已有的服务器上；一体机是硬件与软件打包的交付形态，解决的是「客户不想自己拼装环境」的问题，到场接电接网即可启用。两者不是高低之分，而是场景之分：已有算力资源、希望利旧的，走离线部署包；希望开箱即用、统一运维的，走一体机。具体配置按交付合同约定，档位与报价见 <a href="../appliance.html">一体机页面</a>。</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>把知识沉淀下来，比选一个模型更重要</h2>
+    <p>文档进得来、知识留得住、AI 用得上——先在真机上验证一次。</p>
+    <a class="btn btn-primary" href="../contact.html">申请 30 天免费试用</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../scenario.html">应用场景</a> · <a href="../appliance.html">一体机与报价</a> · <a href="../customers/index.html">客户案例</a> · <a href="../contact.html">联系试用</a></div>
+    <div class="site-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">浙ICP备15034351号-1</a> · 自由团队 · gofreeteam.com · 高雨
+    </div>
+  </div>
+</footer>
+
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
+</body>
+</html>
