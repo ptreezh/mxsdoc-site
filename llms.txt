@@ -33,3 +33,4 @@ https://agent.gofreeteam.com/solutions/index.html — 行业解决方案：制�
 https://agent.gofreeteam.com/blog/ai-qa-why-not-good.html — AI 问答效果不好，问题多半不在模型：制造企业先做知识治理：制造企业老板普遍遇到的坎：知识库已经本地化部署，AI 问答效果还是不好，说不清 AI 到底帮上了什么。本文从知识治理、上下文污染与内网 LLM WIKI 入手，给出制造企业可落地的排查清单、落地路径与 30 天试用验收口径。
 https://agent.gofreeteam.com/blog/drawing-version-chaos.html — 制造图纸版本管不住：一次「用错图」是怎么蔓延到返工赔款的：面向制造企业 IT 与信息化负责人，复盘一起制造图纸版本事故从「用错图」蔓延到返工与客诉的完整链条，给出文件版本管理与审计留痕的落地清单，涵盖权限分级、内网隔离、PDM/ERP/MES 对接与试用验收动作。
 https://agent.gofreeteam.com/blog/not-rag-base.html — 知识库底座和 RAG 框架不是一回事：选型前先分清你买的是哪一层：面向企业 AI 落地负责人与数字化顾问，拆解 Dify、FastGPT、RAGFlow 等 RAG 框架与企业 AI 知识库底座的分层关系，给出真机验证方法、迁移成本判断与避坑清单，直击接上真实文档就答非所问的痛点。
+https://agent.gofreeteam.com/blog/leave-take-knowledge.html — 老师傅离职带走工艺经验：用知识资产沉淀把口述经验留在企业里：老师傅离职带走工艺经验、新人找不到人问，是制造企业最隐蔽的知识资产流失。本文面向 IT 与信息化负责人，讲清楚如何用知识资产沉淀把口述经验变成可交接、可追溯、可授权的企业资产，并给出落地步骤与避坑清单。
