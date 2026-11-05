@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>本地化部署和私有化部署有什么差别：边界、数据与适用场景 — MxsDoc 博客</title>
+  <meta name="description" content="方案满天飞，说不清各家到底差在哪？很多团队把本地化部署和私有化部署当成同一件事，选型全靠猜。本文从数据位置、运行环境、运维方式三条边界厘清两者差异，给出选型维度、真机验证方法与避坑清单，让选型可核对、可签约、可验收。">
+  <meta name="keywords" content="本地化部署,私有化部署,选型方法,数据不出内网">
+  <link rel="canonical" href="https://agent.gofreeteam.com/blog/private-deployment.html">
+  <meta property="og:title" content="本地化部署和私有化部署有什么差别：边界、数据与适用场景">
+  <meta property="og:description" content="方案满天飞，说不清各家到底差在哪？很多团队把本地化部署和私有化部署当成同一件事，选型全靠猜。本文从数据位置、运行环境、运维方式三条边界厘清两者差异，给出选型维度、真机验证方法与避坑清单，让选型可核对、可签约、可验收。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://agent.gofreeteam.com/blog/private-deployment.html">
+  <meta property="og:image" content="https://agent.gofreeteam.com/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "本地化部署和私有化部署有什么差别：边界、数据与适用场景",
+  "description": "方案满天飞，说不清各家到底差在哪？很多团队把本地化部署和私有化部署当成同一件事，选型全靠猜。本文从数据位置、运行环境、运维方式三条边界厘清两者差异，给出选型维度、真机验证方法与避坑清单，让选型可核对、可签约、可验收。",
+  "keywords": "本地化部署,私有化部署,选型方法,数据不出内网",
+  "author": {
+    "@type": "Organization",
+    "name": "MxsDoc"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MxsDoc",
+    "url": "https://agent.gofreeteam.com"
+  },
+  "datePublished": "2026-11-05",
+  "dateModified": "2026-11-05",
+  "mainEntityOfPage": "https://agent.gofreeteam.com/blog/private-deployment.html",
+  "inLanguage": "zh-CN"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q1: 私有化部署和本地化部署到底是什么关系？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "私有化部署是大类，指的是运行环境归客户专属，具体形态可以是客户自有机房、私有云、专属云或一体机。本地化部署是其中一类，指的是部署在客户内网与本地机房，数据不出内网。可以这样理解：私有化回答\"谁的环境\"，本地化回答\"数据在哪\"。只有本地化这一类，才能默认满足\"数据不出内网\"的审计口径；其他私有化形态必须逐项核对数据流向，不能想当然。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q2: 选型时怎么判断自己的场景该选哪种？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "按三步走。先做数据分级，标出必须驻留内网的资料；再看网络与审计边界，凡是必须断网可用、日志不得外发的场景，直接收敛到本地化；最后看运维能力——有成熟运维团队选基础版远程支撑即可，需要现场爬坡选标准版，需要信创认证选旗舰版。任何一步答不上来，先别签约，用 30 天试用跑一个真实部门的闭环，让结果替你做决定。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q3: 本地化部署和私有化部署的区别落在合同里怎么写？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "区别集中在三条轴：数据位置（出不出内网）、环境归属（机房与账号归谁）、运维支撑（远程还是现场）。落到合同里就是三句话：数据驻留位置与日志去向、断网演练的验收判据、升级与续费口径（续费 5 万/年）。三句话写不明白，选型就是猜。另外记住：信创认证等表述只代表支持按相关要求部署的能力，合规结论以客户侧定级备案与测评为准。"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://agent.gofreeteam.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客",
+      "item": "https://agent.gofreeteam.com/#blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "本地化部署和私有化部署有什么差别：边界、数据与适用场景"
+    }
+  ]
+}
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 800px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .prose h3 { font-size: 1.15rem; color: var(--dark); margin: 1.6rem 0 .6rem; }
+    .prose ul { margin: 0 0 1.1rem 1.4rem; color: #334155; }
+    .prose li { margin: .35rem 0; }
+    .prose blockquote { background: #fff; border-left: 4px solid var(--primary); padding: 1rem 1.3rem; margin: 1.4rem 0; color: #475569; border-radius: 0 8px 8px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; font-size: .93rem; }
+    .prose th, .prose td { border: 1px solid #e2e8f0; padding: .65rem .8rem; text-align: left; vertical-align: top; }
+    .prose th { background: #f1f5f9; color: var(--dark); font-weight: 600; }
+    .prose code { background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+        .site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · 本地化部署和私有化部署有什么差别：边界、数据与适用场景</div>
+    <h1>本地化部署和私有化部署有什么差别：边界、数据与适用场景</h1>
+    <p class="sub">方案满天飞，说不清各家到底差在哪？很多团队把本地化部署和私有化部署当成同一件事，选型全靠猜。本文从数据位置、运行环境、运维方式三条边界厘清两者差异，给出选型维度、真机验证方法与避坑清单，让选型可核对、可签约、可验收。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-11-05 · 约 5 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+<div class="hook"><p><strong>本文要点</strong></p><ul><li>私有化部署是大类，本地化部署是数据不出内网的一类</li><li>先按数据分级与网络隔离划边界，再用 30 天试用做真机闭环验收</li><li>迁移与权限映射写进验收清单</li></ul></div>
+<h2>一、痛点场景：方案满天飞时，选型全靠猜</h2>
+<p>你在集团数字化中心或 AI 转型办公室的预算会上，大概听过这样的对话：供应商 A 说"我们做私有化"，供应商 B 说"我们是本地化落地"，供应商 C 说"我们做专属云，效果是一样的"。三句话，三个词，谁也不肯把边界讲清楚——因为讲清楚之后，报价单上就藏不住了：所谓"专属云"，日志和升级包可能仍然要回传；所谓"私有化"，可能只是机房托管在外部，数据照样出内网。</p>
+<p>然后法务一句话否掉："数据出没出内网，白纸黑字写清楚。"谁也不敢签字，项目就这么卡在会上。</p>
+<p>这不是采购环节的小事，它卡住的是后面所有动作。制造集团的工艺主管反馈过一个典型的场景：试制图改到第三版，车间还在按第二版下料；老师傅走了，经验断了，新人翻遍共享盘也找不到哪版是审定版。你想上知识库，三家方案摆在桌上，说不清各家到底差在哪，选型全靠猜。图纸版本、权限分级、迁移成本、验收判据，每一项都悬着，谁都不敢先动。</p>
+<p>这类卡点的根子，在于两个词被混用了。本文只做一件事：把本地化部署和私有化部署拆开，给你一套能落到合同和验收单上的判断方法。</p>
+<h2>二、关键判断：私有化是大类，本地化是"数据不出内网"的那一类</h2>
+<p>先给结论：私有化部署描述的是"运行环境归客户专属"，本地化部署描述的是"部署位置在客户内网、数据不出内网"。前者是大类，后者是其中一类；反过来说，"私有化"并不自动意味着"数据不出内网"。</p>
+<table><thead><tr><th>维度</th><th>私有化部署</th><th>本地化部署</th></tr></thead><tbody><tr><td>关注的问题</td><td>运行环境归谁、建在哪</td><td>数据位置在哪、出不出内网</td></tr><tr><td>运行环境</td><td>客户自有机房、私有云、专属云、一体机均可</td><td>客户内网与本地机房，或交付后的一体机</td></tr><tr><td>数据是否出内网</td><td>不一定，取决于架构与合同约定</td><td>不出内网</td></tr><tr><td>断网可用性</td><td>视架构而定</td><td>可按断网场景设计与演练</td></tr><tr><td>运维方式</td><td>远程、驻场、托管均可</td><td>以客户现场与授权远程为主</td></tr><tr><td>典型适用</td><td>已有统一云平台、允许托管</td><td>核心数据不出网、审计要求严格</td></tr></tbody></table>
+<p>想真正分清它们，就记三条轴：</p>
+<ul><li>数据位置轴：数据存哪里、日志去哪里、升级包从哪来。凡是需要回传到外部的，就不是本地化。</li><li>环境归属轴：物理机房、虚拟资源、账号权限归谁，出了事找谁。</li><li>运维支撑轴：远程还是现场，响应口径有没有写进合同。</li></ul>
+<p>有三个常见混淆，逐个拆掉：</p>
+<ul><li>把"专属公有云实例"当成本地化。资源隔离不等于数据不出内网，合同里必须写清数据流向：存哪、传哪、谁能看。</li><li>把"私有化"等同于"数据绝不出内网"。遥测、日志、模型更新可能悄悄外发，验收时要逐项核对，而不是听口头承诺。</li><li>把"信创认证"当成合规结论。只能表述为"支持按相关要求部署"，是否满足特定测评要求，以客户侧定级备案与测评为准。</li></ul>
+<h2>三、落地路径：从数据分级到真机闭环的动作</h2>
+<p>选型不是比参数，是走完下面几步，每一步都有产物：</p>
+<p>第 1 步，数据分级盘点。把现有文档库按公开、内部、敏感、受限四级过一遍，标出哪些必须驻留内网。这一步的产物是一张数据分级表，后面所有决策都以它为准。</p>
+<p>第 2 步，网络与审计边界确认。外网断开后核心流程是否仍可用、日志是否外发、升级通道怎么走、审计记录留存多久，全部写进验收清单。这一步的产物是验收判据，不是PPT。</p>
+<p>第 3 步，对接验证。LDAP 或 AD 单点登录怎么接、现有文档库怎么迁、权限映射（部门到角色到密级）怎么落，先拿一小批真实账号和真实目录试，跑不通就别急着签约。</p>
+<p>第 4 步，迁移成本测算。存量文档怎么进、版本历史要不要迁、权限分级怎么映射、谁来做对账。迁移是整个项目里最容易被低估的一项，只谈容量不谈版本与权限，后面一定返工。</p>
+<p>第 5 步，真机闭环验收。用 30 天试用导入一个真实部门，完整跑一遍：上传新版本，在线编辑，发现问题后旧版本回滚，集中权限抽查，再让内网 LLM WIKI 基于这批文档回答业务问题，最后用企业专家智能体辅助检索验证。跑通了再谈扩围，跑不通就换方案，别硬上。</p>
+<p>一份可直接抄用的验收观察点：</p>
+<ul><li>版本追溯：任意两版之间的差异可定位、可回滚，责任人可核对</li><li>权限分级：离职或转岗后权限回收可核对、可审计</li><li>断网演练：外网断开后，上传、编辑、检索、问答仍可用</li><li>问答可信：LLM WIKI 的回答可回溯到源文档，而不是凭模型印象</li><li>迁移对账：迁入文档的数量、版本数、权限条目与迁移前一致</li></ul>
+<p>已公开的客户使用事实仅限这几例：成都金诺信、福州高意光学（自 2025 年 4 月起使用）、苏州工业园区蓝天燃气热电（自 2026 年 3 月起使用）。它们都按内网部署口径交付，细节见 <a href="../customers/index.html">客户案例</a>。</p>
+<h2>四、避坑清单：别让选型变成赌运气</h2>
+<p>下面这些坑，每一个都在真实项目里见过：</p>
+<ul><li>验收缺少断网演练："数据不出内网"停在口号上，上线后才发现升级要连外网</li><li>合同没写日志与升级通道去向：口头说不外发，出问题时无据可依</li><li>迁移只谈容量不谈映射：版本历史丢失，权限粒度对不上，迁完等于重建</li><li>把信创认证当测评结论：只能说支持按相关要求部署，合规结论以客户侧定级备案与测评为准</li><li>硬件口头报数：公开页面不写明整机配置，涉及硬件时统一表述为"具体配置按交付合同约定"</li><li>选了自建却没有值守能力：一体机档位（价格口径见 <a href="../appliance.html">一体机与报价</a>）为基础版 15 万（全部远程）、标准版 25 万（含三周现场与 1 年远程）、旗舰版 50 万（再加信创认证）；续费 5 万/年；30 天试用。三档怎么选，看你的运维成熟度和现场需求，不看参数表</li><li>把协同工具当知识库：文件版本控制、集中权限分级、拖拽上传下载、在线文档编辑、移动端自适应访问只是底座，内网 LLM WIKI 知识底座、组织 Skills 市场、企业专家智能体才是知识沉淀的抓手，见 <a href="../features.html">产品功能对照</a></li><li>不做真机就签约：先用 30 天试用做一个部门的闭环，再扩到全公司，这是最便宜的排雷方式</li></ul>
+<p>直接给选型结论：运维团队成熟、预算敏感，选基础版 15 万，远程支撑、自己值守；需要现场落地和人员爬坡，选标准版 25 万，含三周现场与 1 年远程；涉密程度高、要求信创认证，选旗舰版 50 万；是否真能用，只看一件事——30 天试用里，你的一个真实部门能不能闭环跑通。</p>
+<h2>参考与说明</h2>
+<ul><li>价格档位、客户使用事实与产品口径，均与官网公开信息一致，可回溯：<a href="../appliance.html">一体机与报价</a>、<a href="../customers/index.html">客户案例</a>、<a href="../features.html">产品功能对照</a></li><li>本文为我方工程判断，未引用外部调研或第三方报告</li><li>如需申请 30 天试用并做真机验收，请看 <a href="../contact.html">申请试用</a></li></ul>
+<h2>常见问题</h2>
+<div class="faq-item"><h4>Q1: 私有化部署和本地化部署到底是什么关系？</h4><p>私有化部署是大类，指的是运行环境归客户专属，具体形态可以是客户自有机房、私有云、专属云或一体机。本地化部署是其中一类，指的是部署在客户内网与本地机房，数据不出内网。可以这样理解：私有化回答"谁的环境"，本地化回答"数据在哪"。只有本地化这一类，才能默认满足"数据不出内网"的审计口径；其他私有化形态必须逐项核对数据流向，不能想当然。</p></div>
+<div class="faq-item"><h4>Q2: 选型时怎么判断自己的场景该选哪种？</h4><p>按三步走。先做数据分级，标出必须驻留内网的资料；再看网络与审计边界，凡是必须断网可用、日志不得外发的场景，直接收敛到本地化；最后看运维能力——有成熟运维团队选基础版远程支撑即可，需要现场爬坡选标准版，需要信创认证选旗舰版。任何一步答不上来，先别签约，用 30 天试用跑一个真实部门的闭环，让结果替你做决定。</p></div>
+<div class="faq-item"><h4>Q3: 本地化部署和私有化部署的区别落在合同里怎么写？</h4><p>区别集中在三条轴：数据位置（出不出内网）、环境归属（机房与账号归谁）、运维支撑（远程还是现场）。落到合同里就是三句话：数据驻留位置与日志去向、断网演练的验收判据、升级与续费口径（续费 5 万/年）。三句话写不明白，选型就是猜。另外记住：信创认证等表述只代表支持按相关要求部署的能力，合规结论以客户侧定级备案与测评为准。</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>把知识沉淀下来，比选一个模型更重要</h2>
+    <p>文档进得来、知识留得住、AI 用得上——先在真机上验证一次。</p>
+    <a class="btn btn-primary" href="../contact.html">申请 30 天免费试用</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../scenario.html">应用场景</a> · <a href="../appliance.html">一体机与报价</a> · <a href="../customers/index.html">客户案例</a> · <a href="../contact.html">联系试用</a></div>
+    <div class="site-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">浙ICP备15034351号-1</a> · 自由团队 · gofreeteam.com · 高雨
+    </div>
+  </div>
+</footer>
+
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
+</body>
+</html>
