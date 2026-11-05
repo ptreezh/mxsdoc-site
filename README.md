@@ -25,7 +25,7 @@
 | `customers/index.html` | 客户案例索引页：4 个深度案例汇总（附成都 / 苏州盖章使用证明 PDF 直链 + 文件大小实测值）+ 客户500+，下面是部分客户名录（按地域 + 核心字号 4-7 字缩写展示，保留业务类型词）+ 资质背书区块 |
 | `customers/chengdu-jinnuoxin.html` | 客户案例页：成都金诺信（制造企业，2025-04 起使用；证据区块逐条对应盖章 PDF 原件勾选项 + PDF 直链 + Review schema + BreadcrumbList） |
 | `customers/fuzhou-gaoyi-guangxue.html` | 客户案例页：福州高意光学（光学制造企业，2025-04 起使用；客户在实施与验收阶段提供的反馈，盖章原件待授权后公开 + Review schema + BreadcrumbList） |
-| `customers/suzhou-lantian-ranqi-redian.html` | 客户案例页：苏州工业园区蓝天燃气热电（能源热电行业，2026-03 起使用；证据区块逐条对应盖章 PDF 原件勾选项 + PDF 已公开可点击查看） |
+| `customers/suzhou-lantian-ranqi-redian.html` | 客户案例页：苏州工业园区蓝天燃气热电（能源热电行业，2026-03 起使用；证据区块只引述盖章 PDF 已填写文字——原件「使用场景」「部署模式」两栏未勾选，故不作原件级场景与部署模式陈述 + PDF 已公开可点击查看） |
 | `customers/beijing-dacheng-shengwu.html` | 客户案例页：北京达成生物科技（生物科技行业，使用证明归档中；仅提供行业通用落地路径说明，不作客户事实陈述） |
 | `docs/docsys-setup.html` | 安装教程页：MxsDoc / DocSys 2.02.87 Windows 下载 → 安装 → 超管初始化 → 角色权限 → 排查（自动化生成，2026-09-27） |
 | `docs/mxsdoc-marketing-video.html` | 营销视频页：约 5 分钟 1920×1080 真实 DocSys 录屏（双语硬字幕）+ 6 大功能快闪 + 30 天试用 CTA |
@@ -81,6 +81,7 @@
   - [x] demo.html HTTPS 降级（2026-11-02）：演示系统 `dw.gofreeteam.com` 仅支持 HTTP（实测 SSL 握手失败），主域启用 HTTPS 后内嵌会被浏览器按混合内容拦截；页面检测到 https 协议时自动把 iframe 换成可点击外链，并补 `<noscript>` 兜底
   - [x] Appliance 价格全站对齐 15/25/50 万 + 去除硬件配置明细（2026-11-02）：三档 SKU 报价由 10/20/45 万统一更正为 15/25/50 万（appliance.html 价格卡与 JSON-LD Offer price、SKU 选型指南全文、首页卡片与文案、llms.txt、README 全部同步，档间增量 10 万 / 25 万 不变）；公开页面不再写明整机配置（CPU/NPU 型号、内存、存储、机型），统一表述为「具体配置按交付合同约定」；涉密/信创文章中的国产算力厂商名泛化为「主流国产化算力平台」
   - [x] 等保测评表述合规整改（2026-11-04）：全站清除无测评报告支撑的等保达标断言（等保达标结论、密评达标结论、合规已通过结论三类），涉及 blog/local-ai-digital-human-deployment.html（2 处）、blog/mechanical-drawing-version-control.html（3 处，含 FAQ JSON-LD）、blog/enterprise-llm-private-vs-cloud-deployment.html（3 处，含文末证据来源注记）、assets/appliance/main-3-zero-exfiltration.svg、assets/appliance/main-5-customer-cases.svg（2 处）+ 对应 PNG 导出图（800/1200 双规格，Chrome 无头重新导出，与 main-2/main-4 的 800 版逐像素同管线）；统一改为「支持按等保三级要求部署」/「等保对标项逐条可查」；依据：等保是「定级—备案—建设整改—测评—监督检查」机制，对象为客户侧信息系统而非软件产品，本公司无测评报告或备案证明可对外出具，故不得宣称已达标
+  - [x] 客户事实与数字口径整改（2026-11-05）：以两份盖章使用证明 PDF 的文字层原文（pypdf 提取，见 F:\MxsDoc-Content\business\等保三级与密评对标自查表.md 同目录取证）与内容管线 guardrail（prompts/writer.md「不得新增客户名、不得新增案例数字」）为基准，清除全站无出处的客户归因数字与统计：①appliance.html 客户卡片（网盘/ERP 数量、版本事故数、涉密资质表述、GMP / ISO 合规类表述）改为盖章证明原文表述，或标注「客户反馈」「行业通用路径，非客户事实陈述」；②customers/index.html 与 assets/appliance/main-5-customer-cases.svg 的客户规模与成效表述同步（后者 SVG 变更后重出 800/1200 PNG，全 10 张 PNG 与 SVG 源逐像素一致）；③blog/enterprise-llm-private-vs-cloud-deployment.html、blog/local-ai-digital-human-deployment.html 的客户成效与召回率数字改为定性表述；④blog/enterprise-ai-knowledge-base-selection-guide.html、blog/ai-agent-knowledge-first.html、index.html、blog/mechanical-drawing-version-control.html 中无法给出可核查标题与链接的第三方引用与百分比全部移除或改为我方工程判断；⑤苏州客户案例页把盖章原件未勾选项从「原件勾选项」与逐字引用中剔除（原件「使用场景」「部署模式」两栏未勾选），meta / og / JSON-LD reviewBody 同步；⑥F:\MxsDoc-Content 的 prompts/writer.md 与 scripts/daily_content.py 增补「引用与数字红线」（禁不可溯源第三方引用、禁无出处统计、禁合规结论式表述）以防复发
 
 ## 部署与链接策略（双站点）
 
