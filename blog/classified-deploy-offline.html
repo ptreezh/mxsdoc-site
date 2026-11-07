@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>涉密项目怎么落地：物理隔离网内的离线部署与对外宣传红线 — MxsDoc 博客</title>
+  <meta name="description" content="写给涉密 / 政企信息化负责人：物理隔离网内的离线部署怎么落，对外还能怎么讲。本文给涉密场景的部署路径、等保三级与信创适配判断、离线部署包与镜像依赖处理，以及对外宣传红线的执行清单。">
+  <meta name="keywords" content="离线部署,等保三级,国产化适配,物理隔离">
+  <link rel="canonical" href="https://agent.gofreeteam.com/blog/classified-deploy-offline.html">
+  <meta property="og:title" content="涉密项目怎么落地：物理隔离网内的离线部署与对外宣传红线">
+  <meta property="og:description" content="写给涉密 / 政企信息化负责人：物理隔离网内的离线部署怎么落，对外还能怎么讲。本文给涉密场景的部署路径、等保三级与信创适配判断、离线部署包与镜像依赖处理，以及对外宣传红线的执行清单。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://agent.gofreeteam.com/blog/classified-deploy-offline.html">
+  <meta property="og:image" content="https://agent.gofreeteam.com/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "涉密项目怎么落地：物理隔离网内的离线部署与对外宣传红线",
+  "description": "写给涉密 / 政企信息化负责人：物理隔离网内的离线部署怎么落，对外还能怎么讲。本文给涉密场景的部署路径、等保三级与信创适配判断、离线部署包与镜像依赖处理，以及对外宣传红线的执行清单。",
+  "keywords": "离线部署,等保三级,国产化适配,物理隔离",
+  "author": {
+    "@type": "Organization",
+    "name": "MxsDoc"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MxsDoc",
+    "url": "https://agent.gofreeteam.com"
+  },
+  "datePublished": "2026-11-07",
+  "dateModified": "2026-11-07",
+  "mainEntityOfPage": "https://agent.gofreeteam.com/blog/classified-deploy-offline.html",
+  "inLanguage": "zh-CN"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q1: 涉密场景的离线部署到底是什么？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "回答：是把企业 AI 知识库底座装进物理隔离网，让文件版本控制、集中权限分级、在线协同编辑、内网 LLM WIKI、组织 Skills 市场、企业专家智能体在内网里跑，数据不出内网。它回答的不是「能不能用」，而是「用上时数据放哪、谁能看、怎么追溯」。知识治理、权限分级、版本追溯和内网问答是四条必须成立的链路，缺一条，红线就只停在口号层面。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q2: 物理隔离网内的离线部署怎么做交付和验收？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "回答：先和客户侧确认涉密边界，再做离线部署包与镜像依赖的内网化交付；验收看权限分级、版本留痕、审计可回溯，最后用 30 天试用做一次涉密真机验收，再谈签约。验收时把权限回收、版本回滚、作废防误用一起演示。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q3: 等保三级和信创适配有什么不同？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "回答：等保三级按等级保护要求分级，信创适配看产品是否适配相关技术路线；两者维度不同，结论只能以客户侧定级备案与测评为准，不能提前对外宣称。分级和适配看的是不同对象，不能混用；对涉密项目，最终拍板权在客户侧。"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://agent.gofreeteam.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客",
+      "item": "https://agent.gofreeteam.com/#blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "涉密项目怎么落地：物理隔离网内的离线部署与对外宣传红线"
+    }
+  ]
+}
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 800px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .prose h3 { font-size: 1.15rem; color: var(--dark); margin: 1.6rem 0 .6rem; }
+    .prose ul { margin: 0 0 1.1rem 1.4rem; color: #334155; }
+    .prose li { margin: .35rem 0; }
+    .prose blockquote { background: #fff; border-left: 4px solid var(--primary); padding: 1rem 1.3rem; margin: 1.4rem 0; color: #475569; border-radius: 0 8px 8px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; font-size: .93rem; }
+    .prose th, .prose td { border: 1px solid #e2e8f0; padding: .65rem .8rem; text-align: left; vertical-align: top; }
+    .prose th { background: #f1f5f9; color: var(--dark); font-weight: 600; }
+    .prose code { background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+        .site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · 涉密项目怎么落地：物理隔离网内的离线部署与对外宣传红线</div>
+    <h1>涉密项目怎么落地：物理隔离网内的离线部署与对外宣传红线</h1>
+    <p class="sub">写给涉密 / 政企信息化负责人：物理隔离网内的离线部署怎么落，对外还能怎么讲。本文给涉密场景的部署路径、等保三级与信创适配判断、离线部署包与镜像依赖处理，以及对外宣传红线的执行清单。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-11-07 · 约 4 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+<div class="hook"><p><strong>本文要点</strong></p><ul><li>物理隔离网内的离线部署，核心是部署形态先行、交付证据跟上、对外口径一致</li><li>先落离线部署包并做一次涉密真机验收</li><li>再把对外宣传红线写进发布与答辩动作。</li></ul></div>
+<h2>一、痛点场景：对外不能讲，落地却要做</h2>
+<p>写给的是涉密 / 政企信息化负责人：政府、国企、军工、研究所。对这类团队落地企业 AI 知识底座，最大的卡点从来不在技术，而在边界。他知道对外宣传有红线：涉密场景不能提数字员工，不能提云同步。他知道自己要交付的，是物理隔离网内的离线部署。于是同一件事被拆成两个版本讲：对内讲数据不出内网，对外讲本地化部署；交付讲离线部署包，宣传讲智能体。红线没踩住的地方，往往就藏在交付和宣传各自自由发挥的缝隙里。</p>
+<p>对信息化负责人来说，这不是文案问题，是架构问题。宣传敢不敢写，取决于交付有没有真的把能力放进隔离网；交付敢不敢走内网源，取决于边界画得靠不靠谱。两头松，红线就没用。很多涉密项目的失败，不是技术没做，是红线被反复转述：交付说「数据不出内网」，宣传说「不上云」；宣传说「内网智能体」，交付说「镜像要下架」。说法不同，责任链路就断了。等审计时，每个环节都能自证，但没有人能说清这件事到底怎么讲。</p>
+<p>交付和宣传要统一口径，但边界不是一次谈完就能收场。涉密项目里，保密等级、保密分区、业务系统之间的信任关系，决定了谁有权在什么场景下替你说这句话。信息化负责人最常遇到的坑：把「数据不出内网」翻译成「不上云」，把「内网智能体」翻译成「私有化智能体」。翻译越靠近，红线就越模糊。翻译不是越少越好，而是要在红线内做减法。把能力说清楚，不把承诺放大；把部署事实说清楚，不把合规结论说满。对团队来说，落地这件事真正难的是把「不能说」变成流程，把「能说」变成动作。红线不是禁区，而是边界；边界不是墙，而是可审计的开关。</p>
+<h2>二、红线怎么判断：能说什么，不能说什么</h2>
+<p>红线不只分宣传和交付。对涉密项目，先把边界画清楚：涉密内容不进入知识库；内网能力只在物理隔离网内生效；数据不出内网是底座属性，不是话术。判断口径上，对外能说的是部署形态和能力位置；越过这条线的表述，交付层面就要返工。</p>
+<p>两个维度要分开看：一是部署形态，决定数据位置；二是能力归属，决定谁在什么场景被调用。形态上只有本地化部署，数据不出内网；能力上，LLM WIKI、Skills、智能体都是内网能力。把这两层概念混在一起说，就是最常见的误区。</p>
+<p>具体到项目推进，要把红线落成三个动作。内容边界：涉密内容先脱敏、再分级、再进版本控制，版本留痕和权限分级一起上。能力边界：专家智能体、组织 Skills 市场、内网 LLM WIKI 只在隔离网生效，交付阶段就要把模型和向量库放进离线部署包。口径边界：对外材料只写本地化部署、数据不出内网、支持按相关要求部署，不写整机配置，不做合规结论。</p>
+<p>交付侧要能回答三个问题：数据放哪了、谁能看、出了事能回溯到什么。答不上来，宣传材料就只能写口号；答得上来，宣传材料才有底气。对涉密项目的交付推进，本质上是在做两件事：一是把能力放进隔离网，二是把口径守住。前者是工程动作，后者是流程动作；工程做不完，流程无从谈；流程守不住，工程再完整也白做。</p>
+<h2>三、实操落地：物理隔离网内的离线部署</h2>
+<p><strong>步骤一：先定边界.</strong> 和客户侧确认涉密等级、保密分区与可用的内网网络，把物理隔离网的边界画出来。涉密项目分级不一，边界画错，交付验收全跑偏。很多交付事故，源头是边界没画在客户侧心里。</p>
+<p><strong>步骤二：再定形态.</strong> 本地化部署，数据不出内网；文件版本控制、集中权限分级、在线协同编辑、内网 LLM WIKI、组织 Skills 市场、企业专家智能体都在内网里跑。</p>
+<p><strong>步骤三：交付打包.</strong> 离线部署包打包模型、向量库与依赖；镜像依赖换成内网源；公开页面不写整机配置，涉及时表述为具体配置按交付合同约定。</p>
+<table><thead><tr><th>层面</th><th>涉密项目里要做的事</th></tr></thead><tbody><tr><td>内容</td><td>涉密内容先脱敏与权限分级，再进版本控制</td></tr><tr><td>权限</td><td>集中权限分级到部门和角色</td></tr><tr><td>交付</td><td>离线部署包与内网镜像</td></tr><tr><td>宣传</td><td>只谈部署形态与数据位置</td></tr></tbody></table>
+<p>落地顺序建议：先定边界、再定形态、然后交付打包、最后验收。顺序不能反，因为交付打包前没把能力放进隔离网，验收时就没有可核验的对象。交付链路上，离线部署包是关键环节：模型、向量库、依赖都要随包打进内网环境，镜像依赖不再从外部拉取。这一步做对，红线才有实体可言。</p>
+<p><strong>交付动作要前置，验收动作要跟上.</strong> 交付侧准备离线部署包和内网镜像，验收侧准备权限回收、版本回滚、审计留痕三个演示点；两边分别走完，红线才有了可验证的实体。交付验收的现场动作要写成清单：涉密内容的进库、权限分级的下线、离线部署包的打数、审计留痕的回执，每一步都有 owner 和记录。</p>
+<h2>四、对外发布与验收：把红线变成动作</h2>
+<p>对外材料上，只写部署事实：本地化部署、数据不出内网、支持按相关要求部署；不写整机配置，不做合规结论。验收上，把红线前置到交付：涉密内容先过权限分级，再进版本控制，交付证据与宣传口径同时留痕。</p>
+<p>一体机档位价格：基础版 15 万（全部远程）、标准版 25 万（含三周现场 + 1 年远程）、旗舰版 50 万（再加信创认证）；续费 5 万/年；30 天试用。公开页面不写明整机配置，涉及硬件时表述为具体配置按交付合同约定。对外发布前，先过一遍红线清单：涉密场景不提数字员工、不提云同步，不提具体配置，不做结论式合规声明。</p>
+<p>对外发布的动作，不是写一篇就完。要把红线写进发布流程：新页面、新 FAQ、客户材料、内部答辩材料，统一口径。答辩时，交付侧能讲证据链，宣传侧只讲部署事实；证据链和口径不一致时，先修交付，再推宣传。</p>
+<p>能力位置和部署形态要分开讲：专家智能体、组织 Skills 市场、内网 LLM WIKI 这些能力，都落在物理隔离网内；文件版本控制、集中权限分级、在线协同编辑、内网 LLM WIKI、组织 Skills 市场、企业专家智能体这套能力清单，是本地化部署（数据不出内网）的企业 AI 知识库底座要交付的东西。功能对照可以看 <a href="../features.html">产品功能对照</a>。</p>
+<p>发布动作要和交付动作对齐：同一能力，交付侧说证据链，宣传侧说部署事实；两边不能互换。</p>
+<h2>参考与说明</h2>
+<p>本文依据站内产品页与公开客户使用事实写作：本地化部署（数据不出内网）的企业 AI 知识库底座，能力清单为文件版本控制、集中权限分级、在线协同编辑、内网 LLM WIKI、组织 Skills 市场、企业专家智能体；已公开的客户使用事实仅限成都金诺信、福州高意光学（自 2025 年 4 月起使用）、苏州工业园区蓝天燃气热电（自 2026 年 3 月起使用）。合规结论以客户侧定级备案与测评为准。红线条款要随版本控制一起留痕，交付证据要随验收节点归档。</p>
+<h2>常见问题</h2>
+<div class="faq-item"><h4>Q1: 涉密场景的离线部署到底是什么？</h4><p>回答：是把企业 AI 知识库底座装进物理隔离网，让文件版本控制、集中权限分级、在线协同编辑、内网 LLM WIKI、组织 Skills 市场、企业专家智能体在内网里跑，数据不出内网。它回答的不是「能不能用」，而是「用上时数据放哪、谁能看、怎么追溯」。知识治理、权限分级、版本追溯和内网问答是四条必须成立的链路，缺一条，红线就只停在口号层面。</p></div>
+<div class="faq-item"><h4>Q2: 物理隔离网内的离线部署怎么做交付和验收？</h4><p>回答：先和客户侧确认涉密边界，再做离线部署包与镜像依赖的内网化交付；验收看权限分级、版本留痕、审计可回溯，最后用 30 天试用做一次涉密真机验收，再谈签约。验收时把权限回收、版本回滚、作废防误用一起演示。</p></div>
+<div class="faq-item"><h4>Q3: 等保三级和信创适配有什么不同？</h4><p>回答：等保三级按等级保护要求分级，信创适配看产品是否适配相关技术路线；两者维度不同，结论只能以客户侧定级备案与测评为准，不能提前对外宣称。分级和适配看的是不同对象，不能混用；对涉密项目，最终拍板权在客户侧。</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>把知识沉淀下来，比选一个模型更重要</h2>
+    <p>文档进得来、知识留得住、AI 用得上——先在真机上验证一次。</p>
+    <a class="btn btn-primary" href="../contact.html">申请 30 天免费试用</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../scenario.html">应用场景</a> · <a href="../appliance.html">一体机与报价</a> · <a href="../customers/index.html">客户案例</a> · <a href="../contact.html">联系试用</a></div>
+    <div class="site-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">浙ICP备15034351号-1</a> · 自由团队 · gofreeteam.com · 高雨
+    </div>
+  </div>
+</footer>
+
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
+</body>
+</html>

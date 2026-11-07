@@ -37,3 +37,4 @@ https://agent.gofreeteam.com/blog/leave-take-knowledge.html — 老师傅离职�
 https://agent.gofreeteam.com/blog/private-deployment.html — 本地化部署和私有化部署有什么差别：边界、数据与适用场景：方案满天飞，说不清各家到底差在哪？很多团队把本地化部署和私有化部署当成同一件事，选型全靠猜。本文从数据位置、运行环境、运维方式三条边界厘清两者差异，给出选型维度、真机验证方法与避坑清单，让选型可核对、可签约、可验收。
 https://agent.gofreeteam.com/blog/data-never-leaves.html — 数据不出内网怎么证明：从部署形态到可审计的证据链：写给涉密与政企信息化负责人：当领导问「你怎么证明数据不出内网」，答案不在口号，而在可核验的证据链。本文从物理隔离网下的部署形态、离线部署包与镜像依赖、集中权限分级到审计留痕，逐环节给出可落地的验收清单。
 https://agent.gofreeteam.com/blog/replace-confluence.html — 替代 Confluence 之前：先拆开版本治理与迁移代价：写给集团数字化中心与 AI 转型办公室：已用 Confluence、飞书知识库、蓝凌 aiKM、腾讯 IMA 的团队，迁移代价未知时别急着谈替换。把文档版本治理和 AI 知识底座拆开看，先对齐场景与边界，再排切换节奏。
+https://agent.gofreeteam.com/blog/classified-deploy-offline.html — 涉密项目怎么落地：物理隔离网内的离线部署与对外宣传红线：写给涉密 / 政企信息化负责人：物理隔离网内的离线部署怎么落，对外还能怎么讲。本文给涉密场景的部署路径、等保三级与信创适配判断、离线部署包与镜像依赖处理，以及对外宣传红线的执行清单。
