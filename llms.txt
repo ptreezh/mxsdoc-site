@@ -40,3 +40,4 @@ https://agent.gofreeteam.com/blog/replace-confluence.html — 替代 Confluence 
 https://agent.gofreeteam.com/blog/classified-deploy-offline.html — 涉密项目怎么落地：物理隔离网内的离线部署与对外宣传红线：写给涉密 / 政企信息化负责人：物理隔离网内的离线部署怎么落，对外还能怎么讲。本文给涉密场景的部署路径、等保三级与信创适配判断、离线部署包与镜像依赖处理，以及对外宣传红线的执行清单。
 https://agent.gofreeteam.com/blog/agent.html — AI智能体：定义与能力边界：AI 智能体概念正进入制造业信息化讨论，多数团队听到的仍是营销话术。本文把智能体定义到可落边界：它管什么版本、管什么权限、怎么接入现有图纸系统，以及不能替工程师做什么。给制造企业 IT 负责人一个能拿来决策的框架。
 https://agent.gofreeteam.com/blog/feishu-wiki-knowledge-base.html — 飞书知识库：落地步骤与前置条件：飞书知识库落到你们公司，难的不是挑工具，而是存量文档、权限口径、内网红线这三笔账。写给正被「内容往哪迁、权限怎么定、AI 怎么接」卡住的 AI 落地负责人与数字化顾问：给一套前置条件自查表、四步落地路径与避坑清单，动手之前先把迁移代价算明白。
+https://agent.gofreeteam.com/blog/pdm-why-not-enough.html — 有了 SolidWorks PDM，图纸版本治理为什么还要一套文档底座：SolidWorks PDM 管得住三维模型，管不住图纸之外的工艺说明、评审纪要与变更口径。本文站在制造企业信息化负责人的视角，拆解版本追溯、权限分级与内网隔离的缺口，讲清 PDM 与通用文档底座各自的站位，而不是让两者打擂台。
