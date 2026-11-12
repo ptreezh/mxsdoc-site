@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>私有化部署和云端 API，账要分开算 — MxsDoc 博客</title>
+  <meta name="description" content="私有化部署和云端 API，账要分开算。企业大模型落地先理清成本、安全边界与验收口径，再谈预算、上线、试点和运维责任。两种部署路径各自的账和各自的约束都得算清楚。">
+  <meta name="keywords" content="私有化部署,本地化部署,云端 API,Deepseek,Qwen">
+  <link rel="canonical" href="https://agent.gofreeteam.com/blog/private-vs-cloud-cost.html">
+  <meta property="og:title" content="私有化部署和云端 API，账要分开算">
+  <meta property="og:description" content="私有化部署和云端 API，账要分开算。企业大模型落地先理清成本、安全边界与验收口径，再谈预算、上线、试点和运维责任。两种部署路径各自的账和各自的约束都得算清楚。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://agent.gofreeteam.com/blog/private-vs-cloud-cost.html">
+  <meta property="og:image" content="https://agent.gofreeteam.com/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "私有化部署和云端 API，账要分开算",
+  "description": "私有化部署和云端 API，账要分开算。企业大模型落地先理清成本、安全边界与验收口径，再谈预算、上线、试点和运维责任。两种部署路径各自的账和各自的约束都得算清楚。",
+  "keywords": "私有化部署,本地化部署,云端 API,Deepseek,Qwen",
+  "author": {
+    "@type": "Organization",
+    "name": "MxsDoc"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MxsDoc",
+    "url": "https://agent.gofreeteam.com"
+  },
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "mainEntityOfPage": "https://agent.gofreeteam.com/blog/private-vs-cloud-cost.html",
+  "inLanguage": "zh-CN"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q1: 私有化部署和云端 API，到底是什么?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "它回答的是同一个问题:企业知识怎么被模型调用。私有化部署把文件版本控制、集中权限分级管理、内网 LLM WIKI 知识底座、组织 Skills 市场、企业专家智能体这些能力放在内网交付;云端 API 则把模型能力通过接口调用出去。底层都是让模型引用企业自己的知识。一句话说，它管的是资料怎么被受控、版本怎么被追溯、权限怎么被分级。它不替代治理，而是把治理做实。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q2: 企业评估大模型时，怎么判断该走私有化部署还是云端 API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "先看数据边界和调用量。需要离线、需要全员权限、文档厚的团队，先看私有化部署;调用量小的团队，先看云端 API。两条路的账分开算，再决定预算和上线顺序。判断的锚点不是模型名字，而是数据边界和调用量两个变量。这两个锚点决定了预算怎么分。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q3: 私有化部署和云端 API 有什么区别?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "区别在边界和交付。云端 API 的边界由平台兜底，私有化部署完全内网。区别在成本结构:云端 API 按调用，私有化部署按硬件加授权加运维。区别在验证:云端 API 灰度即可，私有化部署真机验收。所以对比时，别只看模型能力，要把账和验证一起看。"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://agent.gofreeteam.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客",
+      "item": "https://agent.gofreeteam.com/#blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "私有化部署和云端 API，账要分开算"
+    }
+  ]
+}
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 800px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .prose h3 { font-size: 1.15rem; color: var(--dark); margin: 1.6rem 0 .6rem; }
+    .prose ul { margin: 0 0 1.1rem 1.4rem; color: #334155; }
+    .prose li { margin: .35rem 0; }
+    .prose blockquote { background: #fff; border-left: 4px solid var(--primary); padding: 1rem 1.3rem; margin: 1.4rem 0; color: #475569; border-radius: 0 8px 8px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; font-size: .93rem; }
+    .prose th, .prose td { border: 1px solid #e2e8f0; padding: .65rem .8rem; text-align: left; vertical-align: top; }
+    .prose th { background: #f1f5f9; color: var(--dark); font-weight: 600; }
+    .prose code { background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+        .site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · 私有化部署和云端 API，账要分开算</div>
+    <h1>私有化部署和云端 API，账要分开算</h1>
+    <p class="sub">私有化部署和云端 API，账要分开算。企业大模型落地先理清成本、安全边界与验收口径，再谈预算、上线、试点和运维责任。两种部署路径各自的账和各自的约束都得算清楚。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-11-12 · 约 4 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+<div class="hook"><p><strong>本文要点</strong></p><ul><li>云端 API 与私有化部署的账必须分开算，先定数据边界、再定预算</li><li>先做真机验收、再扩团队规模。</li></ul></div>
+<h2>一、痛点场景：账没算清，决策一直在心里排队</h2>
+<p>你是集团数字化中心、AI 转型办公室的负责人，或者外部咨询公司的顾问，手里攥着这样一件事：上周的选型会上有人问「要不要私有化部署」，有人又问「要不要云端 API」。两种问题看着一个，拆开一算，成本结构、安全边界、验证顺序，根本不是一个数量级。</p>
+<p>云端 API 的路径，账在调用量上：按 token 计费，花在模型能力、上下文窗口、检索链路上。私有化部署的路径，账在交付上：硬件、模型授权、运维、交付周期，缺一个都不能上。</p>
+<p>真正让负责人停住的是安全边界。数据不出内网，是私有化部署的根，也是企业愿意为它多花钱的原因。把边界写清楚之前，预算和方案就谈不拢。</p>
+<p>所以先别急着二选一。把私有化部署和云端 API 的账拆开来算，再谈上线和预算。</p>
+<p>写给这类负责人的我有个体会:说「要私有化部署」的人，心里已经算过一版账，只是没写下来;说「要云端 API」的人，心里也已经压着调用量，只是还没敢拿出来和安全做对齐。两拨人，账都差半截。</p>
+<p>真正要命的是第三拨:既不清楚算出什么账，也不清楚要不要算。他们把「买不买得起」和「敢不敢上线」混为一谈，于是所有预算讨论都绕开成本本身。</p>
+<p>所以这个任务的核心，不是再讲一遍「私有化部署更安全」，而是把两种路径各自的账先算明白。算明白了，决策就不在心里排队了。</p>
+<p>所以给客户提案时，我会把这件事拆成两半:一半是云端 API 的调用账，一半是私有化部署的交付账。两半拆完，客户才会真正知道自己在为什么买单，也才知道要不要继续往下走。这比单纯说「私有化部署更稳」有用得多。</p>
+<p>拆完之后，客户才会敢把预算放进计划;我们才会敢在方案里写清楚每一步的投入。把两半都算明白了，后续的选型会、验收会，才会有真实的讨论内容。</p>
+<p>我自己的经验是:遇到这类客户，最初的反应往往是想把私有化部署说成更稳，或者反过来把云端 API 说成更简单。真正的问题是账没算，所以两个方案都被情绪带偏了。</p>
+<p>做成本拆分时，我会把「买模型、买算力、买交付、买运维」拆开写。三个数字写清楚，客户才知道值多少钱，也才知道值不值得做。</p>
+<h2>二、方案对比：云端 API 与私有化部署的账怎么分</h2>
+<p>拆开看之前，先把两个问题答清楚:成本怎么算，安全怎么兜底。云端 API 走调用付费，私有化部署走硬件、授权、运维。两条路的失败模式也不一样:云端 API 的失败发生在用不好、跑偏，私有化部署的失败发生在交付、授权、运维环节。</p>
+<table><thead><tr><th>维度</th><th>云端 API</th><th>私有化部署</th></tr></thead><tbody><tr><td>数据边界</td><td>数据可被平台处理</td><td>数据不出内网</td></tr><tr><td>成本结构</td><td>按调用计费</td><td>硬件、授权、运维</td></tr><tr><td>交付周期</td><td>配置即可上线</td><td>交付周期更长</td></tr><tr><td>验证方式</td><td>灰度即可</td><td>真机验收</td></tr></tbody></table>
+<p>费用项上也能拆开看:模型能力上，云端 API 是订阅加调用，私有化部署是授权加算力;数据安全上，云端 API 用托管边界，私有化部署用内网边界。两条路的账各自不同，不能混在一起。</p>
+<p>云端 API 适合调用量不大的团队，预算和上线速度都比较透明;私有化部署适合多部门、高合规、厚文档的团队，账单上要分清硬件、授权、运维三个口径。前者是一张表就能看清账，后者是一张表加一份交付计划。</p>
+<p>成本结构不一样，账单上也就不一样。云端 API 是一张清单上的调用明细，私有化部署是一张清单上的采购、授权、运维三张子单。两者看完都长得很像「预算」，但前者会随着调用增长而变，后者是固定投入加持续消耗。</p>
+<p>预算批出来之前，先把预算的来源说清楚:是某个部门先批的，还是集团统一的预算，这会直接影响后面怎么拆。拆错了，后面全是返工。</p>
+<p>预算来源说清了，后面才有地方去争取。争取没地方，账再算得再清楚也没用。</p>
+<p>两种路径的账怎么分，最终要落到一个动作:上云端 API 就按调用拆分预算，上私有化部署就按交付拆分预算。动作说对了，账就对了。</p>
+<p>如果把云端 API 的调用量算出来了，依然要看上下文和检索占了多少预算;如果私有化部署的报价算出来了，还要看交付期和运维投入。把每一块都算进去，账才算对。</p>
+<h2>三、做法：怎么算成本、安全、验证三笔账</h2>
+<p>算成本:先把预期调用量摊到模型能力、上下文窗口、检索链路上，再拿这个数字去和云端 API 的计费对照;私有化部署则按硬件采购、模型授权、运维托管三个口径各算一笔。</p>
+<p>算安全:先画出内网边界在哪里，哪些场景必须离线。云端 API 的数据边界由平台负责，私有化部署则完全由客户侧掌控。</p>
+<p>算验证:云端 API 适合灰度验证，私有化部署要在真机上跑通版本回滚、权限回收、引用溯源。三件事都得有验收动作，账单上的钱才敢花。</p>
+<p>落地顺序上也有讲究:先用三十天试用把流程跑一遍，再谈采购和部署;先单部门闭环，再考虑全公司推广。账算明白了，下一步通常是很清醒的:买不买得起，敢不敢上，先说定了。</p>
+<p>三个账各算一遍，顺序不能乱:先算成本，再定安全边界，最后做验证。三个顺序不能交换。</p>
+<p>把账算完，就该有一个清单:哪些场景必须离线，哪些场景可以用云端 API，哪些场景必须私有化。清单写清楚了，预算自然分开。</p>
+<p>把账算平了，安全算上了，验证算完了，三个账都到位，这笔投入才值得启动。</p>
+<p>安全边界是不容压缩的环节，所以它必须排在成本之前;成本不准，验证再认真也是白做。</p>
+<h2>四、落地路径：避坑清单与真机验收</h2>
+<ul><li>把云端 API 的调用量估算当成本，没算到上下文和检索，账就没算全。</li><li>把私有化部署的硬件采购当全部成本，忽略授权和运维。</li><li>把安全边界写成口号，没落到预算。</li><li>上来就全厂验收，没先单部门闭环。</li><li>用演示环境的料做验收。</li></ul>
+<p>这两类坑恰恰是两种路径上最常见的漏算:账没算全，或者算全了却没落地。补上这一课，比再多一套功能更实在。</p>
+<p>避坑清单只是手段。手段的尽头是验收:真机上跑一遍版本回滚、权限回收、引用溯源，三个动作都成立，才能放行。否则就回到账没算清的状态。</p>
+<h2>参考与说明</h2>
+<ul><li>公开客户使用事实仅限:成都金诺信、福州高意光学（自 2025 年 4 月起使用）、苏州工业园区蓝天燃气热电（自 2026 年 3 月起使用）。</li><li>MxsDoc 产品口径、能力清单、报价口径以 <a href="../features.html">产品功能对照</a> 和 <a href="../appliance.html">一体机与报价</a> 为准。</li><li>一体机档位价格:基础版 15 万（全部远程）、标准版 25 万（含三周现场 + 1 年远程）、旗舰版 50 万（再加信创认证）;续费 5 万/年;30 天试用。</li><li>申请试用:走 <a href="../contact.html">申请试用</a>。</li><li>以上判断基于我们自己的工程经验，不构成任何外部调研结论。</li></ul>
+<h2>常见问题</h2>
+<div class="faq-item"><h4>Q1: 私有化部署和云端 API，到底是什么?</h4><p>它回答的是同一个问题:企业知识怎么被模型调用。私有化部署把文件版本控制、集中权限分级管理、内网 LLM WIKI 知识底座、组织 Skills 市场、企业专家智能体这些能力放在内网交付;云端 API 则把模型能力通过接口调用出去。底层都是让模型引用企业自己的知识。一句话说，它管的是资料怎么被受控、版本怎么被追溯、权限怎么被分级。它不替代治理，而是把治理做实。</p></div>
+<div class="faq-item"><h4>Q2: 企业评估大模型时，怎么判断该走私有化部署还是云端 API?</h4><p>先看数据边界和调用量。需要离线、需要全员权限、文档厚的团队，先看私有化部署;调用量小的团队，先看云端 API。两条路的账分开算，再决定预算和上线顺序。判断的锚点不是模型名字，而是数据边界和调用量两个变量。这两个锚点决定了预算怎么分。</p></div>
+<div class="faq-item"><h4>Q3: 私有化部署和云端 API 有什么区别?</h4><p>区别在边界和交付。云端 API 的边界由平台兜底，私有化部署完全内网。区别在成本结构:云端 API 按调用，私有化部署按硬件加授权加运维。区别在验证:云端 API 灰度即可，私有化部署真机验收。所以对比时，别只看模型能力，要把账和验证一起看。</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>把知识沉淀下来，比选一个模型更重要</h2>
+    <p>文档进得来、知识留得住、AI 用得上——先在真机上验证一次。</p>
+    <a class="btn btn-primary" href="../contact.html">申请 30 天免费试用</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../scenario.html">应用场景</a> · <a href="../appliance.html">一体机与报价</a> · <a href="../customers/index.html">客户案例</a> · <a href="../contact.html">联系试用</a></div>
+    <div class="site-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">浙ICP备15034351号-1</a> · 自由团队 · gofreeteam.com · 高雨
+    </div>
+  </div>
+</footer>
+
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
+</body>
+</html>
