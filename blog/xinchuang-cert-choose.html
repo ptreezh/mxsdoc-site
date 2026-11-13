@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>信创目录对不上就被否：一体机选型要问清哪些认证条目 — MxsDoc 博客</title>
+  <meta name="description" content="政企与涉密单位采购内网知识库一体机，信创目录条目与等保三级要求对不上，评标和验收就过不了。这篇文章把选型时该向供应商问清的认证条目、部署口径与合同写法，整理成一份可以直接发出去的问清单，帮你把型号写错的风险挡在报价单阶段。">
+  <meta name="keywords" content="信创,等保三级,国产化适配,一体机选型">
+  <link rel="canonical" href="https://agent.gofreeteam.com/blog/xinchuang-cert-choose.html">
+  <meta property="og:title" content="信创目录对不上就被否：一体机选型要问清哪些认证条目">
+  <meta property="og:description" content="政企与涉密单位采购内网知识库一体机，信创目录条目与等保三级要求对不上，评标和验收就过不了。这篇文章把选型时该向供应商问清的认证条目、部署口径与合同写法，整理成一份可以直接发出去的问清单，帮你把型号写错的风险挡在报价单阶段。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://agent.gofreeteam.com/blog/xinchuang-cert-choose.html">
+  <meta property="og:image" content="https://agent.gofreeteam.com/assets/appliance/png-1200/main-1-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "信创目录对不上就被否：一体机选型要问清哪些认证条目",
+  "description": "政企与涉密单位采购内网知识库一体机，信创目录条目与等保三级要求对不上，评标和验收就过不了。这篇文章把选型时该向供应商问清的认证条目、部署口径与合同写法，整理成一份可以直接发出去的问清单，帮你把型号写错的风险挡在报价单阶段。",
+  "keywords": "信创,等保三级,国产化适配,一体机选型",
+  "author": {
+    "@type": "Organization",
+    "name": "MxsDoc"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MxsDoc",
+    "url": "https://agent.gofreeteam.com"
+  },
+  "datePublished": "2026-11-13",
+  "dateModified": "2026-11-13",
+  "mainEntityOfPage": "https://agent.gofreeteam.com/blog/xinchuang-cert-choose.html",
+  "inLanguage": "zh-CN"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q1: 信创相关目录条目到底是什么？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "它是产品进入政企采购视野所依据的备案条目，通常包含产品名称、型号、证书编号与有效期。评标和验收核对的就是这些字段：采购清单上的产品名要和条目逐字一致，覆盖范围（整机还是软件模块）要和交付物一致，有效期要覆盖合同周期。选型阶段核对条目，是成本最低的一道保险；等到评标现场才发现对不上，损失的是整轮采购周期。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q2: 怎么核对供应商给的认证条目和采购清单？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "四个动作：一比产品名称与型号是否逐字一致；二查证书编号与有效期是否真实、是否覆盖合同周期；三确认条目覆盖的是整机还是软件模块，与交付物是否一致；四把核对结果作为附件写进采购文件与合同。整个核对可以由你的采购或信息化岗位独立完成，不依赖供应商自证——供应商给的任何截图，都应当在官方公布的查询入口复核一遍。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q3: 整机入目录和软件模块入目录有什么区别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "区别在责任边界。整机条目对应交付的一体机整体，硬件与软件由同一家供应商负责，出了问题没有第二个责任人；软件模块条目对应运行在既有国产化整机上的软件产品，你需要分别对接整机供应商与软件供应商，适配问题出现时两家各说各话的情况并不少见。如果你的运维力量有限、希望交付边界清晰，整机条目下的交付方式通常更省心；如果你单位已有成体系的国产化整机存量，软件模块方式则更贴合现状。"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://agent.gofreeteam.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "博客",
+      "item": "https://agent.gofreeteam.com/#blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "信创目录对不上就被否：一体机选型要问清哪些认证条目"
+    }
+  ]
+}
+  </script>
+  <style>
+    :root { --primary: #1a5fb4; --dark: #12253f; --accent: #e8b13a; --bg: #f7f9fc; --text: #1f2937; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--dark); color: #fff; padding: 1.2rem 0; }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--accent); }
+    .nav a { color: #cfd8e3; margin-left: 18px; font-size: .95rem; }
+    .nav a:hover { color: var(--accent); }
+    .page-hero { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: #fff; padding: 3.2rem 0 2.8rem; }
+    .page-hero h1 { font-size: 2rem; margin-bottom: .8rem; }
+    .page-hero p.sub { font-size: 1.08rem; color: #b8cbe0; max-width: 800px; }
+    .crumb { font-size: .88rem; color: #8aa0b8; margin-bottom: 1rem; }
+    .crumb a { color: #b8cbe0; }
+    section { padding: 4rem 0; }
+    section h2 { font-size: 1.7rem; margin-bottom: 1rem; color: var(--dark); }
+    section h2 small { font-size: .95rem; color: #64748b; font-weight: 400; display: block; margin-top: .35rem; }
+    .article-meta { color: #8aa0b8; font-size: .9rem; margin-bottom: .6rem; }
+    .prose p { font-size: 1rem; color: #334155; margin-bottom: 1rem; }
+    .prose strong { color: var(--dark); }
+    .prose h3 { font-size: 1.15rem; color: var(--dark); margin: 1.6rem 0 .6rem; }
+    .prose ul { margin: 0 0 1.1rem 1.4rem; color: #334155; }
+    .prose li { margin: .35rem 0; }
+    .prose blockquote { background: #fff; border-left: 4px solid var(--primary); padding: 1rem 1.3rem; margin: 1.4rem 0; color: #475569; border-radius: 0 8px 8px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; font-size: .93rem; }
+    .prose th, .prose td { border: 1px solid #e2e8f0; padding: .65rem .8rem; text-align: left; vertical-align: top; }
+    .prose th { background: #f1f5f9; color: var(--dark); font-weight: 600; }
+    .prose code { background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .faq-item { background: #fff; border-radius: 10px; padding: 1.3rem 1.5rem; margin-top: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-item h4 { color: var(--dark); margin-bottom: .4rem; font-size: 1.05rem; }
+    .faq-item p { font-size: .95rem; color: #475569; }
+    .cta-band { background: var(--dark); color: #fff; text-align: center; padding: 4rem 0; }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #b8cbe0; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: .8rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: var(--dark); }
+    footer { background: #0f1d30; color: #8aa0b8; padding: 2.5rem 0; font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer a { color: #b8cbe0; }
+    @media (max-width: 640px) { .page-hero h1 { font-size: 1.6rem; } .nav a { margin-left: 12px; font-size: .88rem; } }
+        .site-icp { flex-basis: 100%; margin-top: 10px; font-size: 12px; opacity: .85; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo"><a href="../index.html" style="color:#fff;">MxsDoc<span>.</span> 企业 AI 知识库底座</a></div>
+    <nav class="nav">
+      <a href="../index.html">首页</a>
+      <a href="../features.html">产品功能</a>
+      <a href="../scenario.html">应用场景</a>
+      <a href="../demo.html">在线演示</a>
+      <a href="../customers/index.html">客户案例</a>
+      <a href="../contact.html">免费试用</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首页</a> · <a href="../index.html#blog">博客</a> · 信创目录对不上就被否：一体机选型要问清哪些认证条目</div>
+    <h1>信创目录对不上就被否：一体机选型要问清哪些认证条目</h1>
+    <p class="sub">政企与涉密单位采购内网知识库一体机，信创目录条目与等保三级要求对不上，评标和验收就过不了。这篇文章把选型时该向供应商问清的认证条目、部署口径与合同写法，整理成一份可以直接发出去的问清单，帮你把型号写错的风险挡在报价单阶段。</p>
+    <div class="article-meta">MxsDoc 团队 · 2026-11-13 · 约 4 分钟阅读</div>
+  </div>
+</div>
+
+<section>
+  <div class="container prose">
+<div class="hook"><p><strong>本文要点</strong></p><ul><li>选型阶段把认证条目逐字对齐，比验收阶段补救便宜得多</li><li>问清目录条目全称与证书编号、整机与软件模块的覆盖范围</li><li>把离线部署包与升级方式的交付承诺写进合同。</li></ul></div>
+<h2>一、痛点场景：报价单上的型号，和目录里对不上</h2>
+<p>如果你负责的是涉密单位、军工院所或者地方国企的内网信息化，这个场景你多半见过：招标文件里写明「产品须列入信创相关目录」，供应商兴冲冲投来一台内网知识库一体机，报价单上的产品名写得漂漂亮亮。评标现场，专家拿着目录条目一查——名称对不上，或者型号差了一个后缀，或者证书主体是软件不是整机。一句话否掉，前期所有方案汇报、预算沟通、需求梳理，全部回到原点。</p>
+<p>更扎心的是验收环节。等保三级的定级备案和测评是你们单位自己的事，但测评师看的是部署形态：数据在不在网内、有没有外网通路、权限体系能不能支撑测评项。供应商在售前拍胸脯说的话，到了测评现场一个字都兑现不了，坑就得你自己填。做过等保的人都知道，返工一次，牵动的是整个年度计划，还得向上面解释为什么当初选型没把住关。</p>
+<p>这两件事的共性很清楚：<strong>问题往往不在产品好不好用，而在「纸面口径」能不能和监管要求逐字对上</strong>。型号写错一个字，就可能过不了。而这类风险的排查成本极低——选型阶段发一份问清单就能覆盖——代价却极高。这篇就把这份问清单写给你。</p>
+<h2>二、三道坎：目录对齐、等保口径、离线交付</h2>
+<h3>目录这道坎：逐字一致，而不是「大概一致」</h3>
+<p>信创相关目录里的条目，包含产品名称、型号、证书编号和有效期。采购清单上写的产品名，要和条目逐字一致。实践里最常见的翻车有三种：</p>
+<ul><li>报价单写的是产品品牌名，目录条目是备案全称，一字之差，评标否掉；</li><li>目录条目是软件模块，你交付采购的是整机，评标专家认为覆盖范围不匹配；</li><li>证书临近有效期边界，合同周期跨过去，复检时条目状态对不上。</li></ul>
+<h3>等保这道坎：口径要说实话</h3>
+<p>等保三级的定级备案与测评，责任主体是你们单位。产品方能做也该做的，是提供部署建议文档、配合整改、把部署形态讲清楚。凡是在售前宣称「产品自带合规」「天然满足测评要求」的供应商，你都该多问一句：测评项是你们单位去答的，他们替你答不了。靠谱的说法只有一种：支持按相关要求部署，配合客户侧定级备案与测评。这句话听起来不够痛快，但它才是能落进合同、经得起测评现场追问的表述。</p>
+<h3>离线这道坎：内网没有外网，一切要随箱交付</h3>
+<p>物理隔离网内的部署，是这类项目区别于普通在线服务的根本前提。安装包、镜像、依赖清单、模型文件，全部要随硬件一起交付；升级也要走离线通道。供应商的流程里如果有任何环节需要联网激活、在线校验、云端拉取依赖，隔离网里就是死局。这一条必须在选型阶段问死，不能等到进场那天才发现装不上，再回头改采购方案。</p>
+<h2>三、实操落地：把这份问清单发给供应商</h2>
+<p>选型阶段，别聊概念，直接把这张表发给候选供应商，要求逐条书面回复：</p>
+<table><thead><tr><th>要问清的问题</th><th>你要听到的答案</th><th>听不到就该警惕</th></tr></thead><tbody><tr><td>信创目录条目全称与证书编号</td><td>与采购清单逐字一致，能出示证书并给出可核查的查询结果</td><td>只给截图不给编号</td></tr><tr><td>条目覆盖整机还是软件模块</td><td>说清覆盖范围，与交付物一致</td><td>模糊回答「都算」</td></tr><tr><td>等保三级配合方式</td><td>提供部署建议文档，配合客户侧定级备案与测评</td><td>把合规责任说成产品自带</td></tr><tr><td>离线部署交付物</td><td>安装包、镜像、依赖清单随硬件交付，不需要外网激活</td><td>存在任何联网环节</td></tr><tr><td>升级与续费方式</td><td>升级走离线通道，续费按 5 万/年</td><td>升级要重新采购、口径含糊</td></tr><tr><td>服务档位与价格</td><td>基础版 15 万（全部远程）、标准版 25 万（含三周现场加 1 年远程）、旗舰版 50 万（再加信创认证），30 天试用</td><td>报出旧价或临时加价</td></tr></tbody></table>
+<p>这张表里的价格部分，是 MxsDoc 一体机的公开报价口径，写出来是给你做个参照：正规供应商的档位和价格应该是稳定的、可写进合同的，而不是见到客户再现场编一套。</p>
+<h2>四、选型建议：从试用到合同的三步走</h2>
+<p><strong>步骤一：先用试用做真机验收。</strong>不要只看演示环境。走 30 天试用，把设备放进你们的隔离网段，按真实的目录结构和权限模型试部署：文件版本控制能不能满足图纸和公文的回溯需要，集中权限分级管理能不能对上你们的密级习惯，内网 LLM WIKI 知识底座在离线状态下能不能正常应答。真机跑通一次，比十轮 PPT 评审都有说服力。</p>
+<p><strong>步骤二：把对齐结果写成采购清单附件。</strong>目录条目全称、证书编号、有效期、条目覆盖范围、离线部署交付物清单，全部作为附件写进采购文件。将来评标有据可查，验收有据可依，出了分歧也不用靠回忆吵架。</p>
+<p><strong>步骤三：验收标准写部署完整性，不写体验形容词。</strong>「部署后系统在隔离网内可正常启动并提供全部约定功能」是可判定条款；「界面友好、运行流畅」是扯皮条款。合同里能写成前者就别写后者。</p>
+<p>避坑清单，五条都是真金白银换来的：</p>
+<ul><li>报价单产品名与目录条目写法不一致——评标阶段就会暴露；</li><li>只承诺软件适配、不谈整机条目归属——责任边界模糊，出问题两头推；</li><li>部署流程存在联网环节——隔离网内直接死局；</li><li>合规表述越界——对方替你「承诺合规」，出了事你依然是自己单位的责任人；</li><li>服务口径没写进合同——现场服务范围、远程支持边界，全凭对方自觉。</li></ul>
+<p>说下我们的实践。MxsDoc 的定位是本地化部署（数据不出内网）的企业 AI 知识库底座，能力围绕文件版本控制、集中权限分级管理、在线文档编辑、内网 LLM WIKI 知识底座、组织 Skills 市场与企业专家智能体展开，具体功能边界可以看<a href="../features.html">产品功能对照</a>。旗舰版在标准版基础上再加信创认证服务，档位划分就是为了覆盖你在这篇文章里读到的几道坎，价格明细见<a href="../appliance.html">一体机与报价</a>。成都金诺信、福州高意光学、苏州工业园区蓝天燃气热电（自 2026 年 3 月起使用）在内网环境中的使用情况，可以参考<a href="../customers/index.html">客户案例与名录</a>。应用场景与同类方案的侧重差异，见<a href="../scenario.html">应用场景对照</a>。</p>
+<p>下一步的动作很具体：按这份问清单筛一轮供应商，留下条目对得上的两三家，走 30 天试用做真机验收。目录对不上就已经出局，目录对得上再看产品好不好用——顺序别反了。想直接约真机，可以从<a href="../contact.html">申请试用</a>入口开始。</p>
+<h2>参考与说明</h2>
+<ul><li>本文不对合规作结论式表述，等保三级与信创相关认定以客户侧定级备案与测评为准。</li><li>一体机档位、价格与试用口径见<a href="../appliance.html">一体机与报价</a>。</li><li>客户使用情况见<a href="../customers/index.html">客户案例与名录</a>。</li></ul>
+<h2>常见问题</h2>
+<div class="faq-item"><h4>Q1: 信创相关目录条目到底是什么？</h4><p>它是产品进入政企采购视野所依据的备案条目，通常包含产品名称、型号、证书编号与有效期。评标和验收核对的就是这些字段：采购清单上的产品名要和条目逐字一致，覆盖范围（整机还是软件模块）要和交付物一致，有效期要覆盖合同周期。选型阶段核对条目，是成本最低的一道保险；等到评标现场才发现对不上，损失的是整轮采购周期。</p></div>
+<div class="faq-item"><h4>Q2: 怎么核对供应商给的认证条目和采购清单？</h4><p>四个动作：一比产品名称与型号是否逐字一致；二查证书编号与有效期是否真实、是否覆盖合同周期；三确认条目覆盖的是整机还是软件模块，与交付物是否一致；四把核对结果作为附件写进采购文件与合同。整个核对可以由你的采购或信息化岗位独立完成，不依赖供应商自证——供应商给的任何截图，都应当在官方公布的查询入口复核一遍。</p></div>
+<div class="faq-item"><h4>Q3: 整机入目录和软件模块入目录有什么区别？</h4><p>区别在责任边界。整机条目对应交付的一体机整体，硬件与软件由同一家供应商负责，出了问题没有第二个责任人；软件模块条目对应运行在既有国产化整机上的软件产品，你需要分别对接整机供应商与软件供应商，适配问题出现时两家各说各话的情况并不少见。如果你的运维力量有限、希望交付边界清晰，整机条目下的交付方式通常更省心；如果你单位已有成体系的国产化整机存量，软件模块方式则更贴合现状。</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>把知识沉淀下来，比选一个模型更重要</h2>
+    <p>文档进得来、知识留得住、AI 用得上——先在真机上验证一次。</p>
+    <a class="btn btn-primary" href="../contact.html">申请 30 天免费试用</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 MxsDoc 企业 AI 知识库底座 · 本地化部署（数据不出内网）</div>
+    <div><a href="../index.html">首页</a> · <a href="../features.html">产品功能</a> · <a href="../scenario.html">应用场景</a> · <a href="../appliance.html">一体机与报价</a> · <a href="../customers/index.html">客户案例</a> · <a href="../contact.html">联系试用</a></div>
+    <div class="site-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener nofollow">浙ICP备15034351号-1</a> · 自由团队 · gofreeteam.com · 高雨
+    </div>
+  </div>
+</footer>
+
+  <!-- 站点统计（零配置时空转，不写 cookie，不采集 PII，遵守 DNT/GPC） -->
+  <script src="../assets/js/analytics.js" defer></script>
+
+</body>
+</html>
