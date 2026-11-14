@@ -44,3 +44,4 @@ https://agent.gofreeteam.com/blog/pdm-why-not-enough.html — 有了 SolidWorks 
 https://agent.gofreeteam.com/blog/permission-granularity.html — 权限不是开关而是矩阵：部门、角色、项目的权限分级怎么落到文档级：涉密图纸和普通通知混在同一个共享盘里，出了泄露事故才知道权限根本没分级。这篇写给制造业信息化负责人：把部门、角色、项目三级授权落到每一份文档上，让权限分级变成可审计、可回溯的日常管理，而不是出了事才做的大扫除。
 https://agent.gofreeteam.com/blog/private-vs-cloud-cost.html — 私有化部署和云端 API，账要分开算：私有化部署和云端 API，账要分开算。企业大模型落地先理清成本、安全边界与验收口径，再谈预算、上线、试点和运维责任。两种部署路径各自的账和各自的约束都得算清楚。
 https://agent.gofreeteam.com/blog/xinchuang-cert-choose.html — 信创目录对不上就被否：一体机选型要问清哪些认证条目：政企与涉密单位采购内网知识库一体机，信创目录条目与等保三级要求对不上，评标和验收就过不了。这篇文章把选型时该向供应商问清的认证条目、部署口径与合同写法，整理成一份可以直接发出去的问清单，帮你把型号写错的风险挡在报价单阶段。
+https://agent.gofreeteam.com/blog/ai-agent-in-enterprise.html — 企业专家智能体：把老师傅的经验变成可调用的组织能力：核心工程师一离职，整条工艺链的 know-how 就断档，这是制造企业管理层最真实的焦虑。企业专家智能体把散落在个人脑子里的经验沉淀进内网知识底座，变成新人和数字员工都能调用的组织能力，数据不出内网。
