@@ -46,3 +46,4 @@ https://agent.gofreeteam.com/blog/private-vs-cloud-cost.html — 私有化部署
 https://agent.gofreeteam.com/blog/xinchuang-cert-choose.html — 信创目录对不上就被否：一体机选型要问清哪些认证条目：政企与涉密单位采购内网知识库一体机，信创目录条目与等保三级要求对不上，评标和验收就过不了。这篇文章把选型时该向供应商问清的认证条目、部署口径与合同写法，整理成一份可以直接发出去的问清单，帮你把型号写错的风险挡在报价单阶段。
 https://agent.gofreeteam.com/blog/ai-agent-in-enterprise.html — 企业专家智能体：把老师傅的经验变成可调用的组织能力：核心工程师一离职，整条工艺链的 know-how 就断档，这是制造企业管理层最真实的焦虑。企业专家智能体把散落在个人脑子里的经验沉淀进内网知识底座，变成新人和数字员工都能调用的组织能力，数据不出内网。
 https://agent.gofreeteam.com/blog/context-contamination.html — 上下文交叉污染：多部门共用一个知识库，为什么越用越答错：知识库不是筐，什么都往里装就会互相串味。上下文交叉污染让研发、质量、采购共用一套答案时张冠李戴，你投了钱却说不清它帮上了什么。本文拆解污染的三个来源、知识治理的分步做法与权限分级的边界，帮你把每条回答都对得上责任部门。
+https://agent.gofreeteam.com/blog/one-system-many-docs.html — IT 不想再买第五套系统：企业 AI 知识库统一管住图纸、工艺与培训文档：图纸在 PDM、工艺卡在车间共享盘、检验报告在邮件附件、培训材料在某台个人电脑上——四类文档四套口径，IT 的人力和预算都撑不住。本文写给制造企业信息化负责人：如何用一套本地化部署的企业 AI 知识库底座，把版本、权限和检索收拢到一处。
