@@ -8,7 +8,7 @@ MxsDoc - 企业 AI 知识库（本地化部署）
 - [产品功能](https://agent.gofreeteam.com/features.html) — 版本控制、权限分级、Office/WPS 协同、AI 检索与 Agent 能力
 - [应用场景](https://agent.gofreeteam.com/scenario.html) — 设计院、工程咨询、制造、政企知识管理等典型场景
 - [客户案例与名录](https://agent.gofreeteam.com/customers/index.html) — 4 个深度案例 + 500+ 客户名录（政府/央企/上市公司/设计院）
-- [博客文章](https://agent.gofreeteam.com/blog/enterprise-ai-knowledge-base-selection-guide.html) — 技术选型、部署实践与 AI 知识库选型避坑指南（共 28 篇，完整清单见下方）
+- [博客文章](https://agent.gofreeteam.com/blog/enterprise-ai-knowledge-base-selection-guide.html) — 技术选型、部署实践与 AI 知识库选型避坑指南（共 29 篇，完整清单见下方）
 - [安装与使用教程](https://agent.gofreeteam.com/docs/docsys-setup.html) — MxsDoc/DocSys 2.02.87 完整落地教程
 - [联系与试用](https://agent.gofreeteam.com/contact.html) — 免费试用与企业级部署咨询
 
@@ -52,3 +52,4 @@ https://agent.gofreeteam.com/blog/mobile-workspace.html — 车间图纸怎么�
 https://agent.gofreeteam.com/blog/tencent-ima-second-brain.html — 腾讯 IMA：第二大脑 vs 组织大脑：腾讯 IMA 这类 AI 工作台把个人检索做得很顺手，但企业要的不只是「我查得快」，而是「组织查得对、改得清、传得下」。本文拆开第二大脑与组织大脑的分工边界，给出个人工具够用与不够用的三条判断标准、组织级知识治理的四条落位，以及从个人试用走向企业部署的避坑清单。
 https://agent.gofreeteam.com/blog/landray-aikm-vs-local-base.html — 蓝凌 aiKM 与本地化知识底座：两条路径的分岔：已经有蓝凌这类数智化办公平台，还要不要单独上一套知识底座？两条路径的分岔不在功能多少，而在起点：一条以流程和协同为中心，一条以文档资产和知识治理为中心。本文给出两者的能力边界对照、四种常见共存架构、预算有限时的排序建议与选型避坑清单。
 https://agent.gofreeteam.com/blog/obsidian-team-vs-enterprise-base.html — Obsidian 团队协作为什么落不了地：个人天堂 vs 企业底座：Obsidian 在工程师个人手里几乎是天堂：本地 Markdown、双链、插件生态。但推到全公司，往往卡在同一批断点上——非技术同事不进客户端、权限只能靠文件系统、版本靠手动提交、AI 插件把数据带出去。本文拆开这五个断点，给出该迁与不必迁的判断标准，以及研发团队常见的双轨方案。
+https://agent.gofreeteam.com/blog/drawing-management-software-selection.html — 图纸管理软件怎么选：网盘、PDM、看图工具、文档底座的分工：搜「图纸管理软件哪个好」的人，往往连自己要解决的是哪一类问题都没分清。网盘、PDM、看图工具、文档底座解决的是四件不同的事，买错了照样乱。本文给出四类工具的边界对照、三个问题定位需求、八项真机验证清单，以及四类常见的过度采购。
