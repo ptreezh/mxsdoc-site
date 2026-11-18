@@ -26,4 +26,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://agent.gofreeteam.com/sitemap.xml
+Sitemap: http://agent.gofreeteam.com/sitemap.xml
